@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIView *LoginView;
 @property (weak, nonatomic) IBOutlet UITextField *UsernameField;
 @property (weak, nonatomic) IBOutlet UITextField *PasswordField;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *MainView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *navButtons;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
 @property (nonatomic) NSInteger userID;
+@property (nonatomic, weak) UITextField* activeField;
 
 @end
 
@@ -28,7 +30,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
+        
     for (UIButton* button in self.navButtons) {
         button.enabled = NO;
     }
@@ -74,9 +76,13 @@
                 button.enabled = YES;
             }
             
-            if (redirect){
+            if (redirect && self.userID > 0){
                 self.LoginView.hidden = YES;
                 self.MainView.hidden = NO;
+            } else {
+                self.errorLabel.text = @"Invalid username/password.";
+                self.UsernameField.text = @"";
+                self.PasswordField.text = @"";
             }
         }];
         
@@ -111,9 +117,19 @@
             for (UIButton* button in self.navButtons) {
                 button.enabled = YES;
             }
-    
-            self.LoginView.hidden = YES;
-            self.MainView.hidden = NO;
+            
+            if (self.userID > 0){
+                self.LoginView.hidden = YES;
+                self.MainView.hidden = NO;
+            } else if (self.userID == -1){
+                self.errorLabel.text = @"User already exists.";
+                self.UsernameField.text = @"";
+                self.PasswordField.text = @"";
+            } else {
+                self.errorLabel.text = @"Couldn't connect.";
+                self.UsernameField.text = @"";
+                self.PasswordField.text = @"";
+            }
         }];
         
         [uploadTask resume];
@@ -125,6 +141,11 @@
         FindGameController* dest = (FindGameController*)segue.destinationViewController;
         dest.userID = self.userID;
     }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return NO;
 }
 
 @end

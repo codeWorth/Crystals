@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeScreenController : UIViewController
+@interface HomeScreenController : UIViewController <UITextFieldDelegate>
 
 @end

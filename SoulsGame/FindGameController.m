@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rankLabel;
+@property (weak, nonatomic) IBOutlet UIButton *findButton;
+@property (weak, nonatomic) IBOutlet UILabel *findingLabel;
 
 @end
 
@@ -38,7 +40,10 @@
     
     if (!error) {
         NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSTimer* timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(scanMatches:) userInfo:nil repeats:NO];
+            self.findingLabel.hidden = NO;
+            self.findButton.hidden = YES;
+            
+            NSTimer* timer = [NSTimer timerWithTimeInterval:3.0 target:self selector:@selector(scanMatches:) userInfo:nil repeats:NO];
             [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         }];
         
@@ -65,7 +70,12 @@
             if ([str length] > 0){
                 [self matchFound];
             } else {
-                NSTimer* timer = [NSTimer timerWithTimeInterval:4.0 target:self selector:@selector(scanMatches:) userInfo:nil repeats:NO];
+                self.findingLabel.text = [NSString stringWithFormat:@"%@.", self.findingLabel.text];
+                if ([self.findingLabel.text isEqualToString:@"Finding Match...."]){
+                    self.findingLabel.text = @"Finding Match";
+                }
+                
+                NSTimer* timer = [NSTimer timerWithTimeInterval:3.0 target:self selector:@selector(scanMatches:) userInfo:nil repeats:NO];
                 [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
             }
         }];
@@ -97,7 +107,7 @@
             NSArray* items = [str componentsSeparatedByString:@","];
             
             self.usernameLabel.text = [items objectAtIndex:0];
-            self.rankLabel.text = [items objectAtIndex:1];
+            self.rankLabel.text = [NSString stringWithFormat:@"Rank: %@", [items objectAtIndex:1]];
         }];
         
         [uploadTask resume];
