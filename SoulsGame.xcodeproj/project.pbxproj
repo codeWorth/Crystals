@@ -1,0 +1,939 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D547B2251CFB062D001460C6 /* MinionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D547B2241CFB062D001460C6 /* MinionView.m */; };
+		D55BB5061D51443A0008A262 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = D55BB5031D51443A0008A262 /* play.png */; };
+		D55BB5071D51443A0008A262 /* cards.png in Resources */ = {isa = PBXBuildFile; fileRef = D55BB5041D51443A0008A262 /* cards.png */; };
+		D55BB5081D51443A0008A262 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = D55BB5051D51443A0008A262 /* settings.png */; };
+		D55FEC841CFAF2F80074F9D1 /* TimedSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = D55FEC831CFAF2F80074F9D1 /* TimedSoul.m */; };
+		D563EE691D5337010015F717 /* FindGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D563EE681D5337010015F717 /* FindGameController.m */; };
+		D56BC41A1D05243A0051CD05 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D56BC4191D05243A0051CD05 /* background.png */; };
+		D56BC41C1D0526270051CD05 /* profileback.png in Resources */ = {isa = PBXBuildFile; fileRef = D56BC41B1D0526270051CD05 /* profileback.png */; };
+		D56BC41E1D056FE10051CD05 /* roundedoutline.png in Resources */ = {isa = PBXBuildFile; fileRef = D56BC41D1D056FE10051CD05 /* roundedoutline.png */; };
+		D56BC4211D0578C50051CD05 /* SpellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D56BC4201D0578C50051CD05 /* SpellCell.m */; };
+		D56BC4241D0579730051CD05 /* SpellSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D56BC4231D0579730051CD05 /* SpellSelectorViewController.m */; };
+		D56BC4691D0581CB0051CD05 /* QuickHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = D56BC4681D0581CB0051CD05 /* QuickHeal.m */; };
+		D56BC46B1D0583290051CD05 /* Fireball.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D56BC46A1D0583290051CD05 /* Fireball.jpg */; };
+		D56F9C761D2607B7002F088C /* rounded_corners.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F9C751D2607B7002F088C /* rounded_corners.png */; };
+		D572678A1D2B3EB500F4B899 /* SoulType.m in Sources */ = {isa = PBXBuildFile; fileRef = D57267891D2B3EB500F4B899 /* SoulType.m */; };
+		D572678D1D2B46C200F4B899 /* SoulSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = D572678C1D2B46C200F4B899 /* SoulSelectionController.m */; };
+		D57267901D2B487200F4B899 /* SoulCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D572678F1D2B487200F4B899 /* SoulCell.m */; };
+		D572E0AB1D305AD9004254F8 /* LifeBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = D572E0AA1D305AD9004254F8 /* LifeBuff.m */; };
+		D572E0AD1D305B65004254F8 /* demonfire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D572E0AC1D305B65004254F8 /* demonfire.jpg */; };
+		D572E0B01D305CBF004254F8 /* FireBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = D572E0AF1D305CBF004254F8 /* FireBuff.m */; };
+		D572E0B21D305E26004254F8 /* light-holy.png in Resources */ = {isa = PBXBuildFile; fileRef = D572E0B11D305E26004254F8 /* light-holy.png */; };
+		D572E0B41D305F38004254F8 /* fireshield.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D572E0B31D305F38004254F8 /* fireshield.jpg */; };
+		D572E0B71D30619F004254F8 /* WaterShard.m in Sources */ = {isa = PBXBuildFile; fileRef = D572E0B61D30619F004254F8 /* WaterShard.m */; };
+		D572E0BA1D3062DD004254F8 /* HealingPool.m in Sources */ = {isa = PBXBuildFile; fileRef = D572E0B91D3062DD004254F8 /* HealingPool.m */; };
+		D572E0BD1D3064C4004254F8 /* watersunlight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D572E0BB1D3064C4004254F8 /* watersunlight.jpg */; };
+		D572E0BE1D3064C4004254F8 /* healingwater.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D572E0BC1D3064C4004254F8 /* healingwater.jpg */; };
+		D572E0C11D306768004254F8 /* WaterResist.m in Sources */ = {isa = PBXBuildFile; fileRef = D572E0C01D306768004254F8 /* WaterResist.m */; };
+		D572E0C41D30685D004254F8 /* WaterBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = D572E0C31D30685D004254F8 /* WaterBuff.m */; };
+		D572E0C61D306ACD004254F8 /* watershield.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D572E0C51D306ACD004254F8 /* watershield.jpg */; };
+		D572E0D01D32FB56004254F8 /* addsoulback outer.png in Resources */ = {isa = PBXBuildFile; fileRef = D572E0CD1D32FB56004254F8 /* addsoulback outer.png */; };
+		D572E0D11D32FB56004254F8 /* addsoulback middle.png in Resources */ = {isa = PBXBuildFile; fileRef = D572E0CE1D32FB56004254F8 /* addsoulback middle.png */; };
+		D572E0D21D32FB56004254F8 /* addsoulback inner.png in Resources */ = {isa = PBXBuildFile; fileRef = D572E0CF1D32FB56004254F8 /* addsoulback inner.png */; };
+		D575B8011D287EF100BD5178 /* addsoulback.png in Resources */ = {isa = PBXBuildFile; fileRef = D575B7FF1D287EF100BD5178 /* addsoulback.png */; };
+		D575B8021D287EF100BD5178 /* backgroundbase.png in Resources */ = {isa = PBXBuildFile; fileRef = D575B8001D287EF100BD5178 /* backgroundbase.png */; };
+		D575B8041D287F1A00BD5178 /* Screen Shot 2016-07-02 at 2.48.15 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = D575B8031D287F1A00BD5178 /* Screen Shot 2016-07-02 at 2.48.15 PM.png */; };
+		D579B94C1CFA463E00AD9447 /* FireResist.m in Sources */ = {isa = PBXBuildFile; fileRef = D579B94B1CFA463E00AD9447 /* FireResist.m */; };
+		D579B9511CFA487500AD9447 /* Fireball.m in Sources */ = {isa = PBXBuildFile; fileRef = D579B9501CFA487500AD9447 /* Fireball.m */; };
+		D579B9561CFA4C4E00AD9447 /* HealthSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = D579B9551CFA4C4E00AD9447 /* HealthSoul.m */; };
+		D579B9591CFA4C5900AD9447 /* SpeedSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = D579B9581CFA4C5900AD9447 /* SpeedSoul.m */; };
+		D579B95C1CFA4C6A00AD9447 /* ShieldSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = D579B95B1CFA4C6A00AD9447 /* ShieldSoul.m */; };
+		D58866F21D03D1AC00C481ED /* defaultProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = D58866F11D03D1AC00C481ED /* defaultProfile.png */; };
+		D58D4B5D1D273BB50039C4E9 /* TransparentCover.m in Sources */ = {isa = PBXBuildFile; fileRef = D58D4B5C1D273BB50039C4E9 /* TransparentCover.m */; };
+		D58D4B601D274AED0039C4E9 /* SoulAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58D4B5F1D274AED0039C4E9 /* SoulAddController.m */; };
+		D59E46911CFBE7C00085CCF3 /* obsidian.png in Resources */ = {isa = PBXBuildFile; fileRef = D59E46871CFBE7C00085CCF3 /* obsidian.png */; };
+		D59E46921CFBE7C00085CCF3 /* moon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E46881CFBE7C00085CCF3 /* moon.jpg */; };
+		D59E46931CFBE7C00085CCF3 /* sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E46891CFBE7C00085CCF3 /* sun.jpg */; };
+		D59E46941CFBE7C00085CCF3 /* ice_spike.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468A1CFBE7C00085CCF3 /* ice_spike.jpg */; };
+		D59E46951CFBE7C00085CCF3 /* shadow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468B1CFBE7C00085CCF3 /* shadow.jpg */; };
+		D59E46961CFBE7C00085CCF3 /* obsidian w: back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468C1CFBE7C00085CCF3 /* obsidian w: back.jpg */; };
+		D59E46971CFBE7C00085CCF3 /* crystal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468D1CFBE7C00085CCF3 /* crystal.jpg */; };
+		D59E46981CFBE7C00085CCF3 /* heal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468E1CFBE7C00085CCF3 /* heal.jpg */; };
+		D59E46991CFBE7C00085CCF3 /* air.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468F1CFBE7C00085CCF3 /* air.jpg */; };
+		D59E469A1CFBE7C00085CCF3 /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E46901CFBE7C00085CCF3 /* fire.jpg */; };
+		D5A01D3E1D04C38700310F79 /* roundedgrey.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A01D3D1D04C38700310F79 /* roundedgrey.png */; };
+		D5A651941D4825FE009CED5F /* souls-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A651931D4825FE009CED5F /* souls-logo.png */; };
+		D5A6519C1D4828FC009CED5F /* buttonback.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A6519B1D4828FC009CED5F /* buttonback.png */; };
+		D5A6519E1D482B99009CED5F /* box copy.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A6519D1D482B99009CED5F /* box copy.png */; };
+		D5A651A01D482DAE009CED5F /* box copy 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A6519F1D482DAE009CED5F /* box copy 2.png */; };
+		D5A651A31D485516009CED5F /* HomeScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A651A21D485516009CED5F /* HomeScreenController.m */; };
+		D5B612D21D2DDC970027AC7E /* crystal wip.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5B612D11D2DDC970027AC7E /* crystal wip.jpg */; };
+		D5BC7EEE1D2F1B1F00C4C0D0 /* MinionAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7EED1D2F1B1F00C4C0D0 /* MinionAddController.m */; };
+		D5BC7EF11D2F6F6000C4C0D0 /* StatMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7EF01D2F6F6000C4C0D0 /* StatMeter.m */; };
+		D5BC7EF31D2F840D00C4C0D0 /* roundedoutline noplus.png in Resources */ = {isa = PBXBuildFile; fileRef = D5BC7EF21D2F840D00C4C0D0 /* roundedoutline noplus.png */; };
+		D5BEF5701CF94E2400A5F3C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF56F1CF94E2400A5F3C2 /* main.m */; };
+		D5BEF5731CF94E2400A5F3C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5721CF94E2400A5F3C2 /* AppDelegate.m */; };
+		D5BEF5761CF94E2400A5F3C2 /* BattlefieldController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5751CF94E2400A5F3C2 /* BattlefieldController.m */; };
+		D5BEF5791CF94E2400A5F3C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BEF5771CF94E2400A5F3C2 /* Main.storyboard */; };
+		D5BEF57B1CF94E2400A5F3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BEF57A1CF94E2400A5F3C2 /* Assets.xcassets */; };
+		D5BEF57E1CF94E2400A5F3C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BEF57C1CF94E2400A5F3C2 /* LaunchScreen.storyboard */; };
+		D5BEF5891CF94E2400A5F3C2 /* SoulsGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5881CF94E2400A5F3C2 /* SoulsGameTests.m */; };
+		D5BEF5941CF94E2400A5F3C2 /* SoulsGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5931CF94E2400A5F3C2 /* SoulsGameUITests.m */; };
+		D5BEF5AA1CF9515400A5F3C2 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5A91CF9515400A5F3C2 /* Player.m */; };
+		D5BEF5AD1CF9516C00A5F3C2 /* Minion.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5AC1CF9516C00A5F3C2 /* Minion.m */; };
+		D5BEF5B01CF9518000A5F3C2 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5AF1CF9518000A5F3C2 /* Game.m */; };
+		D5E375D11CF99F200020C925 /* ElementType.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E375D01CF99F200020C925 /* ElementType.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5BEF5851CF94E2400A5F3C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5BEF5631CF94E2400A5F3C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5BEF56A1CF94E2400A5F3C2;
+			remoteInfo = SoulsGame;
+		};
+		D5BEF5901CF94E2400A5F3C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5BEF5631CF94E2400A5F3C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5BEF56A1CF94E2400A5F3C2;
+			remoteInfo = SoulsGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D547B2231CFB062D001460C6 /* MinionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionView.h; sourceTree = "<group>"; };
+		D547B2241CFB062D001460C6 /* MinionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionView.m; sourceTree = "<group>"; };
+		D55BB5031D51443A0008A262 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		D55BB5041D51443A0008A262 /* cards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards.png; sourceTree = "<group>"; };
+		D55BB5051D51443A0008A262 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		D55FEC821CFAF2F80074F9D1 /* TimedSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimedSoul.h; sourceTree = "<group>"; };
+		D55FEC831CFAF2F80074F9D1 /* TimedSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimedSoul.m; sourceTree = "<group>"; };
+		D563EE671D5337010015F717 /* FindGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindGameController.h; sourceTree = "<group>"; };
+		D563EE681D5337010015F717 /* FindGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindGameController.m; sourceTree = "<group>"; };
+		D56BC4191D05243A0051CD05 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		D56BC41B1D0526270051CD05 /* profileback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileback.png; sourceTree = "<group>"; };
+		D56BC41D1D056FE10051CD05 /* roundedoutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roundedoutline.png; sourceTree = "<group>"; };
+		D56BC41F1D0578C50051CD05 /* SpellCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCell.h; sourceTree = "<group>"; };
+		D56BC4201D0578C50051CD05 /* SpellCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCell.m; sourceTree = "<group>"; };
+		D56BC4221D0579730051CD05 /* SpellSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellSelectorViewController.h; sourceTree = "<group>"; };
+		D56BC4231D0579730051CD05 /* SpellSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellSelectorViewController.m; sourceTree = "<group>"; };
+		D56BC4671D0581CB0051CD05 /* QuickHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickHeal.h; sourceTree = "<group>"; };
+		D56BC4681D0581CB0051CD05 /* QuickHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickHeal.m; sourceTree = "<group>"; };
+		D56BC46A1D0583290051CD05 /* Fireball.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Fireball.jpg; sourceTree = "<group>"; };
+		D56F9C751D2607B7002F088C /* rounded_corners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rounded_corners.png; sourceTree = "<group>"; };
+		D57267891D2B3EB500F4B899 /* SoulType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoulType.m; sourceTree = "<group>"; };
+		D572678B1D2B46C200F4B899 /* SoulSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoulSelectionController.h; sourceTree = "<group>"; };
+		D572678C1D2B46C200F4B899 /* SoulSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoulSelectionController.m; sourceTree = "<group>"; };
+		D572678E1D2B487200F4B899 /* SoulCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoulCell.h; sourceTree = "<group>"; };
+		D572678F1D2B487200F4B899 /* SoulCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoulCell.m; sourceTree = "<group>"; };
+		D572E0A91D305AD9004254F8 /* LifeBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeBuff.h; sourceTree = "<group>"; };
+		D572E0AA1D305AD9004254F8 /* LifeBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeBuff.m; sourceTree = "<group>"; };
+		D572E0AC1D305B65004254F8 /* demonfire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demonfire.jpg; sourceTree = "<group>"; };
+		D572E0AE1D305CBF004254F8 /* FireBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireBuff.h; sourceTree = "<group>"; };
+		D572E0AF1D305CBF004254F8 /* FireBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireBuff.m; sourceTree = "<group>"; };
+		D572E0B11D305E26004254F8 /* light-holy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-holy.png"; sourceTree = "<group>"; };
+		D572E0B31D305F38004254F8 /* fireshield.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fireshield.jpg; sourceTree = "<group>"; };
+		D572E0B51D30619F004254F8 /* WaterShard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterShard.h; sourceTree = "<group>"; };
+		D572E0B61D30619F004254F8 /* WaterShard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterShard.m; sourceTree = "<group>"; };
+		D572E0B81D3062DD004254F8 /* HealingPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealingPool.h; sourceTree = "<group>"; };
+		D572E0B91D3062DD004254F8 /* HealingPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealingPool.m; sourceTree = "<group>"; };
+		D572E0BB1D3064C4004254F8 /* watersunlight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = watersunlight.jpg; sourceTree = "<group>"; };
+		D572E0BC1D3064C4004254F8 /* healingwater.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = healingwater.jpg; sourceTree = "<group>"; };
+		D572E0BF1D306768004254F8 /* WaterResist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterResist.h; sourceTree = "<group>"; };
+		D572E0C01D306768004254F8 /* WaterResist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterResist.m; sourceTree = "<group>"; };
+		D572E0C21D30685D004254F8 /* WaterBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterBuff.h; sourceTree = "<group>"; };
+		D572E0C31D30685D004254F8 /* WaterBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterBuff.m; sourceTree = "<group>"; };
+		D572E0C51D306ACD004254F8 /* watershield.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = watershield.jpg; sourceTree = "<group>"; };
+		D572E0CD1D32FB56004254F8 /* addsoulback outer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addsoulback outer.png"; sourceTree = "<group>"; };
+		D572E0CE1D32FB56004254F8 /* addsoulback middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addsoulback middle.png"; sourceTree = "<group>"; };
+		D572E0CF1D32FB56004254F8 /* addsoulback inner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addsoulback inner.png"; sourceTree = "<group>"; };
+		D575B7FF1D287EF100BD5178 /* addsoulback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addsoulback.png; sourceTree = "<group>"; };
+		D575B8001D287EF100BD5178 /* backgroundbase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundbase.png; sourceTree = "<group>"; };
+		D575B8031D287F1A00BD5178 /* Screen Shot 2016-07-02 at 2.48.15 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2016-07-02 at 2.48.15 PM.png"; sourceTree = "<group>"; };
+		D579B9431CFA3F8000AD9447 /* Soul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Soul.h; sourceTree = "<group>"; };
+		D579B9441CFA459200AD9447 /* ResistSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResistSoul.h; sourceTree = "<group>"; };
+		D579B9451CFA459D00AD9447 /* BuffSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuffSoul.h; sourceTree = "<group>"; };
+		D579B9461CFA45A500AD9447 /* SpecSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecSoul.h; sourceTree = "<group>"; };
+		D579B94A1CFA463E00AD9447 /* FireResist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireResist.h; sourceTree = "<group>"; };
+		D579B94B1CFA463E00AD9447 /* FireResist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireResist.m; sourceTree = "<group>"; };
+		D579B94F1CFA487500AD9447 /* Fireball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fireball.h; sourceTree = "<group>"; };
+		D579B9501CFA487500AD9447 /* Fireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fireball.m; sourceTree = "<group>"; };
+		D579B9521CFA4C2300AD9447 /* AttributeSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeSoul.h; sourceTree = "<group>"; };
+		D579B9541CFA4C4E00AD9447 /* HealthSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthSoul.h; sourceTree = "<group>"; };
+		D579B9551CFA4C4E00AD9447 /* HealthSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthSoul.m; sourceTree = "<group>"; };
+		D579B9571CFA4C5900AD9447 /* SpeedSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedSoul.h; sourceTree = "<group>"; };
+		D579B9581CFA4C5900AD9447 /* SpeedSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedSoul.m; sourceTree = "<group>"; };
+		D579B95A1CFA4C6A00AD9447 /* ShieldSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShieldSoul.h; sourceTree = "<group>"; };
+		D579B95B1CFA4C6A00AD9447 /* ShieldSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShieldSoul.m; sourceTree = "<group>"; };
+		D58866F11D03D1AC00C481ED /* defaultProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultProfile.png; sourceTree = "<group>"; };
+		D58D4B5B1D273BB50039C4E9 /* TransparentCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentCover.h; sourceTree = "<group>"; };
+		D58D4B5C1D273BB50039C4E9 /* TransparentCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentCover.m; sourceTree = "<group>"; };
+		D58D4B5E1D274AED0039C4E9 /* SoulAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoulAddController.h; sourceTree = "<group>"; };
+		D58D4B5F1D274AED0039C4E9 /* SoulAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoulAddController.m; sourceTree = "<group>"; };
+		D59E46871CFBE7C00085CCF3 /* obsidian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obsidian.png; sourceTree = "<group>"; };
+		D59E46881CFBE7C00085CCF3 /* moon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moon.jpg; sourceTree = "<group>"; };
+		D59E46891CFBE7C00085CCF3 /* sun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sun.jpg; sourceTree = "<group>"; };
+		D59E468A1CFBE7C00085CCF3 /* ice_spike.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ice_spike.jpg; sourceTree = "<group>"; };
+		D59E468B1CFBE7C00085CCF3 /* shadow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shadow.jpg; sourceTree = "<group>"; };
+		D59E468C1CFBE7C00085CCF3 /* obsidian w: back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "obsidian w: back.jpg"; sourceTree = "<group>"; };
+		D59E468D1CFBE7C00085CCF3 /* crystal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crystal.jpg; sourceTree = "<group>"; };
+		D59E468E1CFBE7C00085CCF3 /* heal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = heal.jpg; sourceTree = "<group>"; };
+		D59E468F1CFBE7C00085CCF3 /* air.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = air.jpg; sourceTree = "<group>"; };
+		D59E46901CFBE7C00085CCF3 /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fire.jpg; sourceTree = "<group>"; };
+		D5A01D3D1D04C38700310F79 /* roundedgrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roundedgrey.png; sourceTree = "<group>"; };
+		D5A651931D4825FE009CED5F /* souls-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "souls-logo.png"; sourceTree = "<group>"; };
+		D5A6519B1D4828FC009CED5F /* buttonback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonback.png; sourceTree = "<group>"; };
+		D5A6519D1D482B99009CED5F /* box copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box copy.png"; sourceTree = "<group>"; };
+		D5A6519F1D482DAE009CED5F /* box copy 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box copy 2.png"; sourceTree = "<group>"; };
+		D5A651A11D485516009CED5F /* HomeScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenController.h; sourceTree = "<group>"; };
+		D5A651A21D485516009CED5F /* HomeScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenController.m; sourceTree = "<group>"; };
+		D5B50E3A1CFAFC41009A4D7D /* Spell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spell.h; sourceTree = "<group>"; };
+		D5B612D11D2DDC970027AC7E /* crystal wip.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "crystal wip.jpg"; sourceTree = "<group>"; };
+		D5BC7EEC1D2F1B1F00C4C0D0 /* MinionAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionAddController.h; sourceTree = "<group>"; };
+		D5BC7EED1D2F1B1F00C4C0D0 /* MinionAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionAddController.m; sourceTree = "<group>"; };
+		D5BC7EEF1D2F6F6000C4C0D0 /* StatMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatMeter.h; sourceTree = "<group>"; };
+		D5BC7EF01D2F6F6000C4C0D0 /* StatMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatMeter.m; sourceTree = "<group>"; };
+		D5BC7EF21D2F840D00C4C0D0 /* roundedoutline noplus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundedoutline noplus.png"; sourceTree = "<group>"; };
+		D5BEF56B1CF94E2400A5F3C2 /* SoulsGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoulsGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5BEF56F1CF94E2400A5F3C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D5BEF5711CF94E2400A5F3C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D5BEF5721CF94E2400A5F3C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D5BEF5741CF94E2400A5F3C2 /* BattlefieldController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BattlefieldController.h; sourceTree = "<group>"; };
+		D5BEF5751CF94E2400A5F3C2 /* BattlefieldController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BattlefieldController.m; sourceTree = "<group>"; };
+		D5BEF5781CF94E2400A5F3C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D5BEF57A1CF94E2400A5F3C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D5BEF57D1CF94E2400A5F3C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D5BEF57F1CF94E2400A5F3C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5BEF5841CF94E2400A5F3C2 /* SoulsGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoulsGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5BEF5881CF94E2400A5F3C2 /* SoulsGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoulsGameTests.m; sourceTree = "<group>"; };
+		D5BEF58A1CF94E2400A5F3C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5BEF58F1CF94E2400A5F3C2 /* SoulsGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoulsGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5BEF5931CF94E2400A5F3C2 /* SoulsGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoulsGameUITests.m; sourceTree = "<group>"; };
+		D5BEF5951CF94E2400A5F3C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5BEF5A81CF9515400A5F3C2 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		D5BEF5A91CF9515400A5F3C2 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		D5BEF5AB1CF9516C00A5F3C2 /* Minion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Minion.h; sourceTree = "<group>"; };
+		D5BEF5AC1CF9516C00A5F3C2 /* Minion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Minion.m; sourceTree = "<group>"; };
+		D5BEF5AE1CF9518000A5F3C2 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		D5BEF5AF1CF9518000A5F3C2 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		D5E375D01CF99F200020C925 /* ElementType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementType.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5BEF5681CF94E2400A5F3C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5BEF5811CF94E2400A5F3C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5BEF58C1CF94E2400A5F3C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D547B2221CFB05FE001460C6 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				D5BEF5741CF94E2400A5F3C2 /* BattlefieldController.h */,
+				D5BEF5751CF94E2400A5F3C2 /* BattlefieldController.m */,
+				D56BC4221D0579730051CD05 /* SpellSelectorViewController.h */,
+				D56BC4231D0579730051CD05 /* SpellSelectorViewController.m */,
+				D58D4B5E1D274AED0039C4E9 /* SoulAddController.h */,
+				D58D4B5F1D274AED0039C4E9 /* SoulAddController.m */,
+				D572678B1D2B46C200F4B899 /* SoulSelectionController.h */,
+				D572678C1D2B46C200F4B899 /* SoulSelectionController.m */,
+				D5BC7EEC1D2F1B1F00C4C0D0 /* MinionAddController.h */,
+				D5BC7EED1D2F1B1F00C4C0D0 /* MinionAddController.m */,
+				D5A651A11D485516009CED5F /* HomeScreenController.h */,
+				D5A651A21D485516009CED5F /* HomeScreenController.m */,
+				D563EE671D5337010015F717 /* FindGameController.h */,
+				D563EE681D5337010015F717 /* FindGameController.m */,
+				D572678E1D2B487200F4B899 /* SoulCell.h */,
+				D572678F1D2B487200F4B899 /* SoulCell.m */,
+				D547B2231CFB062D001460C6 /* MinionView.h */,
+				D547B2241CFB062D001460C6 /* MinionView.m */,
+				D56BC41F1D0578C50051CD05 /* SpellCell.h */,
+				D56BC4201D0578C50051CD05 /* SpellCell.m */,
+				D58D4B5B1D273BB50039C4E9 /* TransparentCover.h */,
+				D58D4B5C1D273BB50039C4E9 /* TransparentCover.m */,
+				D5BC7EEF1D2F6F6000C4C0D0 /* StatMeter.h */,
+				D5BC7EF01D2F6F6000C4C0D0 /* StatMeter.m */,
+			);
+			name = "UI Elements";
+			sourceTree = "<group>";
+		};
+		D579B9471CFA45AC00AD9447 /* Specialized Souls */ = {
+			isa = PBXGroup;
+			children = (
+				D579B9461CFA45A500AD9447 /* SpecSoul.h */,
+			);
+			name = "Specialized Souls";
+			sourceTree = "<group>";
+		};
+		D579B9481CFA45B000AD9447 /* Resist Souls */ = {
+			isa = PBXGroup;
+			children = (
+				D579B9441CFA459200AD9447 /* ResistSoul.h */,
+				D579B94A1CFA463E00AD9447 /* FireResist.h */,
+				D579B94B1CFA463E00AD9447 /* FireResist.m */,
+				D572E0BF1D306768004254F8 /* WaterResist.h */,
+				D572E0C01D306768004254F8 /* WaterResist.m */,
+			);
+			name = "Resist Souls";
+			sourceTree = "<group>";
+		};
+		D579B9491CFA45B500AD9447 /* Buff Souls */ = {
+			isa = PBXGroup;
+			children = (
+				D579B9451CFA459D00AD9447 /* BuffSoul.h */,
+				D572E0A91D305AD9004254F8 /* LifeBuff.h */,
+				D572E0AA1D305AD9004254F8 /* LifeBuff.m */,
+				D572E0AE1D305CBF004254F8 /* FireBuff.h */,
+				D572E0AF1D305CBF004254F8 /* FireBuff.m */,
+				D572E0C21D30685D004254F8 /* WaterBuff.h */,
+				D572E0C31D30685D004254F8 /* WaterBuff.m */,
+			);
+			name = "Buff Souls";
+			sourceTree = "<group>";
+		};
+		D579B94D1CFA47E900AD9447 /* Spells */ = {
+			isa = PBXGroup;
+			children = (
+				D5B50E3A1CFAFC41009A4D7D /* Spell.h */,
+				D56BC4671D0581CB0051CD05 /* QuickHeal.h */,
+				D56BC4681D0581CB0051CD05 /* QuickHeal.m */,
+				D579B94F1CFA487500AD9447 /* Fireball.h */,
+				D579B9501CFA487500AD9447 /* Fireball.m */,
+				D572E0B51D30619F004254F8 /* WaterShard.h */,
+				D572E0B61D30619F004254F8 /* WaterShard.m */,
+				D572E0B81D3062DD004254F8 /* HealingPool.h */,
+				D572E0B91D3062DD004254F8 /* HealingPool.m */,
+			);
+			name = Spells;
+			sourceTree = "<group>";
+		};
+		D579B9531CFA4C3A00AD9447 /* Attribute Souls */ = {
+			isa = PBXGroup;
+			children = (
+				D579B9521CFA4C2300AD9447 /* AttributeSoul.h */,
+				D579B9541CFA4C4E00AD9447 /* HealthSoul.h */,
+				D579B9551CFA4C4E00AD9447 /* HealthSoul.m */,
+				D579B9571CFA4C5900AD9447 /* SpeedSoul.h */,
+				D579B9581CFA4C5900AD9447 /* SpeedSoul.m */,
+				D579B95A1CFA4C6A00AD9447 /* ShieldSoul.h */,
+				D579B95B1CFA4C6A00AD9447 /* ShieldSoul.m */,
+			);
+			name = "Attribute Souls";
+			sourceTree = "<group>";
+		};
+		D59E465B1CFBD9530085CCF3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D5BC7EF21D2F840D00C4C0D0 /* roundedoutline noplus.png */,
+				D56BC41D1D056FE10051CD05 /* roundedoutline.png */,
+				D56BC41B1D0526270051CD05 /* profileback.png */,
+				D55BB5031D51443A0008A262 /* play.png */,
+				D55BB5041D51443A0008A262 /* cards.png */,
+				D55BB5051D51443A0008A262 /* settings.png */,
+				D5A6519B1D4828FC009CED5F /* buttonback.png */,
+				D56BC4191D05243A0051CD05 /* background.png */,
+				D5A6519F1D482DAE009CED5F /* box copy 2.png */,
+				D5A6519D1D482B99009CED5F /* box copy.png */,
+				D5A651931D4825FE009CED5F /* souls-logo.png */,
+				D572E0CD1D32FB56004254F8 /* addsoulback outer.png */,
+				D572E0CE1D32FB56004254F8 /* addsoulback middle.png */,
+				D572E0CF1D32FB56004254F8 /* addsoulback inner.png */,
+				D575B7FF1D287EF100BD5178 /* addsoulback.png */,
+				D575B8031D287F1A00BD5178 /* Screen Shot 2016-07-02 at 2.48.15 PM.png */,
+				D575B8001D287EF100BD5178 /* backgroundbase.png */,
+				D58866F11D03D1AC00C481ED /* defaultProfile.png */,
+				D5A01D3D1D04C38700310F79 /* roundedgrey.png */,
+				D56F9C751D2607B7002F088C /* rounded_corners.png */,
+				D59E46861CFBE7890085CCF3 /* Elemental Icons */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		D59E46861CFBE7890085CCF3 /* Elemental Icons */ = {
+			isa = PBXGroup;
+			children = (
+				D572E0B31D305F38004254F8 /* fireshield.jpg */,
+				D572E0B11D305E26004254F8 /* light-holy.png */,
+				D572E0AC1D305B65004254F8 /* demonfire.jpg */,
+				D59E46871CFBE7C00085CCF3 /* obsidian.png */,
+				D59E46881CFBE7C00085CCF3 /* moon.jpg */,
+				D59E46891CFBE7C00085CCF3 /* sun.jpg */,
+				D59E468A1CFBE7C00085CCF3 /* ice_spike.jpg */,
+				D59E468B1CFBE7C00085CCF3 /* shadow.jpg */,
+				D59E468C1CFBE7C00085CCF3 /* obsidian w: back.jpg */,
+				D5B612D11D2DDC970027AC7E /* crystal wip.jpg */,
+				D59E468D1CFBE7C00085CCF3 /* crystal.jpg */,
+				D59E468E1CFBE7C00085CCF3 /* heal.jpg */,
+				D59E468F1CFBE7C00085CCF3 /* air.jpg */,
+				D59E46901CFBE7C00085CCF3 /* fire.jpg */,
+				D56BC46A1D0583290051CD05 /* Fireball.jpg */,
+				D572E0BB1D3064C4004254F8 /* watersunlight.jpg */,
+				D572E0BC1D3064C4004254F8 /* healingwater.jpg */,
+				D572E0C51D306ACD004254F8 /* watershield.jpg */,
+			);
+			name = "Elemental Icons";
+			sourceTree = "<group>";
+		};
+		D5BEF5621CF94E2400A5F3C2 = {
+			isa = PBXGroup;
+			children = (
+				D5BEF56D1CF94E2400A5F3C2 /* SoulsGame */,
+				D5BEF5871CF94E2400A5F3C2 /* SoulsGameTests */,
+				D5BEF5921CF94E2400A5F3C2 /* SoulsGameUITests */,
+				D5BEF56C1CF94E2400A5F3C2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5BEF56C1CF94E2400A5F3C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5BEF56B1CF94E2400A5F3C2 /* SoulsGame.app */,
+				D5BEF5841CF94E2400A5F3C2 /* SoulsGameTests.xctest */,
+				D5BEF58F1CF94E2400A5F3C2 /* SoulsGameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5BEF56D1CF94E2400A5F3C2 /* SoulsGame */ = {
+			isa = PBXGroup;
+			children = (
+				D59E465B1CFBD9530085CCF3 /* Images */,
+				D547B2221CFB05FE001460C6 /* UI Elements */,
+				D579B94D1CFA47E900AD9447 /* Spells */,
+				D5BEF5711CF94E2400A5F3C2 /* AppDelegate.h */,
+				D5BEF5721CF94E2400A5F3C2 /* AppDelegate.m */,
+				D5BEF5771CF94E2400A5F3C2 /* Main.storyboard */,
+				D5BEF57A1CF94E2400A5F3C2 /* Assets.xcassets */,
+				D5BEF5AB1CF9516C00A5F3C2 /* Minion.h */,
+				D5BEF5AC1CF9516C00A5F3C2 /* Minion.m */,
+				D5BEF5A81CF9515400A5F3C2 /* Player.h */,
+				D5BEF5A91CF9515400A5F3C2 /* Player.m */,
+				D5BEF5AE1CF9518000A5F3C2 /* Game.h */,
+				D5BEF5AF1CF9518000A5F3C2 /* Game.m */,
+				D5BEF5B51CF9521A00A5F3C2 /* Souls */,
+				D5BEF56E1CF94E2400A5F3C2 /* Supporting Files */,
+				D5E375D01CF99F200020C925 /* ElementType.m */,
+				D57267891D2B3EB500F4B899 /* SoulType.m */,
+			);
+			path = SoulsGame;
+			sourceTree = "<group>";
+		};
+		D5BEF56E1CF94E2400A5F3C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5BEF57F1CF94E2400A5F3C2 /* Info.plist */,
+				D5BEF57C1CF94E2400A5F3C2 /* LaunchScreen.storyboard */,
+				D5BEF56F1CF94E2400A5F3C2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5BEF5871CF94E2400A5F3C2 /* SoulsGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				D5BEF5881CF94E2400A5F3C2 /* SoulsGameTests.m */,
+				D5BEF58A1CF94E2400A5F3C2 /* Info.plist */,
+			);
+			path = SoulsGameTests;
+			sourceTree = "<group>";
+		};
+		D5BEF5921CF94E2400A5F3C2 /* SoulsGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D5BEF5931CF94E2400A5F3C2 /* SoulsGameUITests.m */,
+				D5BEF5951CF94E2400A5F3C2 /* Info.plist */,
+			);
+			path = SoulsGameUITests;
+			sourceTree = "<group>";
+		};
+		D5BEF5B51CF9521A00A5F3C2 /* Souls */ = {
+			isa = PBXGroup;
+			children = (
+				D579B9431CFA3F8000AD9447 /* Soul.h */,
+				D579B9531CFA4C3A00AD9447 /* Attribute Souls */,
+				D579B9481CFA45B000AD9447 /* Resist Souls */,
+				D579B9491CFA45B500AD9447 /* Buff Souls */,
+				D579B9471CFA45AC00AD9447 /* Specialized Souls */,
+				D55FEC821CFAF2F80074F9D1 /* TimedSoul.h */,
+				D55FEC831CFAF2F80074F9D1 /* TimedSoul.m */,
+			);
+			name = Souls;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5BEF56A1CF94E2400A5F3C2 /* SoulsGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5BEF5981CF94E2400A5F3C2 /* Build configuration list for PBXNativeTarget "SoulsGame" */;
+			buildPhases = (
+				D5BEF5671CF94E2400A5F3C2 /* Sources */,
+				D5BEF5681CF94E2400A5F3C2 /* Frameworks */,
+				D5BEF5691CF94E2400A5F3C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SoulsGame;
+			productName = SoulsGame;
+			productReference = D5BEF56B1CF94E2400A5F3C2 /* SoulsGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5BEF5831CF94E2400A5F3C2 /* SoulsGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5BEF59B1CF94E2400A5F3C2 /* Build configuration list for PBXNativeTarget "SoulsGameTests" */;
+			buildPhases = (
+				D5BEF5801CF94E2400A5F3C2 /* Sources */,
+				D5BEF5811CF94E2400A5F3C2 /* Frameworks */,
+				D5BEF5821CF94E2400A5F3C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5BEF5861CF94E2400A5F3C2 /* PBXTargetDependency */,
+			);
+			name = SoulsGameTests;
+			productName = SoulsGameTests;
+			productReference = D5BEF5841CF94E2400A5F3C2 /* SoulsGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D5BEF58E1CF94E2400A5F3C2 /* SoulsGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5BEF59E1CF94E2400A5F3C2 /* Build configuration list for PBXNativeTarget "SoulsGameUITests" */;
+			buildPhases = (
+				D5BEF58B1CF94E2400A5F3C2 /* Sources */,
+				D5BEF58C1CF94E2400A5F3C2 /* Frameworks */,
+				D5BEF58D1CF94E2400A5F3C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5BEF5911CF94E2400A5F3C2 /* PBXTargetDependency */,
+			);
+			name = SoulsGameUITests;
+			productName = SoulsGameUITests;
+			productReference = D5BEF58F1CF94E2400A5F3C2 /* SoulsGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5BEF5631CF94E2400A5F3C2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Andrew Cummings";
+				TargetAttributes = {
+					D5BEF56A1CF94E2400A5F3C2 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = K28KQC6A4X;
+					};
+					D5BEF5831CF94E2400A5F3C2 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = K28KQC6A4X;
+						TestTargetID = D5BEF56A1CF94E2400A5F3C2;
+					};
+					D5BEF58E1CF94E2400A5F3C2 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = K28KQC6A4X;
+						TestTargetID = D5BEF56A1CF94E2400A5F3C2;
+					};
+				};
+			};
+			buildConfigurationList = D5BEF5661CF94E2400A5F3C2 /* Build configuration list for PBXProject "SoulsGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D5BEF5621CF94E2400A5F3C2;
+			productRefGroup = D5BEF56C1CF94E2400A5F3C2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5BEF56A1CF94E2400A5F3C2 /* SoulsGame */,
+				D5BEF5831CF94E2400A5F3C2 /* SoulsGameTests */,
+				D5BEF58E1CF94E2400A5F3C2 /* SoulsGameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5BEF5691CF94E2400A5F3C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D572E0B41D305F38004254F8 /* fireshield.jpg in Resources */,
+				D55BB5071D51443A0008A262 /* cards.png in Resources */,
+				D572E0D21D32FB56004254F8 /* addsoulback inner.png in Resources */,
+				D5B612D21D2DDC970027AC7E /* crystal wip.jpg in Resources */,
+				D59E46931CFBE7C00085CCF3 /* sun.jpg in Resources */,
+				D56BC46B1D0583290051CD05 /* Fireball.jpg in Resources */,
+				D56F9C761D2607B7002F088C /* rounded_corners.png in Resources */,
+				D59E46911CFBE7C00085CCF3 /* obsidian.png in Resources */,
+				D572E0B21D305E26004254F8 /* light-holy.png in Resources */,
+				D575B8021D287EF100BD5178 /* backgroundbase.png in Resources */,
+				D56BC41A1D05243A0051CD05 /* background.png in Resources */,
+				D59E46941CFBE7C00085CCF3 /* ice_spike.jpg in Resources */,
+				D55BB5061D51443A0008A262 /* play.png in Resources */,
+				D572E0C61D306ACD004254F8 /* watershield.jpg in Resources */,
+				D5A6519C1D4828FC009CED5F /* buttonback.png in Resources */,
+				D59E46981CFBE7C00085CCF3 /* heal.jpg in Resources */,
+				D575B8041D287F1A00BD5178 /* Screen Shot 2016-07-02 at 2.48.15 PM.png in Resources */,
+				D5A01D3E1D04C38700310F79 /* roundedgrey.png in Resources */,
+				D575B8011D287EF100BD5178 /* addsoulback.png in Resources */,
+				D59E469A1CFBE7C00085CCF3 /* fire.jpg in Resources */,
+				D572E0D11D32FB56004254F8 /* addsoulback middle.png in Resources */,
+				D5A651A01D482DAE009CED5F /* box copy 2.png in Resources */,
+				D5A6519E1D482B99009CED5F /* box copy.png in Resources */,
+				D59E46921CFBE7C00085CCF3 /* moon.jpg in Resources */,
+				D5BEF57E1CF94E2400A5F3C2 /* LaunchScreen.storyboard in Resources */,
+				D572E0BD1D3064C4004254F8 /* watersunlight.jpg in Resources */,
+				D58866F21D03D1AC00C481ED /* defaultProfile.png in Resources */,
+				D572E0D01D32FB56004254F8 /* addsoulback outer.png in Resources */,
+				D5BC7EF31D2F840D00C4C0D0 /* roundedoutline noplus.png in Resources */,
+				D59E46991CFBE7C00085CCF3 /* air.jpg in Resources */,
+				D56BC41C1D0526270051CD05 /* profileback.png in Resources */,
+				D572E0AD1D305B65004254F8 /* demonfire.jpg in Resources */,
+				D5BEF57B1CF94E2400A5F3C2 /* Assets.xcassets in Resources */,
+				D59E46961CFBE7C00085CCF3 /* obsidian w: back.jpg in Resources */,
+				D5BEF5791CF94E2400A5F3C2 /* Main.storyboard in Resources */,
+				D59E46971CFBE7C00085CCF3 /* crystal.jpg in Resources */,
+				D56BC41E1D056FE10051CD05 /* roundedoutline.png in Resources */,
+				D55BB5081D51443A0008A262 /* settings.png in Resources */,
+				D5A651941D4825FE009CED5F /* souls-logo.png in Resources */,
+				D572E0BE1D3064C4004254F8 /* healingwater.jpg in Resources */,
+				D59E46951CFBE7C00085CCF3 /* shadow.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5BEF5821CF94E2400A5F3C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5BEF58D1CF94E2400A5F3C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5BEF5671CF94E2400A5F3C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5BEF5AA1CF9515400A5F3C2 /* Player.m in Sources */,
+				D579B9511CFA487500AD9447 /* Fireball.m in Sources */,
+				D56BC4211D0578C50051CD05 /* SpellCell.m in Sources */,
+				D579B9561CFA4C4E00AD9447 /* HealthSoul.m in Sources */,
+				D572E0AB1D305AD9004254F8 /* LifeBuff.m in Sources */,
+				D579B9591CFA4C5900AD9447 /* SpeedSoul.m in Sources */,
+				D56BC4691D0581CB0051CD05 /* QuickHeal.m in Sources */,
+				D55FEC841CFAF2F80074F9D1 /* TimedSoul.m in Sources */,
+				D5BEF5761CF94E2400A5F3C2 /* BattlefieldController.m in Sources */,
+				D579B94C1CFA463E00AD9447 /* FireResist.m in Sources */,
+				D572E0B01D305CBF004254F8 /* FireBuff.m in Sources */,
+				D572678D1D2B46C200F4B899 /* SoulSelectionController.m in Sources */,
+				D57267901D2B487200F4B899 /* SoulCell.m in Sources */,
+				D5BEF5AD1CF9516C00A5F3C2 /* Minion.m in Sources */,
+				D563EE691D5337010015F717 /* FindGameController.m in Sources */,
+				D572E0BA1D3062DD004254F8 /* HealingPool.m in Sources */,
+				D579B95C1CFA4C6A00AD9447 /* ShieldSoul.m in Sources */,
+				D5BC7EEE1D2F1B1F00C4C0D0 /* MinionAddController.m in Sources */,
+				D572E0B71D30619F004254F8 /* WaterShard.m in Sources */,
+				D5E375D11CF99F200020C925 /* ElementType.m in Sources */,
+				D56BC4241D0579730051CD05 /* SpellSelectorViewController.m in Sources */,
+				D547B2251CFB062D001460C6 /* MinionView.m in Sources */,
+				D572E0C11D306768004254F8 /* WaterResist.m in Sources */,
+				D58D4B601D274AED0039C4E9 /* SoulAddController.m in Sources */,
+				D5BEF5B01CF9518000A5F3C2 /* Game.m in Sources */,
+				D5BEF5731CF94E2400A5F3C2 /* AppDelegate.m in Sources */,
+				D58D4B5D1D273BB50039C4E9 /* TransparentCover.m in Sources */,
+				D572678A1D2B3EB500F4B899 /* SoulType.m in Sources */,
+				D5BEF5701CF94E2400A5F3C2 /* main.m in Sources */,
+				D572E0C41D30685D004254F8 /* WaterBuff.m in Sources */,
+				D5A651A31D485516009CED5F /* HomeScreenController.m in Sources */,
+				D5BC7EF11D2F6F6000C4C0D0 /* StatMeter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5BEF5801CF94E2400A5F3C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5BEF5891CF94E2400A5F3C2 /* SoulsGameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5BEF58B1CF94E2400A5F3C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5BEF5941CF94E2400A5F3C2 /* SoulsGameUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5BEF5861CF94E2400A5F3C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5BEF56A1CF94E2400A5F3C2 /* SoulsGame */;
+			targetProxy = D5BEF5851CF94E2400A5F3C2 /* PBXContainerItemProxy */;
+		};
+		D5BEF5911CF94E2400A5F3C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5BEF56A1CF94E2400A5F3C2 /* SoulsGame */;
+			targetProxy = D5BEF5901CF94E2400A5F3C2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D5BEF5771CF94E2400A5F3C2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5BEF5781CF94E2400A5F3C2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D5BEF57C1CF94E2400A5F3C2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5BEF57D1CF94E2400A5F3C2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D5BEF5961CF94E2400A5F3C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D5BEF5971CF94E2400A5F3C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D5BEF5991CF94E2400A5F3C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = SoulsGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = andrewCummings.SoulsGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D5BEF59A1CF94E2400A5F3C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = SoulsGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = andrewCummings.SoulsGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D5BEF59C1CF94E2400A5F3C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SoulsGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = andrewCummings.SoulsGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoulsGame.app/SoulsGame";
+			};
+			name = Debug;
+		};
+		D5BEF59D1CF94E2400A5F3C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SoulsGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = andrewCummings.SoulsGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoulsGame.app/SoulsGame";
+			};
+			name = Release;
+		};
+		D5BEF59F1CF94E2400A5F3C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SoulsGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = andrewCummings.SoulsGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SoulsGame;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		D5BEF5A01CF94E2400A5F3C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SoulsGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = andrewCummings.SoulsGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SoulsGame;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5BEF5661CF94E2400A5F3C2 /* Build configuration list for PBXProject "SoulsGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5BEF5961CF94E2400A5F3C2 /* Debug */,
+				D5BEF5971CF94E2400A5F3C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5BEF5981CF94E2400A5F3C2 /* Build configuration list for PBXNativeTarget "SoulsGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5BEF5991CF94E2400A5F3C2 /* Debug */,
+				D5BEF59A1CF94E2400A5F3C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5BEF59B1CF94E2400A5F3C2 /* Build configuration list for PBXNativeTarget "SoulsGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5BEF59C1CF94E2400A5F3C2 /* Debug */,
+				D5BEF59D1CF94E2400A5F3C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5BEF59E1CF94E2400A5F3C2 /* Build configuration list for PBXNativeTarget "SoulsGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5BEF59F1CF94E2400A5F3C2 /* Debug */,
+				D5BEF5A01CF94E2400A5F3C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5BEF5631CF94E2400A5F3C2 /* Project object */;
+}

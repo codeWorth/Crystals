@@ -1,0 +1,27 @@
+//
+//  SoulsGame-Prefix.pch
+//  SoulsGame
+//
+//  Created by Andrew Cummings on 5/28/16.
+//  Copyright © 2016 Andrew Cummings. All rights reserved.
+//
+
+#ifndef SoulsGame_Prefix_pch
+#define SoulsGame_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* SoulsGame_Prefix_pch */
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "ElementType.m"
+#import "Spell.h"
+#import "Soul.h"
+#import "AttributeSoul.h"
+#import "ResistSoul.h"
+#import "BuffSoul.h"
+#import "ActiveSoul.h"
+#import "Minion.h"
