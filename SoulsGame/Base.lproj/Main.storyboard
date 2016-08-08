@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sgb-2e-WeP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sgb-2e-WeP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -732,7 +732,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="addMinion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sig-K2-2W8"/>
+                                            <action selector="addCrystal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UE6-Xd-IR9"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWx-ed-iOH">
@@ -752,7 +752,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="addMinion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uqY-hO-DAZ"/>
+                                            <action selector="addCrystal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DW7-DO-VM1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSi-sj-2yt">
@@ -772,7 +772,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="addMinion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XFD-FV-zRR"/>
+                                            <action selector="addCrystal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PZz-Ih-8IX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZ2-vn-QjS">
@@ -792,7 +792,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="addMinion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XHR-rk-8oN"/>
+                                            <action selector="addCrystal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PeL-lR-Ey3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5y-kK-Y0b">
@@ -812,7 +812,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="addMinion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OYq-2B-dtA"/>
+                                            <action selector="addCrystal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f0R-cU-FCX"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -902,7 +902,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-rj-Vgl" customClass="MinionView">
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-rj-Vgl" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="6pB-oB-EFW">
@@ -1068,15 +1068,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="friendlyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1QN-lY-mIA"/>
+                                    <action selector="friendlyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p8m-Lq-Kl6"/>
                                     <outlet property="backgroundImg" destination="6pB-oB-EFW" id="tPP-TK-Hwb"/>
+                                    <outlet property="crystalImg" destination="kCr-Tj-dYo" id="1fl-UW-fj6"/>
                                     <outlet property="healthLabel" destination="cOP-ZE-MCV" id="oEk-fF-I9N"/>
-                                    <outlet property="minionImg" destination="kCr-Tj-dYo" id="Yb8-R3-Mus"/>
                                     <outlet property="shieldLabel" destination="OPp-EN-tzY" id="zfT-fx-d1z"/>
                                     <outlet property="speedLabel" destination="Yy2-u0-aay" id="YwW-Y5-Gs0"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Arg-E2-cKo" customClass="MinionView">
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Arg-E2-cKo" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="6fW-c7-o43">
@@ -1240,15 +1240,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="friendlyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nXL-ZQ-4n6"/>
+                                    <action selector="friendlyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xeQ-1A-aAU"/>
                                     <outlet property="backgroundImg" destination="6fW-c7-o43" id="q8a-TY-QDv"/>
+                                    <outlet property="crystalImg" destination="CnB-Ng-1KP" id="ZnX-qX-UJH"/>
                                     <outlet property="healthLabel" destination="cCE-ik-ZfP" id="edY-68-gIb"/>
-                                    <outlet property="minionImg" destination="CnB-Ng-1KP" id="Co5-OW-PV1"/>
                                     <outlet property="shieldLabel" destination="t6Z-9a-jCg" id="NFg-h5-D8n"/>
                                     <outlet property="speedLabel" destination="JBV-fU-FQv" id="uHR-KF-nvu"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEi-xF-tQy" customClass="MinionView">
+                            <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEi-xF-tQy" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="1GO-H8-q1L">
@@ -1412,15 +1412,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="friendlyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oFu-IC-OVU"/>
+                                    <action selector="friendlyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="51V-IR-6RG"/>
                                     <outlet property="backgroundImg" destination="1GO-H8-q1L" id="Oko-Nd-3Bq"/>
+                                    <outlet property="crystalImg" destination="VXB-AF-RFO" id="g1K-M5-vjw"/>
                                     <outlet property="healthLabel" destination="M3t-4o-gkT" id="Itq-4z-5yJ"/>
-                                    <outlet property="minionImg" destination="VXB-AF-RFO" id="PMD-jH-bqG"/>
                                     <outlet property="shieldLabel" destination="G19-2n-M2S" id="WMT-SO-FDw"/>
                                     <outlet property="speedLabel" destination="O2K-v9-KLV" id="7nf-nT-fU3"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuH-ee-fyF" customClass="MinionView">
+                            <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuH-ee-fyF" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="pEu-n5-IA7">
@@ -1584,15 +1584,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="friendlyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AfW-wr-mnS"/>
+                                    <action selector="friendlyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R2u-lb-N77"/>
                                     <outlet property="backgroundImg" destination="pEu-n5-IA7" id="07e-Wc-C8E"/>
+                                    <outlet property="crystalImg" destination="Sse-1X-tNT" id="odq-Ak-dH9"/>
                                     <outlet property="healthLabel" destination="Rbm-rE-Fve" id="hpS-T2-5xA"/>
-                                    <outlet property="minionImg" destination="Sse-1X-tNT" id="kv5-cG-H5D"/>
                                     <outlet property="shieldLabel" destination="TdI-lc-P0o" id="SxG-s6-IWc"/>
                                     <outlet property="speedLabel" destination="IRO-j6-VjQ" id="XjR-Q3-s7h"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st0-oy-6U0" customClass="MinionView">
+                            <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="st0-oy-6U0" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ntk-cF-UPq">
@@ -1758,15 +1758,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="friendlyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yAu-UL-WjA"/>
+                                    <action selector="friendlyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m1K-0K-K0H"/>
                                     <outlet property="backgroundImg" destination="Ntk-cF-UPq" id="fVm-re-g0m"/>
+                                    <outlet property="crystalImg" destination="SDG-dY-seY" id="a5b-T7-pFN"/>
                                     <outlet property="healthLabel" destination="UmT-Nk-m5E" id="zJJ-0E-7YC"/>
-                                    <outlet property="minionImg" destination="SDG-dY-seY" id="z6T-8c-BqJ"/>
                                     <outlet property="shieldLabel" destination="yJu-xU-Ss3" id="BQf-6v-TuA"/>
                                     <outlet property="speedLabel" destination="7pD-Or-vRh" id="Vvh-fB-iTN"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Inj-v8-28o" customClass="MinionView">
+                            <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Inj-v8-28o" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="KtD-mt-Jk5">
@@ -1920,15 +1920,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="enemyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="itD-dB-8Ur"/>
+                                    <action selector="enemyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5KR-S1-PCH"/>
                                     <outlet property="backgroundImg" destination="KtD-mt-Jk5" id="55i-cg-oSH"/>
+                                    <outlet property="crystalImg" destination="j16-g8-Vcs" id="WoV-6N-Rw3"/>
                                     <outlet property="healthLabel" destination="cfn-ep-19Q" id="dow-hO-Z5H"/>
-                                    <outlet property="minionImg" destination="j16-g8-Vcs" id="Jf5-Qz-2UQ"/>
                                     <outlet property="shieldLabel" destination="ru4-Bl-dnH" id="iMk-VL-kJy"/>
                                     <outlet property="speedLabel" destination="hjO-0Z-gtm" id="McE-et-vwU"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDs-gW-HN5" customClass="MinionView">
+                            <view tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDs-gW-HN5" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="snX-ej-c5D">
@@ -2091,15 +2091,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="enemyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3L8-dw-QDC"/>
+                                    <action selector="enemyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oyl-Og-285"/>
                                     <outlet property="backgroundImg" destination="snX-ej-c5D" id="1iV-Xo-MIR"/>
+                                    <outlet property="crystalImg" destination="v1G-d4-rfd" id="mGx-n9-hZ1"/>
                                     <outlet property="healthLabel" destination="ozS-OG-7zt" id="XPR-rh-qzA"/>
-                                    <outlet property="minionImg" destination="v1G-d4-rfd" id="Hfk-cC-yJB"/>
                                     <outlet property="shieldLabel" destination="EVX-3Q-LHU" id="wRT-eg-IKg"/>
                                     <outlet property="speedLabel" destination="lhN-iQ-2Cj" id="nnz-eU-dp5"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWp-ff-TFr" customClass="MinionView">
+                            <view tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWp-ff-TFr" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="K8p-ME-0vi">
@@ -2262,15 +2262,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="enemyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="feN-jB-Uhs"/>
+                                    <action selector="enemyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VhD-ND-sSS"/>
                                     <outlet property="backgroundImg" destination="K8p-ME-0vi" id="zvu-A0-LOs"/>
+                                    <outlet property="crystalImg" destination="MUo-35-tXc" id="Dvm-1c-bNO"/>
                                     <outlet property="healthLabel" destination="akI-Eq-TAU" id="bgc-f9-Bs7"/>
-                                    <outlet property="minionImg" destination="MUo-35-tXc" id="7No-0O-tg2"/>
                                     <outlet property="shieldLabel" destination="tjK-nW-GeD" id="ftR-xE-SN2"/>
                                     <outlet property="speedLabel" destination="WNL-0G-6BA" id="eac-zH-bIp"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5TE-li-ZFG" customClass="MinionView">
+                            <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5TE-li-ZFG" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="xa5-S6-8j2">
@@ -2433,15 +2433,15 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="enemyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k7k-VJ-jKP"/>
+                                    <action selector="enemyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cR6-Ac-uvx"/>
                                     <outlet property="backgroundImg" destination="xa5-S6-8j2" id="k6Z-71-aLN"/>
+                                    <outlet property="crystalImg" destination="msa-pV-9tv" id="TZj-NO-5GU"/>
                                     <outlet property="healthLabel" destination="4LW-zj-QOf" id="ZCb-Xh-9nS"/>
-                                    <outlet property="minionImg" destination="msa-pV-9tv" id="was-bR-BmF"/>
                                     <outlet property="shieldLabel" destination="kRi-Kf-G7R" id="B1Z-zC-HdW"/>
                                     <outlet property="speedLabel" destination="JNm-eJ-Tix" id="Qsb-oG-HcE"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kz6-ze-chj" customClass="MinionView">
+                            <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kz6-ze-chj" customClass="CrystalView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundedgrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="rc2-2l-Asc">
@@ -2604,10 +2604,10 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="enemyMinionSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Smo-QN-9Af"/>
+                                    <action selector="enemyCrystalSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PJH-lU-DzL"/>
                                     <outlet property="backgroundImg" destination="rc2-2l-Asc" id="dYA-Tj-qOR"/>
+                                    <outlet property="crystalImg" destination="V77-pb-Vle" id="Lym-6n-06L"/>
                                     <outlet property="healthLabel" destination="5Ch-fM-RIJ" id="GRb-o6-heQ"/>
-                                    <outlet property="minionImg" destination="V77-pb-Vle" id="IpG-31-LaV"/>
                                     <outlet property="shieldLabel" destination="GZA-h6-TyI" id="BAV-hx-MPr"/>
                                     <outlet property="speedLabel" destination="MYG-3O-2zb" id="Xpw-h1-fcK"/>
                                 </connections>
@@ -2907,26 +2907,26 @@
                         <outlet property="awayImg" destination="sg5-Iw-vqn" id="8uO-bN-mQJ"/>
                         <outlet property="awayName" destination="G3n-h4-MAK" id="KhV-3D-avf"/>
                         <outlet property="coverView" destination="ttU-Qc-khC" id="K34-fQ-h1r"/>
+                        <outlet property="crystalA1" destination="kz6-ze-chj" id="FuV-Nt-PU4"/>
+                        <outlet property="crystalA2" destination="5TE-li-ZFG" id="NFj-Id-hQh"/>
+                        <outlet property="crystalA3" destination="WWp-ff-TFr" id="t01-em-P4E"/>
+                        <outlet property="crystalA4" destination="oDs-gW-HN5" id="OEU-9o-RqR"/>
+                        <outlet property="crystalA5" destination="Inj-v8-28o" id="EJc-W7-Dtm"/>
+                        <outlet property="crystalAdd1" destination="xbl-JM-oHS" id="fmX-ND-QaH"/>
+                        <outlet property="crystalAdd2" destination="UWx-ed-iOH" id="es7-1M-akg"/>
+                        <outlet property="crystalAdd3" destination="rSi-sj-2yt" id="DUo-1x-S7P"/>
+                        <outlet property="crystalAdd4" destination="WZ2-vn-QjS" id="dO1-Bg-PCm"/>
+                        <outlet property="crystalAdd5" destination="F5y-kK-Y0b" id="ePM-SM-E6S"/>
+                        <outlet property="crystalAddContainer" destination="k4q-6X-Seh" id="8iB-RN-zbS"/>
+                        <outlet property="crystalH1" destination="Nai-rj-Vgl" id="lDS-EN-KSd"/>
+                        <outlet property="crystalH2" destination="Arg-E2-cKo" id="xSQ-mp-bCe"/>
+                        <outlet property="crystalH3" destination="KEi-xF-tQy" id="7OL-ED-gq1"/>
+                        <outlet property="crystalH4" destination="EuH-ee-fyF" id="M0I-og-swv"/>
+                        <outlet property="crystalH5" destination="st0-oy-6U0" id="dSH-57-hol"/>
                         <outlet property="homeHighlightsView" destination="EwP-X7-bte" id="1Gw-Ha-woc"/>
                         <outlet property="homeImg" destination="uoM-vq-4nL" id="qO4-Ob-tWs"/>
                         <outlet property="homeName" destination="5hT-dk-9tA" id="vNT-fz-i3w"/>
                         <outlet property="manaLabel" destination="GAg-XE-zSx" id="aA1-hI-KGz"/>
-                        <outlet property="minionA1" destination="kz6-ze-chj" id="cYK-U1-TUy"/>
-                        <outlet property="minionA2" destination="5TE-li-ZFG" id="DnH-6S-DFJ"/>
-                        <outlet property="minionA3" destination="WWp-ff-TFr" id="OR5-HQ-WbR"/>
-                        <outlet property="minionA4" destination="oDs-gW-HN5" id="9fL-SH-Bqk"/>
-                        <outlet property="minionA5" destination="Inj-v8-28o" id="ctx-ym-KCD"/>
-                        <outlet property="minionAdd1" destination="xbl-JM-oHS" id="JEN-Wv-va1"/>
-                        <outlet property="minionAdd2" destination="UWx-ed-iOH" id="20w-Hz-GWn"/>
-                        <outlet property="minionAdd3" destination="rSi-sj-2yt" id="BiQ-sf-2HX"/>
-                        <outlet property="minionAdd4" destination="WZ2-vn-QjS" id="LLw-lf-zPi"/>
-                        <outlet property="minionAdd5" destination="F5y-kK-Y0b" id="ksO-wY-VdO"/>
-                        <outlet property="minionAddContainer" destination="k4q-6X-Seh" id="ieY-gE-rXL"/>
-                        <outlet property="minionH1" destination="Nai-rj-Vgl" id="P9z-Ym-spL"/>
-                        <outlet property="minionH2" destination="Arg-E2-cKo" id="ouJ-1u-HXt"/>
-                        <outlet property="minionH3" destination="KEi-xF-tQy" id="ORs-k4-9ra"/>
-                        <outlet property="minionH4" destination="EuH-ee-fyF" id="hz9-nk-vS3"/>
-                        <outlet property="minionH5" destination="st0-oy-6U0" id="vip-r5-9Na"/>
                         <outlet property="nextTurnButton" destination="4mC-La-THm" id="9dc-Mu-v12"/>
                         <outlet property="timeLabel" destination="J76-GP-Uas" id="TZ1-X1-h70"/>
                         <outletCollection property="HomeHighlights" destination="ILg-VG-06t" id="3V7-qx-xrI"/>
@@ -2941,7 +2941,7 @@
                         <outletCollection property="AwayHighlights" destination="43S-IL-lhL" id="B75-5P-0Wm"/>
                         <segue destination="uFj-Ek-afU" kind="show" identifier="toSpells" id="8MI-rq-zNb"/>
                         <segue destination="zky-Bt-hOm" kind="show" identifier="toSoulAdd" id="gBc-qJ-k4n"/>
-                        <segue destination="DPH-RC-kJq" kind="show" identifier="toAddMinion" id="MS0-wc-VeX"/>
+                        <segue destination="DPH-RC-kJq" kind="show" identifier="toAddCrystal" id="MS0-wc-VeX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -3077,18 +3077,18 @@
                                 <exclude reference="Met-Sg-Oab"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="MZA-NE-J1I"/>
+                                <exclude reference="IFe-Nu-s2q"/>
+                                <exclude reference="Vun-ra-ROr"/>
+                                <exclude reference="1DX-XE-Dvi"/>
+                                <exclude reference="rDt-1F-NaN"/>
+                                <exclude reference="X5r-Qf-Opn"/>
+                                <exclude reference="gfX-lG-XyJ"/>
+                                <exclude reference="alE-QF-QyT"/>
+                                <exclude reference="fLh-m9-e79"/>
                                 <exclude reference="GRy-1n-6Rb"/>
                                 <exclude reference="jPJ-47-vKS"/>
                                 <exclude reference="qVh-hB-bCq"/>
-                                <exclude reference="X5r-Qf-Opn"/>
-                                <exclude reference="gfX-lG-XyJ"/>
-                                <exclude reference="1DX-XE-Dvi"/>
-                                <exclude reference="rDt-1F-NaN"/>
-                                <exclude reference="alE-QF-QyT"/>
-                                <exclude reference="fLh-m9-e79"/>
-                                <exclude reference="IFe-Nu-s2q"/>
-                                <exclude reference="Vun-ra-ROr"/>
-                                <exclude reference="MZA-NE-J1I"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -3100,18 +3100,18 @@
                                 <include reference="Met-Sg-Oab"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="MZA-NE-J1I"/>
+                                <include reference="IFe-Nu-s2q"/>
+                                <include reference="Vun-ra-ROr"/>
+                                <include reference="1DX-XE-Dvi"/>
+                                <include reference="rDt-1F-NaN"/>
+                                <include reference="X5r-Qf-Opn"/>
+                                <include reference="gfX-lG-XyJ"/>
+                                <include reference="alE-QF-QyT"/>
+                                <include reference="fLh-m9-e79"/>
                                 <include reference="GRy-1n-6Rb"/>
                                 <include reference="jPJ-47-vKS"/>
                                 <include reference="qVh-hB-bCq"/>
-                                <include reference="X5r-Qf-Opn"/>
-                                <include reference="gfX-lG-XyJ"/>
-                                <include reference="1DX-XE-Dvi"/>
-                                <include reference="rDt-1F-NaN"/>
-                                <include reference="alE-QF-QyT"/>
-                                <include reference="fLh-m9-e79"/>
-                                <include reference="IFe-Nu-s2q"/>
-                                <include reference="Vun-ra-ROr"/>
-                                <include reference="MZA-NE-J1I"/>
                             </mask>
                         </variation>
                     </view>
@@ -3311,10 +3311,14 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="04C-B1-fWQ">
+                                        <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="xoj-y5-ebp" firstAttribute="top" secondItem="fMo-Kd-4tM" secondAttribute="bottom" constant="8" id="2AX-DY-RwU"/>
+                                    <constraint firstItem="04C-B1-fWQ" firstAttribute="top" secondItem="xoj-y5-ebp" secondAttribute="bottom" constant="8" id="6rS-af-4b1"/>
                                     <constraint firstItem="fMo-Kd-4tM" firstAttribute="leading" secondItem="yTC-qp-AU1" secondAttribute="trailing" constant="8" id="HY2-tS-4oq"/>
                                     <constraint firstItem="xoj-y5-ebp" firstAttribute="centerX" secondItem="jqB-1B-fgv" secondAttribute="centerX" id="J5P-4Y-r8V">
                                         <variation key="heightClass=compact" constant="33"/>
@@ -3335,9 +3339,15 @@
                                     <constraint firstItem="fMo-Kd-4tM" firstAttribute="centerY" secondItem="jqB-1B-fgv" secondAttribute="centerY" id="pFQ-gd-1Tu"/>
                                     <constraint firstItem="HaR-hl-6VP" firstAttribute="centerX" secondItem="jqB-1B-fgv" secondAttribute="centerX" id="sx6-Q6-jm8"/>
                                     <constraint firstItem="4fI-o4-d4y" firstAttribute="leading" secondItem="UZd-C1-Gaa" secondAttribute="trailing" constant="8" id="u52-rL-ymk"/>
+                                    <constraint firstItem="04C-B1-fWQ" firstAttribute="centerX" secondItem="jqB-1B-fgv" secondAttribute="centerX" id="xzE-vF-imw"/>
                                 </constraints>
                                 <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="04C-B1-fWQ"/>
+                                    </mask>
                                     <mask key="constraints">
+                                        <exclude reference="6rS-af-4b1"/>
+                                        <exclude reference="xzE-vF-imw"/>
                                         <exclude reference="MNV-L0-94a"/>
                                         <exclude reference="mB4-hk-Gqz"/>
                                         <exclude reference="u52-rL-ymk"/>
@@ -3358,7 +3368,12 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="04C-B1-fWQ"/>
+                                    </mask>
                                     <mask key="constraints">
+                                        <include reference="6rS-af-4b1"/>
+                                        <include reference="xzE-vF-imw"/>
                                         <include reference="MNV-L0-94a"/>
                                         <include reference="mB4-hk-Gqz"/>
                                         <include reference="u52-rL-ymk"/>
@@ -3565,28 +3580,28 @@
                                         <exclude reference="Ng5-2i-Hqq"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="YGM-8D-TCf"/>
-                                        <exclude reference="et6-td-A17"/>
-                                        <exclude reference="g0v-wq-x2f"/>
-                                        <exclude reference="j6x-pU-wuN"/>
-                                        <exclude reference="lEx-py-tk9"/>
-                                        <exclude reference="8i7-DL-F2L"/>
-                                        <exclude reference="b5U-HD-ntX"/>
-                                        <exclude reference="cgP-yn-cIB"/>
-                                        <exclude reference="kis-am-0gA"/>
-                                        <exclude reference="rDs-I9-RTQ"/>
-                                        <exclude reference="66t-Jm-Wwm"/>
-                                        <exclude reference="KSD-x5-oX7"/>
-                                        <exclude reference="WLq-Qy-rlV"/>
-                                        <exclude reference="a33-XM-mdd"/>
-                                        <exclude reference="r7s-Ed-KYU"/>
                                         <exclude reference="11z-N1-3gG"/>
                                         <exclude reference="6fN-Js-5UU"/>
                                         <exclude reference="E88-fS-M4J"/>
                                         <exclude reference="Yfw-QF-xys"/>
                                         <exclude reference="teE-G9-n3I"/>
+                                        <exclude reference="66t-Jm-Wwm"/>
+                                        <exclude reference="KSD-x5-oX7"/>
+                                        <exclude reference="WLq-Qy-rlV"/>
+                                        <exclude reference="a33-XM-mdd"/>
+                                        <exclude reference="r7s-Ed-KYU"/>
+                                        <exclude reference="8i7-DL-F2L"/>
+                                        <exclude reference="b5U-HD-ntX"/>
+                                        <exclude reference="cgP-yn-cIB"/>
+                                        <exclude reference="kis-am-0gA"/>
+                                        <exclude reference="rDs-I9-RTQ"/>
                                         <exclude reference="hII-UR-lf0"/>
                                         <exclude reference="qB7-hd-5ha"/>
+                                        <exclude reference="YGM-8D-TCf"/>
+                                        <exclude reference="et6-td-A17"/>
+                                        <exclude reference="g0v-wq-x2f"/>
+                                        <exclude reference="j6x-pU-wuN"/>
+                                        <exclude reference="lEx-py-tk9"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -3598,32 +3613,32 @@
                                         <include reference="Ng5-2i-Hqq"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="YGM-8D-TCf"/>
-                                        <include reference="g0v-wq-x2f"/>
-                                        <include reference="j6x-pU-wuN"/>
-                                        <include reference="8i7-DL-F2L"/>
-                                        <include reference="kis-am-0gA"/>
-                                        <include reference="rDs-I9-RTQ"/>
-                                        <include reference="KSD-x5-oX7"/>
-                                        <include reference="a33-XM-mdd"/>
-                                        <include reference="r7s-Ed-KYU"/>
                                         <include reference="6fN-Js-5UU"/>
                                         <include reference="E88-fS-M4J"/>
                                         <include reference="teE-G9-n3I"/>
+                                        <include reference="KSD-x5-oX7"/>
+                                        <include reference="a33-XM-mdd"/>
+                                        <include reference="r7s-Ed-KYU"/>
+                                        <include reference="8i7-DL-F2L"/>
+                                        <include reference="kis-am-0gA"/>
+                                        <include reference="rDs-I9-RTQ"/>
                                         <include reference="hII-UR-lf0"/>
                                         <include reference="qB7-hd-5ha"/>
+                                        <include reference="YGM-8D-TCf"/>
+                                        <include reference="g0v-wq-x2f"/>
+                                        <include reference="j6x-pU-wuN"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="et6-td-A17"/>
-                                        <include reference="lEx-py-tk9"/>
-                                        <include reference="b5U-HD-ntX"/>
-                                        <include reference="cgP-yn-cIB"/>
-                                        <include reference="66t-Jm-Wwm"/>
-                                        <include reference="WLq-Qy-rlV"/>
                                         <include reference="11z-N1-3gG"/>
                                         <include reference="Yfw-QF-xys"/>
+                                        <include reference="66t-Jm-Wwm"/>
+                                        <include reference="WLq-Qy-rlV"/>
+                                        <include reference="b5U-HD-ntX"/>
+                                        <include reference="cgP-yn-cIB"/>
+                                        <include reference="et6-td-A17"/>
+                                        <include reference="lEx-py-tk9"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -3650,6 +3665,9 @@
                                 <exclude reference="JFn-71-AaK"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="DmJ-n4-AcG"/>
+                                <exclude reference="Fwj-aV-tT8"/>
+                                <exclude reference="YdJ-4Q-ABu"/>
                                 <exclude reference="ITV-kC-gV7"/>
                                 <exclude reference="KZL-Ml-CLi"/>
                                 <exclude reference="n0M-ug-kNi"/>
@@ -3659,9 +3677,6 @@
                                 <exclude reference="0Ns-BD-q2b"/>
                                 <exclude reference="Z1E-xb-WvP"/>
                                 <exclude reference="kbx-Yo-YvU"/>
-                                <exclude reference="DmJ-n4-AcG"/>
-                                <exclude reference="Fwj-aV-tT8"/>
-                                <exclude reference="YdJ-4Q-ABu"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -3671,6 +3686,9 @@
                                 <include reference="JFn-71-AaK"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="DmJ-n4-AcG"/>
+                                <include reference="Fwj-aV-tT8"/>
+                                <include reference="YdJ-4Q-ABu"/>
                                 <include reference="ITV-kC-gV7"/>
                                 <include reference="KZL-Ml-CLi"/>
                                 <include reference="n0M-ug-kNi"/>
@@ -3680,9 +3698,6 @@
                                 <include reference="0Ns-BD-q2b"/>
                                 <include reference="Z1E-xb-WvP"/>
                                 <include reference="kbx-Yo-YvU"/>
-                                <include reference="DmJ-n4-AcG"/>
-                                <include reference="Fwj-aV-tT8"/>
-                                <include reference="YdJ-4Q-ABu"/>
                             </mask>
                         </variation>
                     </view>
@@ -3693,6 +3708,7 @@
                         <outlet property="PasswordField" destination="fMo-Kd-4tM" id="WPV-aJ-Xbi"/>
                         <outlet property="UsernameField" destination="4fI-o4-d4y" id="l9V-FW-JGz"/>
                         <outlet property="errorLabel" destination="HaR-hl-6VP" id="ela-ua-NuI"/>
+                        <outlet property="saveCredentials" destination="04C-B1-fWQ" id="RQc-m5-RFk"/>
                         <outlet property="usernameLabel" destination="Ng5-2i-Hqq" id="xe6-by-zxb"/>
                         <outletCollection property="navButtons" destination="nYS-BK-4as" id="1DB-zB-V9F"/>
                     </connections>
@@ -3701,10 +3717,10 @@
             </objects>
             <point key="canvasLocation" x="377" y="1417.5"/>
         </scene>
-        <!--Minion Add Controller-->
+        <!--Crystal Add Controller-->
         <scene sceneID="YNh-t2-kKF">
             <objects>
-                <viewController id="DPH-RC-kJq" customClass="MinionAddController" sceneMemberID="viewController">
+                <viewController id="DPH-RC-kJq" customClass="CrystalAddController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yhn-pa-W7x"/>
                         <viewControllerLayoutGuide type="bottom" id="fWP-ob-2XP"/>
@@ -3984,7 +4000,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="UtC-lu-oiD" kind="unwind" unwindAction="segueCreateMinion:" id="vNj-rv-eMu"/>
+                                    <segue destination="UtC-lu-oiD" kind="unwind" unwindAction="segueCreateCrystal:" id="Mpo-gN-F40"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImM-nB-0cC">
@@ -3995,7 +4011,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Minion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QV-8K-qIr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Crystal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QV-8K-qIr">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="267" id="DNQ-RT-JZf"/>
@@ -4634,7 +4650,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="D15-7O-Lnk" id="oCL-Qq-t3X">
-                                            <rect key="frame" x="0.0" y="0.0" width="207" height="58"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="58.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xs3-x5-cXU">
@@ -5529,7 +5545,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SoulCell" rowHeight="76" id="MC2-nc-fq5" customClass="SoulCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MC2-nc-fq5" id="rJO-rQ-iue">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="75.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hdu-b0-IfR">
@@ -5556,12 +5572,18 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="142.5" y="0.0" width="89.5" height="67.5"/>
+                                                    </variation>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soul Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hT-W7-iCP">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="75" y="19" width="59.5" height="37.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

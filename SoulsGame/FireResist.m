@@ -17,6 +17,7 @@
 @synthesize desc;
 @synthesize minorBuffApplied;
 @synthesize majorBuffApplied;
+@synthesize ID;
 
 -(instancetype)init{
     if (self = [super init]){
@@ -54,6 +55,16 @@
 
 -(NSString*)effect{
     return [NSString stringWithFormat:@"Fire Resistance grants %i less fire damage taken", (int)self.resistAmount];
+}
+
+-(instancetype)copyWithZone:(NSZone *)zone{
+    FireResist* theCopy = [[FireResist alloc]init];
+    
+    theCopy.minorBuffApplied = self.minorBuffApplied;
+    theCopy.majorBuffApplied = self.majorBuffApplied;
+    theCopy.resistAmount = self.resistAmount;
+    
+    return theCopy;
 }
 
 @end

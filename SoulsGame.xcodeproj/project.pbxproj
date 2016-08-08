@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D547B2251CFB062D001460C6 /* MinionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D547B2241CFB062D001460C6 /* MinionView.m */; };
+		499642D31D57508D00ECDADE /* Spells.m in Sources */ = {isa = PBXBuildFile; fileRef = 499642D21D57508D00ECDADE /* Spells.m */; };
+		499642D61D5757A900ECDADE /* SoulsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 499642D51D5757A900ECDADE /* SoulsLibrary.m */; };
+		D547B2251CFB062D001460C6 /* CrystalView.m in Sources */ = {isa = PBXBuildFile; fileRef = D547B2241CFB062D001460C6 /* CrystalView.m */; };
 		D55BB5061D51443A0008A262 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = D55BB5031D51443A0008A262 /* play.png */; };
 		D55BB5071D51443A0008A262 /* cards.png in Resources */ = {isa = PBXBuildFile; fileRef = D55BB5041D51443A0008A262 /* cards.png */; };
 		D55BB5081D51443A0008A262 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = D55BB5051D51443A0008A262 /* settings.png */; };
@@ -67,7 +69,7 @@
 		D5A651A01D482DAE009CED5F /* box copy 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A6519F1D482DAE009CED5F /* box copy 2.png */; };
 		D5A651A31D485516009CED5F /* HomeScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A651A21D485516009CED5F /* HomeScreenController.m */; };
 		D5B612D21D2DDC970027AC7E /* crystal wip.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5B612D11D2DDC970027AC7E /* crystal wip.jpg */; };
-		D5BC7EEE1D2F1B1F00C4C0D0 /* MinionAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7EED1D2F1B1F00C4C0D0 /* MinionAddController.m */; };
+		D5BC7EEE1D2F1B1F00C4C0D0 /* CrystalAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7EED1D2F1B1F00C4C0D0 /* CrystalAddController.m */; };
 		D5BC7EF11D2F6F6000C4C0D0 /* StatMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7EF01D2F6F6000C4C0D0 /* StatMeter.m */; };
 		D5BC7EF31D2F840D00C4C0D0 /* roundedoutline noplus.png in Resources */ = {isa = PBXBuildFile; fileRef = D5BC7EF21D2F840D00C4C0D0 /* roundedoutline noplus.png */; };
 		D5BEF5701CF94E2400A5F3C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF56F1CF94E2400A5F3C2 /* main.m */; };
@@ -79,7 +81,7 @@
 		D5BEF5891CF94E2400A5F3C2 /* SoulsGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5881CF94E2400A5F3C2 /* SoulsGameTests.m */; };
 		D5BEF5941CF94E2400A5F3C2 /* SoulsGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5931CF94E2400A5F3C2 /* SoulsGameUITests.m */; };
 		D5BEF5AA1CF9515400A5F3C2 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5A91CF9515400A5F3C2 /* Player.m */; };
-		D5BEF5AD1CF9516C00A5F3C2 /* Minion.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5AC1CF9516C00A5F3C2 /* Minion.m */; };
+		D5BEF5AD1CF9516C00A5F3C2 /* Crystal.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5AC1CF9516C00A5F3C2 /* Crystal.m */; };
 		D5BEF5B01CF9518000A5F3C2 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BEF5AF1CF9518000A5F3C2 /* Game.m */; };
 		D5E375D11CF99F200020C925 /* ElementType.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E375D01CF99F200020C925 /* ElementType.m */; };
 /* End PBXBuildFile section */
@@ -102,8 +104,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D547B2231CFB062D001460C6 /* MinionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionView.h; sourceTree = "<group>"; };
-		D547B2241CFB062D001460C6 /* MinionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionView.m; sourceTree = "<group>"; };
+		499642D11D57508D00ECDADE /* Spells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spells.h; sourceTree = "<group>"; };
+		499642D21D57508D00ECDADE /* Spells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spells.m; sourceTree = "<group>"; };
+		499642D41D5757A900ECDADE /* SoulsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoulsLibrary.h; sourceTree = "<group>"; };
+		499642D51D5757A900ECDADE /* SoulsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoulsLibrary.m; sourceTree = "<group>"; };
+		D547B2231CFB062D001460C6 /* CrystalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrystalView.h; sourceTree = "<group>"; };
+		D547B2241CFB062D001460C6 /* CrystalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrystalView.m; sourceTree = "<group>"; };
 		D55BB5031D51443A0008A262 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		D55BB5041D51443A0008A262 /* cards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards.png; sourceTree = "<group>"; };
 		D55BB5051D51443A0008A262 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -190,8 +196,8 @@
 		D5A651A21D485516009CED5F /* HomeScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenController.m; sourceTree = "<group>"; };
 		D5B50E3A1CFAFC41009A4D7D /* Spell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spell.h; sourceTree = "<group>"; };
 		D5B612D11D2DDC970027AC7E /* crystal wip.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "crystal wip.jpg"; sourceTree = "<group>"; };
-		D5BC7EEC1D2F1B1F00C4C0D0 /* MinionAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionAddController.h; sourceTree = "<group>"; };
-		D5BC7EED1D2F1B1F00C4C0D0 /* MinionAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionAddController.m; sourceTree = "<group>"; };
+		D5BC7EEC1D2F1B1F00C4C0D0 /* CrystalAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrystalAddController.h; sourceTree = "<group>"; };
+		D5BC7EED1D2F1B1F00C4C0D0 /* CrystalAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrystalAddController.m; sourceTree = "<group>"; };
 		D5BC7EEF1D2F6F6000C4C0D0 /* StatMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatMeter.h; sourceTree = "<group>"; };
 		D5BC7EF01D2F6F6000C4C0D0 /* StatMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatMeter.m; sourceTree = "<group>"; };
 		D5BC7EF21D2F840D00C4C0D0 /* roundedoutline noplus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundedoutline noplus.png"; sourceTree = "<group>"; };
@@ -213,8 +219,8 @@
 		D5BEF5951CF94E2400A5F3C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5BEF5A81CF9515400A5F3C2 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		D5BEF5A91CF9515400A5F3C2 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		D5BEF5AB1CF9516C00A5F3C2 /* Minion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Minion.h; sourceTree = "<group>"; };
-		D5BEF5AC1CF9516C00A5F3C2 /* Minion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Minion.m; sourceTree = "<group>"; };
+		D5BEF5AB1CF9516C00A5F3C2 /* Crystal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crystal.h; sourceTree = "<group>"; };
+		D5BEF5AC1CF9516C00A5F3C2 /* Crystal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crystal.m; sourceTree = "<group>"; };
 		D5BEF5AE1CF9518000A5F3C2 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		D5BEF5AF1CF9518000A5F3C2 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		D5E375D01CF99F200020C925 /* ElementType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementType.m; sourceTree = "<group>"; };
@@ -256,16 +262,16 @@
 				D58D4B5F1D274AED0039C4E9 /* SoulAddController.m */,
 				D572678B1D2B46C200F4B899 /* SoulSelectionController.h */,
 				D572678C1D2B46C200F4B899 /* SoulSelectionController.m */,
-				D5BC7EEC1D2F1B1F00C4C0D0 /* MinionAddController.h */,
-				D5BC7EED1D2F1B1F00C4C0D0 /* MinionAddController.m */,
+				D5BC7EEC1D2F1B1F00C4C0D0 /* CrystalAddController.h */,
+				D5BC7EED1D2F1B1F00C4C0D0 /* CrystalAddController.m */,
 				D5A651A11D485516009CED5F /* HomeScreenController.h */,
 				D5A651A21D485516009CED5F /* HomeScreenController.m */,
 				D563EE671D5337010015F717 /* FindGameController.h */,
 				D563EE681D5337010015F717 /* FindGameController.m */,
 				D572678E1D2B487200F4B899 /* SoulCell.h */,
 				D572678F1D2B487200F4B899 /* SoulCell.m */,
-				D547B2231CFB062D001460C6 /* MinionView.h */,
-				D547B2241CFB062D001460C6 /* MinionView.m */,
+				D547B2231CFB062D001460C6 /* CrystalView.h */,
+				D547B2241CFB062D001460C6 /* CrystalView.m */,
 				D56BC41F1D0578C50051CD05 /* SpellCell.h */,
 				D56BC4201D0578C50051CD05 /* SpellCell.m */,
 				D58D4B5B1D273BB50039C4E9 /* TransparentCover.h */,
@@ -322,6 +328,8 @@
 				D572E0B61D30619F004254F8 /* WaterShard.m */,
 				D572E0B81D3062DD004254F8 /* HealingPool.h */,
 				D572E0B91D3062DD004254F8 /* HealingPool.m */,
+				499642D11D57508D00ECDADE /* Spells.h */,
+				499642D21D57508D00ECDADE /* Spells.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -417,14 +425,14 @@
 			isa = PBXGroup;
 			children = (
 				D59E465B1CFBD9530085CCF3 /* Images */,
-				D547B2221CFB05FE001460C6 /* UI Elements */,
 				D579B94D1CFA47E900AD9447 /* Spells */,
+				D547B2221CFB05FE001460C6 /* UI Elements */,
 				D5BEF5711CF94E2400A5F3C2 /* AppDelegate.h */,
 				D5BEF5721CF94E2400A5F3C2 /* AppDelegate.m */,
 				D5BEF5771CF94E2400A5F3C2 /* Main.storyboard */,
 				D5BEF57A1CF94E2400A5F3C2 /* Assets.xcassets */,
-				D5BEF5AB1CF9516C00A5F3C2 /* Minion.h */,
-				D5BEF5AC1CF9516C00A5F3C2 /* Minion.m */,
+				D5BEF5AB1CF9516C00A5F3C2 /* Crystal.h */,
+				D5BEF5AC1CF9516C00A5F3C2 /* Crystal.m */,
 				D5BEF5A81CF9515400A5F3C2 /* Player.h */,
 				D5BEF5A91CF9515400A5F3C2 /* Player.m */,
 				D5BEF5AE1CF9518000A5F3C2 /* Game.h */,
@@ -469,6 +477,8 @@
 			isa = PBXGroup;
 			children = (
 				D579B9431CFA3F8000AD9447 /* Soul.h */,
+				499642D41D5757A900ECDADE /* SoulsLibrary.h */,
+				499642D51D5757A900ECDADE /* SoulsLibrary.m */,
 				D579B9531CFA4C3A00AD9447 /* Attribute Souls */,
 				D579B9481CFA45B000AD9447 /* Resist Souls */,
 				D579B9491CFA45B500AD9447 /* Buff Souls */,
@@ -651,6 +661,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BEF5AA1CF9515400A5F3C2 /* Player.m in Sources */,
+				499642D31D57508D00ECDADE /* Spells.m in Sources */,
 				D579B9511CFA487500AD9447 /* Fireball.m in Sources */,
 				D56BC4211D0578C50051CD05 /* SpellCell.m in Sources */,
 				D579B9561CFA4C4E00AD9447 /* HealthSoul.m in Sources */,
@@ -663,15 +674,16 @@
 				D572E0B01D305CBF004254F8 /* FireBuff.m in Sources */,
 				D572678D1D2B46C200F4B899 /* SoulSelectionController.m in Sources */,
 				D57267901D2B487200F4B899 /* SoulCell.m in Sources */,
-				D5BEF5AD1CF9516C00A5F3C2 /* Minion.m in Sources */,
+				D5BEF5AD1CF9516C00A5F3C2 /* Crystal.m in Sources */,
 				D563EE691D5337010015F717 /* FindGameController.m in Sources */,
+				499642D61D5757A900ECDADE /* SoulsLibrary.m in Sources */,
 				D572E0BA1D3062DD004254F8 /* HealingPool.m in Sources */,
 				D579B95C1CFA4C6A00AD9447 /* ShieldSoul.m in Sources */,
-				D5BC7EEE1D2F1B1F00C4C0D0 /* MinionAddController.m in Sources */,
+				D5BC7EEE1D2F1B1F00C4C0D0 /* CrystalAddController.m in Sources */,
 				D572E0B71D30619F004254F8 /* WaterShard.m in Sources */,
 				D5E375D11CF99F200020C925 /* ElementType.m in Sources */,
 				D56BC4241D0579730051CD05 /* SpellSelectorViewController.m in Sources */,
-				D547B2251CFB062D001460C6 /* MinionView.m in Sources */,
+				D547B2251CFB062D001460C6 /* CrystalView.m in Sources */,
 				D572E0C11D306768004254F8 /* WaterResist.m in Sources */,
 				D58D4B601D274AED0039C4E9 /* SoulAddController.m in Sources */,
 				D5BEF5B01CF9518000A5F3C2 /* Game.m in Sources */,

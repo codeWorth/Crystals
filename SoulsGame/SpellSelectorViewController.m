@@ -108,9 +108,9 @@
             self.spellDesc.text = spell.desc;
             self.flavorText.text = spell.flavorText;
             
-            NSArray* effects = [self.sourceMinion effectsOnSpell:spell];
+            NSArray* effects = [self.sourceCrystal effectsOnSpell:spell];
             if (effects.count == 0){
-                self.effectList1.text = @"This minion has no effect on this spell";
+                self.effectList1.text = @"This crystal has no effect on this spell";
                 self.effectList2.text = @"";
                 self.effectList3.text = @"";
             } else {

@@ -21,6 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
+@property (weak, nonatomic) IBOutlet UISwitch *saveCredentials;
+
 @property (nonatomic) NSInteger userID;
 @property (nonatomic, weak) UITextField* activeField;
 
@@ -37,22 +39,22 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *username = [defaults stringForKey:@"username"];
+    NSString* password = [defaults stringForKey:@"password"];
+
+    self.LoginView.hidden = NO;
+    self.MainView.hidden = YES;
     
-    if (username == nil){
-        self.LoginView.hidden = NO;
-        self.MainView.hidden = YES;
+    if (username == nil || password == nil){
         return;
     }
     
-    self.LoginView.hidden = YES;
-    self.MainView.hidden = NO;
+    self.saveCredentials.on = YES;
     
-    NSString* password = [defaults stringForKey:@"password"];
-    
-    [self setIDForUsername:username andPassword:password shouldRedirect:NO];
+    self.UsernameField.text = username;
+    self.PasswordField.text = password;
 }
 
--(void)setIDForUsername:(NSString*)username andPassword:(NSString*)password shouldRedirect:(BOOL)redirect {
+-(void)setIDForUsername:(NSString*)username andPassword:(NSString*)password {
     NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/login.php"];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -76,7 +78,14 @@
                 button.enabled = YES;
             }
             
-            if (redirect && self.userID > 0){
+            if (self.userID > 0){
+                if (self.saveCredentials.on) {
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    
+                    [defaults setObject:self.UsernameField.text forKey:@"username"];
+                    [defaults setObject:self.PasswordField.text forKey:@"password"];
+                }
+                
                 self.LoginView.hidden = YES;
                 self.MainView.hidden = NO;
             } else {
@@ -91,7 +100,7 @@
 }
 
 - (IBAction)login {
-    [self setIDForUsername:self.UsernameField.text andPassword:self.PasswordField.text shouldRedirect:YES];
+    [self setIDForUsername:self.UsernameField.text andPassword:self.PasswordField.text];
 }
 
 - (IBAction)register {

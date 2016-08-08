@@ -10,7 +10,12 @@
 #import "Game.h"
 #import "Spell.h"
 
-@interface BattlefieldController : UIViewController
+@interface BattlefieldController : UIViewController <UpdateableController>
+
+@property (nonatomic) NSInteger userID;
+@property (nonatomic) NSInteger awayID;
+
+-(void)updateGUI;
 
 @end
 

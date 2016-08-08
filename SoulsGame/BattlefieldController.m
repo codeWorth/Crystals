@@ -8,49 +8,49 @@
 
 #import "BattlefieldController.h"
 #import "Game.h"
-#import "MinionView.h"
+#import "CrystalView.h"
 #import "SpellSelectorViewController.h"
 #import "SoulAddController.h"
-#import "MinionAddController.h"
+#import "CrystalAddController.h"
 #import "TransparentCover.h"
 
-#define MINION_H1_TAG 1
-#define MINION_H2_TAG 2
-#define MINION_H3_TAG 3
-#define MINION_H4_TAG 4
-#define MINION_H5_TAG 5
-#define MINION_A1_TAG 6
-#define MINION_A2_TAG 7
-#define MINION_A3_TAG 8
-#define MINION_A4_TAG 9
-#define MINION_A5_TAG 10
+#define CRYSTAL_H1_TAG 1
+#define CRYSTAL_H2_TAG 2
+#define CRYSTAL_H3_TAG 3
+#define CRYSTAL_H4_TAG 4
+#define CRYSTAL_H5_TAG 5
+#define CRYSTAL_A1_TAG 6
+#define CRYSTAL_A2_TAG 7
+#define CRYSTAL_A3_TAG 8
+#define CRYSTAL_A4_TAG 9
+#define CRYSTAL_A5_TAG 10
 
 @interface BattlefieldController ()
 
 @property (nonatomic, weak) IBOutlet UILabel* timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *nextTurnButton;
 
-@property (nonatomic, weak) IBOutlet MinionView* minionH1;
-@property (nonatomic, weak) IBOutlet MinionView* minionH2;
-@property (nonatomic, weak) IBOutlet MinionView* minionH3;
-@property (nonatomic, weak) IBOutlet MinionView* minionH4;
-@property (nonatomic, weak) IBOutlet MinionView* minionH5;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalH1;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalH2;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalH3;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalH4;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalH5;
 
-@property (nonatomic, weak) IBOutlet MinionView* minionA1;
-@property (nonatomic, weak) IBOutlet MinionView* minionA2;
-@property (nonatomic, weak) IBOutlet MinionView* minionA3;
-@property (nonatomic, weak) IBOutlet MinionView* minionA4;
-@property (nonatomic, weak) IBOutlet MinionView* minionA5;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalA1;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalA2;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalA3;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalA4;
+@property (nonatomic, weak) IBOutlet CrystalView* crystalA5;
 
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *AwayHighlights;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *HomeHighlights;
 
-@property (weak, nonatomic) IBOutlet UIButton *minionAdd1;
-@property (weak, nonatomic) IBOutlet UIButton *minionAdd2;
-@property (weak, nonatomic) IBOutlet UIButton *minionAdd3;
-@property (weak, nonatomic) IBOutlet UIButton *minionAdd4;
-@property (weak, nonatomic) IBOutlet UIButton *minionAdd5;
-@property (weak, nonatomic) IBOutlet TransparentCover *minionAddContainer;
+@property (weak, nonatomic) IBOutlet UIButton *crystalAdd1;
+@property (weak, nonatomic) IBOutlet UIButton *crystalAdd2;
+@property (weak, nonatomic) IBOutlet UIButton *crystalAdd3;
+@property (weak, nonatomic) IBOutlet UIButton *crystalAdd4;
+@property (weak, nonatomic) IBOutlet UIButton *crystalAdd5;
+@property (weak, nonatomic) IBOutlet TransparentCover *crystalAddContainer;
 
 @property (nonatomic, weak) IBOutlet UILabel* manaLabel;
 
@@ -70,7 +70,7 @@
 @property (nonatomic) BOOL shouldAddSoul;
 
 @property (nonatomic, strong) Game* game;
-@property (nonatomic, strong) Minion* selectedMinion;
+@property (nonatomic, strong) Crystal* selectedCrystal;
 @property (nonatomic) NSInteger selectedTag;
 
 @end
@@ -94,67 +94,69 @@
     [self hideAllHighlights];
     
     self.game = [Game instance];
+    [self.game setDelegate:self];
+    [self updateGUI];
     
     [self coverReset];
     
-    self.minionH1.tag = MINION_H1_TAG;
-    self.minionH2.tag = MINION_H2_TAG;
-    self.minionH3.tag = MINION_H3_TAG;
-    self.minionH4.tag = MINION_H4_TAG;
-    self.minionH5.tag = MINION_H5_TAG;
+    self.crystalH1.tag = CRYSTAL_H1_TAG;
+    self.crystalH2.tag = CRYSTAL_H2_TAG;
+    self.crystalH3.tag = CRYSTAL_H3_TAG;
+    self.crystalH4.tag = CRYSTAL_H4_TAG;
+    self.crystalH5.tag = CRYSTAL_H5_TAG;
     
-    self.minionA1.tag = MINION_A1_TAG;
-    self.minionA2.tag = MINION_A2_TAG;
-    self.minionA3.tag = MINION_A3_TAG;
-    self.minionA4.tag = MINION_A4_TAG;
-    self.minionA5.tag = MINION_A5_TAG;
+    self.crystalA1.tag = CRYSTAL_A1_TAG;
+    self.crystalA2.tag = CRYSTAL_A2_TAG;
+    self.crystalA3.tag = CRYSTAL_A3_TAG;
+    self.crystalA4.tag = CRYSTAL_A4_TAG;
+    self.crystalA5.tag = CRYSTAL_A5_TAG;
     
-    self.minionAdd1.tag = MINION_H1_TAG;
-    self.minionAdd2.tag = MINION_H2_TAG;
-    self.minionAdd3.tag = MINION_H3_TAG;
-    self.minionAdd4.tag = MINION_H4_TAG;
-    self.minionAdd5.tag = MINION_H5_TAG;
+    self.crystalAdd1.tag = CRYSTAL_H1_TAG;
+    self.crystalAdd2.tag = CRYSTAL_H2_TAG;
+    self.crystalAdd3.tag = CRYSTAL_H3_TAG;
+    self.crystalAdd4.tag = CRYSTAL_H4_TAG;
+    self.crystalAdd5.tag = CRYSTAL_H5_TAG;
     
-    [self updateGUI];
+    [self.game setShouldStart];
 }
 
--(Minion*)minionForTag:(NSInteger)tag{
-    if (tag == MINION_H1_TAG){
-        return self.game.homePlayer.minion1;
-    } else if (tag == MINION_H2_TAG){
-        return self.game.homePlayer.minion2;
-    } else if (tag == MINION_H3_TAG){
-        return self.game.homePlayer.minion3;
-    } else if (tag == MINION_H4_TAG){
-        return self.game.homePlayer.minion4;
-    } else if (tag == MINION_H5_TAG){
-        return self.game.homePlayer.minion5;
-    } else if (tag == MINION_A1_TAG){
-        return self.game.awayPlayer.minion1;
-    } else if (tag == MINION_A2_TAG){
-        return self.game.awayPlayer.minion2;
-    } else if (tag == MINION_A3_TAG){
-        return self.game.awayPlayer.minion3;
-    } else if (tag == MINION_A4_TAG){
-        return self.game.awayPlayer.minion4;
-    } else if (tag == MINION_A5_TAG){
-        return self.game.awayPlayer.minion5;
+-(Crystal*)crystalForTag:(NSInteger)tag{
+    if (tag == CRYSTAL_H1_TAG){
+        return self.game.homePlayer.crystal1;
+    } else if (tag == CRYSTAL_H2_TAG){
+        return self.game.homePlayer.crystal2;
+    } else if (tag == CRYSTAL_H3_TAG){
+        return self.game.homePlayer.crystal3;
+    } else if (tag == CRYSTAL_H4_TAG){
+        return self.game.homePlayer.crystal4;
+    } else if (tag == CRYSTAL_H5_TAG){
+        return self.game.homePlayer.crystal5;
+    } else if (tag == CRYSTAL_A1_TAG){
+        return self.game.awayPlayer.crystal1;
+    } else if (tag == CRYSTAL_A2_TAG){
+        return self.game.awayPlayer.crystal2;
+    } else if (tag == CRYSTAL_A3_TAG){
+        return self.game.awayPlayer.crystal3;
+    } else if (tag == CRYSTAL_A4_TAG){
+        return self.game.awayPlayer.crystal4;
+    } else if (tag == CRYSTAL_A5_TAG){
+        return self.game.awayPlayer.crystal5;
     } else {
         return nil;
     }
 }
 
--(void)setMinion:(Minion*)minion forTag:(NSInteger)tag{
-    if (tag == MINION_H1_TAG){
-        self.game.homePlayer.minion1 = minion;
-    } else if (tag == MINION_H2_TAG){
-        self.game.homePlayer.minion2 = minion;
-    } else if (tag == MINION_H3_TAG){
-        self.game.homePlayer.minion3 = minion;
-    } else if (tag == MINION_H4_TAG){
-        self.game.homePlayer.minion4 = minion;
-    } else if (tag == MINION_H5_TAG){
-        self.game.homePlayer.minion5 = minion;
+-(void)setCrystal:(Crystal*)crystal forTag:(NSInteger)tag{
+    if (tag == CRYSTAL_H1_TAG){
+        self.game.homePlayer.crystal1 = crystal;
+    } else if (tag == CRYSTAL_H2_TAG){
+        self.game.homePlayer.crystal2 = crystal;
+    } else if (tag == CRYSTAL_H3_TAG){
+        self.game.homePlayer.crystal3 = crystal;
+    } else if (tag == CRYSTAL_H4_TAG){
+        self.game.homePlayer.crystal4 = crystal;
+    } else if (tag == CRYSTAL_H5_TAG){
+        self.game.homePlayer.crystal5 = crystal;
     }
 }
 
@@ -165,17 +167,17 @@
     [self updateHomeUser];
     [self updateAwayUser];
     
-    [self.minionH1 updateWithMinion:self.game.homePlayer.minion1];
-    [self.minionH2 updateWithMinion:self.game.homePlayer.minion2];
-    [self.minionH3 updateWithMinion:self.game.homePlayer.minion3];
-    [self.minionH4 updateWithMinion:self.game.homePlayer.minion4];
-    [self.minionH5 updateWithMinion:self.game.homePlayer.minion5];
+    [self.crystalH1 updateWithCrystal:[self.game.homePlayer crystal1]];
+    [self.crystalH2 updateWithCrystal:[self.game.homePlayer crystal2]];
+    [self.crystalH3 updateWithCrystal:[self.game.homePlayer crystal3]];
+    [self.crystalH4 updateWithCrystal:[self.game.homePlayer crystal4]];
+    [self.crystalH5 updateWithCrystal:[self.game.homePlayer crystal5]];
     
-    [self.minionA1 updateWithMinion:self.game.awayPlayer.minion1];
-    [self.minionA2 updateWithMinion:self.game.awayPlayer.minion2];
-    [self.minionA3 updateWithMinion:self.game.awayPlayer.minion3];
-    [self.minionA4 updateWithMinion:self.game.awayPlayer.minion4];
-    [self.minionA5 updateWithMinion:self.game.awayPlayer.minion5];
+    [self.crystalA1 updateWithCrystal:[self.game.awayPlayer crystal1]];
+    [self.crystalA2 updateWithCrystal:[self.game.awayPlayer crystal2]];
+    [self.crystalA3 updateWithCrystal:[self.game.awayPlayer crystal3]];
+    [self.crystalA4 updateWithCrystal:[self.game.awayPlayer crystal4]];
+    [self.crystalA5 updateWithCrystal:[self.game.awayPlayer crystal5]];
     
     [self hideAllHighlights];
     
@@ -187,10 +189,9 @@
     }
 }
 
--(void)update{
-    [self.game update];
+-(void)checkCrystalDeath{
+    [self.game checkCrystalDeath];
     [self updateGUI];
-
 }
 
 -(IBAction)nextTurn{
@@ -208,37 +209,37 @@
 }
 
 -(void)showHomeHighlights{
-    if (self.game.homePlayer.minion1 != nil && [self.game.homePlayer.minion1 cooldown] == 0){
+    if ([self.game.homePlayer crystal1] != nil && [[self.game.homePlayer crystal1] cooldown] == 0){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:0]).hidden = NO;
     }
-    if (self.game.homePlayer.minion2 != nil && [self.game.homePlayer.minion2 cooldown] == 0){
+    if ([self.game.homePlayer crystal2] != nil && [[self.game.homePlayer crystal2] cooldown] == 0){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:1]).hidden = NO;
     }
-    if (self.game.homePlayer.minion3 != nil && [self.game.homePlayer.minion3 cooldown] == 0){
+    if ([self.game.homePlayer crystal3] != nil && [[self.game.homePlayer crystal3] cooldown] == 0){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:2]).hidden = NO;
     }
-    if (self.game.homePlayer.minion4 != nil && [self.game.homePlayer.minion4 cooldown] == 0){
+    if ([self.game.homePlayer crystal4] != nil && [[self.game.homePlayer crystal4] cooldown] == 0){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:3]).hidden = NO;
     }
-    if (self.game.homePlayer.minion5 != nil && [self.game.homePlayer.minion5 cooldown] == 0){
+    if ([self.game.homePlayer crystal5] != nil && [[self.game.homePlayer crystal5] cooldown] == 0){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:4]).hidden = NO;
     }
 }
 
--(void)highlightHomeMinions{
-    if (self.game.homePlayer.minion1 != nil){
+-(void)highlightHomeCrystals {
+    if ([self.game.homePlayer crystal1] != nil){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:0]).hidden = NO;
     }
-    if (self.game.homePlayer.minion2 != nil){
+    if ([self.game.homePlayer crystal2] != nil){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:1]).hidden = NO;
     }
-    if (self.game.homePlayer.minion3 != nil){
+    if ([self.game.homePlayer crystal3] != nil){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:2]).hidden = NO;
     }
-    if (self.game.homePlayer.minion4 != nil){
+    if ([self.game.homePlayer crystal4] != nil){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:3]).hidden = NO;
     }
-    if (self.game.homePlayer.minion5 != nil){
+    if ([self.game.homePlayer crystal5] != nil){
         ((UIImageView*)[self.HomeHighlights objectAtIndex:4]).hidden = NO;
     }
 }
@@ -247,46 +248,46 @@
     [self.view bringSubviewToFront:self.coverView];
 }
 
--(void)homeMinionsToFront{
-    [self.view bringSubviewToFront:self.minionH1];
-    [self.view bringSubviewToFront:self.minionH2];
-    [self.view bringSubviewToFront:self.minionH3];
-    [self.view bringSubviewToFront:self.minionH4];
-    [self.view bringSubviewToFront:self.minionH5];
+-(void)homeCrystalsToFront{
+    [self.view bringSubviewToFront:self.crystalH1];
+    [self.view bringSubviewToFront:self.crystalH2];
+    [self.view bringSubviewToFront:self.crystalH3];
+    [self.view bringSubviewToFront:self.crystalH4];
+    [self.view bringSubviewToFront:self.crystalH5];
 }
 
--(void)awayMinionsToFront{
-    [self.view bringSubviewToFront:self.minionA1];
-    [self.view bringSubviewToFront:self.minionA2];
-    [self.view bringSubviewToFront:self.minionA3];
-    [self.view bringSubviewToFront:self.minionA4];
-    [self.view bringSubviewToFront:self.minionA5];
+-(void)awayCrystalsToFront{
+    [self.view bringSubviewToFront:self.crystalA1];
+    [self.view bringSubviewToFront:self.crystalA2];
+    [self.view bringSubviewToFront:self.crystalA3];
+    [self.view bringSubviewToFront:self.crystalA4];
+    [self.view bringSubviewToFront:self.crystalA5];
 }
 
 -(void)coverFriendly{
     [self.view bringSubviewToFront:self.coverView];
     [self.view bringSubviewToFront:self.awayHighlightsView];
-    [self awayMinionsToFront];
+    [self awayCrystalsToFront];
 }
 
 -(void)coverEnemy{
     [self.view bringSubviewToFront:self.coverView];
     [self.view bringSubviewToFront:self.homeHighlightsView];
-    [self homeMinionsToFront];
+    [self homeCrystalsToFront];
 }
 
 -(void)coverNeither{
     [self.view bringSubviewToFront:self.homeHighlightsView];
-    [self homeMinionsToFront];
+    [self homeCrystalsToFront];
     [self.view bringSubviewToFront:self.awayHighlightsView];
-    [self awayMinionsToFront];
+    [self awayCrystalsToFront];
 }
 
 -(void)coverReset{
     self.coverView.hidden = YES;
     [self.view bringSubviewToFront:self.homeHighlightsView];
-    [self.view bringSubviewToFront:self.minionAddContainer];
-    [self homeMinionsToFront];
+    [self.view bringSubviewToFront:self.crystalAddContainer];
+    [self homeCrystalsToFront];
 }
 
 -(void)updateTimeLabel{
@@ -307,21 +308,29 @@
     self.awayName.text = self.game.awayPlayer.username;
 }
 
-- (IBAction)friendlyMinionSelected:(MinionView *)sender {
-    Minion* minion = [self minionForTag:sender.tag];
+
+
+- (IBAction)enemyCrystalSelected:(CrystalView *)sender {
+    if (self.shouldSelectSpellTarget){
+        [self castSpellOnCrystal:[self crystalForTag:sender.tag]];
+    }
+}
+
+- (IBAction)friendlyCrystalSelected:(CrystalView *)sender {
+    Crystal* crystal = [self crystalForTag:sender.tag];
     
     if (self.shouldSelectSpellTarget) {
-        [self castSpellOnMinion:minion];
+        [self castSpellOnCrystal:crystal];
     } else if (self.game.canAttack) {
         if (self.shouldAddSoul){
             self.shouldAddSoul = NO;
             [self coverReset];
-            self.selectedMinion = minion;
+            self.selectedCrystal = crystal;
             
             [self performSegueWithIdentifier:@"toSoulAdd" sender:self];
         } else {
-            if ([minion canCastSpell]){
-                self.selectedMinion = minion;
+            if ([crystal canCastSpell]){
+                self.selectedCrystal = crystal;
                 
                 [self performSegueWithIdentifier:@"toSpells" sender:self];
             } else {
@@ -331,19 +340,13 @@
     }
 }
 
-- (IBAction)enemyMinionSelected:(MinionView *)sender {
-    if (self.shouldSelectSpellTarget){
-        [self castSpellOnMinion:[self minionForTag:sender.tag]];
-    }
-}
-
--(void)castSpellOnMinion:(Minion*)minion{
+-(void)castSpellOnCrystal:(Crystal*)crystal{
     [self coverReset];
     self.shouldSelectSpellTarget = NO;
     
     self.game.homePlayer.mana -= self.selectedSpell.cost;
-    [self.selectedMinion castSpell:self.selectedSpell onTarget:minion];
-    [self update];
+    [self.selectedCrystal castSpell:self.selectedSpell onTarget:crystal];
+    [self.game checkCrystalDeath];
 }
 
 -(IBAction)segueCastSpell:(UIStoryboardSegue*)segue{
@@ -370,39 +373,46 @@
     [self updateGUI];
 }
 
--(IBAction)segueCreateMinion:(UIStoryboardSegue*)segue{
-    UIViewController* source = segue.sourceViewController;
-    if ([source isKindOfClass:[MinionAddController class]]){
-        MinionAddController* minionSource = (MinionAddController*)source;
-        Minion* newMinion = [[Minion alloc]initWithHealth:minionSource.currentHealth Speed:minionSource.currentSpeed shield:minionSource.currentShield];
-        [self setMinion:newMinion forTag:self.selectedTag];
-        self.game.homePlayer.mana -= [Game minionCreateCost];
-        [self update];
+-(IBAction)segueCreateCrystal:(UIStoryboardSegue*)segue{
+    UIViewController* sourceController = segue.sourceViewController;
+    if ([sourceController isKindOfClass:[CrystalAddController class]]){
+        CrystalAddController* source = (CrystalAddController*)sourceController;
+        Crystal* newCrystal = [[Crystal alloc]initWithHealth:source.currentHealth Speed:source.currentSpeed shield:source.currentShield];
+        [self setCrystal:newCrystal forTag:self.selectedTag];
+        self.game.homePlayer.mana -= [Game crystalCreateCost];
+        [self checkCrystalDeath];
     }
 }
 
 - (IBAction)addSoul {
+    if (!self.game.canAttack){
+        return;
+    }
+    
     self.coverView.hidden = NO;
     [self coverEnemy];
-    [self highlightHomeMinions];
+    [self highlightHomeCrystals];
     self.shouldAddSoul = YES;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"toSpells"]){
         SpellSelectorViewController* dest = (SpellSelectorViewController*)segue.destinationViewController;
-        dest.sourceMinion = self.selectedMinion;
+        dest.sourceCrystal = self.selectedCrystal;
     } else if ([segue.identifier isEqualToString:@"toSoulAdd"]){
         SoulAddController* dest = (SoulAddController*)segue.destinationViewController;
-        dest.selectedMinion = self.selectedMinion;
+        dest.selectedCrystal = self.selectedCrystal;
     }
 }
 
-- (IBAction)addMinion:(UIButton *)sender {
+- (IBAction)addCrystal:(UIButton *)sender {
+    if (!self.game.canAttack) {
+        return;
+    }
+    
     self.selectedTag = sender.tag;
     
-    [self performSegueWithIdentifier:@"toAddMinion" sender:self];
+    [self performSegueWithIdentifier:@"toAddCrystal" sender:self];
 }
-
 
 @end

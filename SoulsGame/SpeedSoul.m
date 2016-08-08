@@ -16,6 +16,7 @@
 @synthesize desc;
 @synthesize minorBuffApplied;
 @synthesize majorBuffApplied;
+@synthesize ID;
 
 -(instancetype)initWithSpeed:(NSInteger)speed{
     if (self = [super init]){
@@ -24,7 +25,7 @@
         
         self.amount = speed;
         self.name = @"Speed";
-        self.desc = @"How quickly this minion can attack.";
+        self.desc = @"How quickly this crystal can attack.";
     }
     return self;
 }

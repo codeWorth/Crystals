@@ -16,6 +16,7 @@
 @synthesize desc;
 @synthesize minorBuffApplied;
 @synthesize majorBuffApplied;
+@synthesize ID;
 
 -(instancetype)initWithShield:(NSInteger)shield{
     if (self = [super init]){
@@ -24,7 +25,7 @@
         
         self.amount = shield;
         self.name = @"Shield";
-        self.desc = @"Amount of shielding that this minion has.";
+        self.desc = @"Amount of shielding that this crystal has.";
     }
     return self;
 }

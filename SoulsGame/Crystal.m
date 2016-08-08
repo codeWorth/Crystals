@@ -1,18 +1,17 @@
 //
-//  Minion.m
+//  Crystal.m
 //  SoulsGame
 //
 //  Created by Andrew Cummings on 5/27/16.
 //  Copyright © 2016 Andrew Cummings. All rights reserved.
 //
 
-#import "Minion.h"
+#import "Crystal.h"
 #import "Soul.h"
 #import "Spell.h"
 #import "Player.h"
 
-
-@interface Minion ()
+@interface Crystal ()
 
 @property (nonatomic, strong) NSMutableArray* resistSouls;
 @property (nonatomic, strong) NSMutableArray* buffSouls;
@@ -31,16 +30,18 @@
 @property (nonatomic) NSInteger maxHealth;
 @property (nonatomic) NSInteger maxShield;
 
+@property (nonatomic, strong) NSObject<NetComm>* delegate;
+
 @end
 
-@implementation Minion
+@implementation Crystal
 
 +(double)BASE_STATS_TOTAL{
     return 12;
 }
 
 -(instancetype)initWithHealth:(NSInteger)health Speed:(NSInteger)speed shield:(NSInteger)shield{
-    if ((self = [super init]) && speed+health+shield == [Minion BASE_STATS_TOTAL]){
+    if ((self = [super init]) && speed+health+shield == [Crystal BASE_STATS_TOTAL]){
         self.isDead = NO;
         
         self._shield = [[ShieldSoul alloc]initWithShield:shield];
@@ -58,7 +59,7 @@
         
         self._cooldown = self.affectedCooldown;
     } else {
-        NSLog(@"Invalid minion creation stats");
+        NSLog(@"Invalid crystal creation stats");
     }
     return self;
 }
@@ -99,6 +100,7 @@
     [self.resistSouls replaceObjectAtIndex:index withObject:soul];
     if ([self getResistSouls].count == 3){
         [self handleSoulsForList:[self getResistSouls]];
+        [self.parent addedSoul:soul toTarget:self];
     }
     
     if ([self shouldApplyMajorBuff]){
@@ -110,6 +112,7 @@
     [self.buffSouls replaceObjectAtIndex:index withObject:soul];
     if ([self getBuffSouls].count == 4){
         [self handleSoulsForList:[self getBuffSouls]];
+        [self.parent addedSoul:soul toTarget:self];
     }
     
     if ([self shouldApplyMajorBuff]){
@@ -121,6 +124,7 @@
     [self.specSouls replaceObjectAtIndex:index withObject:soul];
     if ([self getSpecSouls].count == 3){
         [self handleSoulsForList:[self getSpecSouls]];
+        [self.parent addedSoul:soul toTarget:self];
     }
     
     if ([self shouldApplyMajorBuff]){
@@ -158,14 +162,15 @@
     return arr;
 }
 
--(void)castSpell:(NSObject<Spell> *)spell onTarget:(Minion *)target{
+-(void)castSpell:(NSObject<Spell> *)spell onTarget:(Crystal *)target{
     self._cooldown = self.affectedCooldown;
     
     for (NSObject<BuffSoul>* buff in [self getBuffSouls]) {
         [buff buffSpell:spell];
     }
     
-    [target receiveSpell:spell];	
+    [target receiveSpell:spell];
+    [self.parent spellCast:spell fromSource:self toTarget:target];
 }
 
 -(void)receiveSpell:(NSObject<Spell> *)spell{
@@ -174,7 +179,7 @@
     }
     
     
-    [self.effects addObjectsFromArray:[spell affectMinion:self]];
+    [self.effects addObjectsFromArray:[spell affectCrystal:self]];
 }
 
 -(void)nextTurn{
@@ -279,6 +284,43 @@
         [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:index-3];
     } else if ([soul conformsToProtocol:@protocol(SpecSoul)]){
         [self addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:index-7];
+    }
+}
+
+-(void)addSoulInEmptyIndex:(NSObject<Soul> *)soul {
+    if ([soul conformsToProtocol:@protocol(ResistSoul)]){
+        if ([self getSoulAtIndex:0] == nil) {
+            [self addResistSoul:(NSObject<ResistSoul>*)soul atIndex:0];
+        } else if ([self getSoulAtIndex:1] == nil) {
+            [self addResistSoul:(NSObject<ResistSoul>*)soul atIndex:1];
+        } else if ([self getSoulAtIndex:2] == nil) {
+            [self addResistSoul:(NSObject<ResistSoul>*)soul atIndex:2];
+        } else {
+            return;
+        }
+    
+    } else if ([soul conformsToProtocol:@protocol(BuffSoul)]){
+        if ([self getSoulAtIndex:3] == nil) {
+            [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:3];
+        } else if ([self getSoulAtIndex:4] == nil) {
+            [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:4];
+        } else if ([self getSoulAtIndex:5] == nil) {
+            [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:5];
+        } else if ([self getSoulAtIndex:6] == nil) {
+            [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:6];
+        } else {
+            return;
+        }
+    } else if ([soul conformsToProtocol:@protocol(SpecSoul)]){
+        if ([self getSoulAtIndex:7] == nil) {
+            [self addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:7];
+        } else if ([self getSoulAtIndex:8] == nil) {
+            [self addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:8];
+        } else if ([self getSoulAtIndex:9] == nil) {
+            [self addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:9];
+        } else {
+            return;
+        }
     }
 }
 

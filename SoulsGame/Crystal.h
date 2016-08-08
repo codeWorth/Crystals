@@ -1,5 +1,5 @@
 //
-//  Minion.h
+//  Crystal.h
 //  SoulsGame
 //
 //  Created by Andrew Cummings on 5/27/16.
@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import "Minion.h"
 
 #import "ResistSoul.h"
 #import "BuffSoul.h"
@@ -23,9 +21,11 @@
 
 #define DEFAULT_COOLDOWN 7;
 
-@interface Minion : NSObject
+@interface Crystal : NSObject
 
 @property (nonatomic) BOOL isDead;
+
+@property (nonatomic, strong) Player* parent;
 
 -(instancetype)initWithHealth:(NSInteger)health Speed:(NSInteger)speed shield:(NSInteger)shield;
 
@@ -33,13 +33,14 @@
 -(void)addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:(NSInteger)index;
 -(void)addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:(NSInteger)index;
 -(void)addSoul:(NSObject<Soul>*)soul atIndex:(NSInteger)index;
+-(void)addSoulInEmptyIndex:(NSObject<Soul>*)soul;
 
 -(NSArray*)getResistSouls;
 -(NSArray*)getBuffSouls;
 -(NSArray*)getSpecSouls;
 -(id)getSoulAtIndex:(NSInteger)index;
 
--(void)castSpell:(NSObject<Spell>*)spell onTarget:(Minion*)target;
+-(void)castSpell:(NSObject<Spell>*)spell onTarget:(Crystal*)target;
 -(void)receiveSpell:(NSObject<Spell>*)spell;
 
 -(void)nextTurn;

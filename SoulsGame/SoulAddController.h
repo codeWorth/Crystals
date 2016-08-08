@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "SoulType.m"
-#import "Minion.h"
+#import "Crystal.h"
 
 @interface SoulAddController : UIViewController
 
-@property (nonatomic, strong) Minion* selectedMinion;
+@property (nonatomic, strong) Crystal* selectedCrystal;
 
 @end

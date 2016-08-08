@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Minion;
+@class Crystal;
 @protocol Spell;
 
 @interface SpellSelectorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) NSObject<Spell>* selectedSpell;
-@property (strong, nonatomic) Minion* sourceMinion;
+@property (strong, nonatomic) Crystal* sourceCrystal;
 
 @end

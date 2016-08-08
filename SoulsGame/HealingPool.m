@@ -7,7 +7,7 @@
 //
 
 #import "HealingPool.h"
-#import "Minion.h"
+#import "Crystal.h"
 
 @interface HealingPool ()
 
@@ -26,9 +26,10 @@
 @synthesize canTargetFriendlies;
 @synthesize canTargetEnemies;
 @synthesize positiveEffect;
+@synthesize ID;
 
--(NSMutableArray*)affectMinion:(Minion *)minion{
-    [minion removeHealth:self._amount];
+-(NSMutableArray*)affectCrystal:(Crystal *)crystal{
+    [crystal removeHealth:self._amount];
     return nil;
 }
 
@@ -45,6 +46,8 @@
         
         self.canTargetEnemies = YES;
         self.canTargetFriendlies = YES;
+        
+        self.ID = @"004";
     }
     return self;
 }
@@ -54,10 +57,17 @@
 }
 
 -(void)setAmount:(NSInteger)amount{
-    self._amount = amount;
-    if (self._amount < 0){
-        self._amount = 0;
+    if (amount < 0){
+        amount = 0;
     }
+    self._amount = amount;
+}
+
+-(instancetype)copyWithZone:(NSZone *)zone{
+    HealingPool* theCopy = [[HealingPool alloc]init];
+    theCopy.amount = self._amount;
+    
+    return theCopy;
 }
 
 @end

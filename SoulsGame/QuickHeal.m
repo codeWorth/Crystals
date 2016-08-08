@@ -7,7 +7,7 @@
 //
 
 #import "QuickHeal.h"
-#import "Minion.h"
+#import "Crystal.h"
 
 @interface QuickHeal ()
 
@@ -26,9 +26,10 @@
 @synthesize canTargetFriendlies;
 @synthesize canTargetEnemies;
 @synthesize positiveEffect;
+@synthesize ID;
 
--(NSMutableArray*)affectMinion:(Minion *)minion{
-    [minion addHealth:self._amount];
+-(NSMutableArray*)affectCrystal:(Crystal *)crystal{
+    [crystal addHealth:self._amount];
     return nil;
 }
 
@@ -38,13 +39,15 @@
         self.positiveEffect = YES;
         self.name = @"Quick Heal";
         self.cost = 1;
-        self.desc = @"An efficent small heal that can be cast on any minion. Life type spell";
+        self.desc = @"An efficent small heal that can be cast on any crystal. Life type spell";
         self._amount = 2;
         self.flavorText = @"I bring life...";
         self.img = [UIImage imageNamed:@"heal.jpg"];
         
         self.canTargetEnemies = YES;
         self.canTargetFriendlies = YES;
+        
+        self.ID = @"001";
     }
     return self;
 }
@@ -54,10 +57,17 @@
 }
 
 -(void)setAmount:(NSInteger)amount{
-    self._amount = amount;
-    if (self._amount < 0){
-        self._amount = 0;
+    if (amount < 0){
+        amount = 0;
     }
+    self._amount = amount;
+}
+
+-(instancetype)copyWithZone:(NSZone *)zone{
+    QuickHeal* theCopy = [[QuickHeal alloc]init];
+    theCopy.amount = self._amount;
+    
+    return theCopy;
 }
 
 @end

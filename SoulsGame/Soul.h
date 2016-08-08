@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) UIImage* img;
 @property (nonatomic, strong) NSString* desc;
+@property (nonatomic, strong) NSString* ID;
 
 -(void)applyMinorBuff;
 -(void)applyMajorBuff;

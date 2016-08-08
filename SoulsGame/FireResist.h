@@ -11,6 +11,6 @@
 #import "Fireball.h"
 #import "ResistSoul.h"
 
-@interface FireResist : NSObject <ResistSoul>
+@interface FireResist : NSObject <ResistSoul, NSCopying>
 
 @end

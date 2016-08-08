@@ -17,6 +17,7 @@
 @synthesize desc;
 @synthesize minorBuffApplied;
 @synthesize majorBuffApplied;
+@synthesize ID;
 
 -(instancetype)init{
     if (self = [super init]){
@@ -54,6 +55,16 @@
 
 -(NSString*)effect{
     return [NSString stringWithFormat:@"Water Buff grants +%i water damage and healing", (int)self.buffAmount];
+}
+
+-(instancetype)copyWithZone:(NSZone *)zone{
+    WaterBuff* theCopy = [[WaterBuff alloc]init];
+    
+    theCopy.minorBuffApplied = self.minorBuffApplied;
+    theCopy.majorBuffApplied = self.majorBuffApplied;
+    theCopy.buffAmount = self.buffAmount;
+    
+    return theCopy;
 }
 
 @end

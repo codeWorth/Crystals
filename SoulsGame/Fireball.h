@@ -8,6 +8,6 @@
 
 #import "Spell.h"
 
-@interface Fireball : NSObject <Spell>
+@interface Fireball : NSObject <Spell, NSCopying>
 
 @end

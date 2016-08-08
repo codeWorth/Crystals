@@ -1,17 +1,17 @@
 //
-//  MinionAddController.m
+//  CrystalAddController.m
 //  SoulsGame
 //
 //  Created by Andrew Cummings on 7/7/16.
 //  Copyright © 2016 Andrew Cummings. All rights reserved.
 //
 
-#import "MinionAddController.h"
+#import "CrystalAddController.h"
 #import "StatMeter.h"
 #import "Game.h"
 #import "Player.h"
 
-@interface MinionAddController ()
+@interface CrystalAddController ()
 
 @property (weak, nonatomic) IBOutlet StatMeter *healthMeter;
 @property (weak, nonatomic) IBOutlet StatMeter *shieldMeter;
@@ -29,7 +29,7 @@
 #define TICK_SPACING 2
 #define MAX_POINTS 12
 
-@implementation MinionAddController
+@implementation CrystalAddController
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -105,18 +105,18 @@
 
 -(void)update{
     self.pointsLabel.text = [NSString stringWithFormat:@"Points Remaining: %i", (int)self.points];
-     if ([Game instance].homePlayer.mana < [Game minionCreateCost]){
+     if ([Game instance].homePlayer.mana < [Game crystalCreateCost]){
         self.createButton.enabled = NO;
         self.pageTitle.text = @"Not enough mana!";
      } else if (self.points != 0){
          self.createButton.enabled = NO;
-         self.pageTitle.text = @"Create a Minion";
+         self.pageTitle.text = @"Create a Crystal";
      } else if (self.currentHealth == 0){
         self.createButton.enabled = NO;
         self.pageTitle.text = @"Too little health!";
     } else {
         self.createButton.enabled = YES;
-        self.pageTitle.text = @"Create a Minion";
+        self.pageTitle.text = @"Create a Crystal";
     }
     
     

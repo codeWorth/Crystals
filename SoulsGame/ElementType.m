@@ -14,7 +14,7 @@ typedef enum ElementType {
     Earth, //damage to health pool directly (partially)
     Air, //damage bonus from speed
     Life, //large heals
-    Sun, //buffs other minions temporarily
-    Moon, //debuff other minions temporarily
+    Sun, //buffs other crystals temporarily
+    Moon, //debuff other crystals temporarily
     Shadow //area of effect
 }ElementType;

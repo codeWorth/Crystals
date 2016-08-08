@@ -7,9 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Minion.h"
+#import "Crystal.h"
 
 #define MAX_MANA 25
+
+@protocol NetComm <NSObject>
+
+-(void)registerCastSpell:(NSString*)spellID fromSource:(NSInteger)source toTarget:(Crystal*)target;
+-(void)registerAddCrystal:(Crystal*)crystal atIndex:(NSInteger)index;
+-(void)registerAddSoul:(NSString*)soulID toTarget:(NSInteger)target;
+
+@property (nonatomic) NSInteger messageIndex;
+@property (nonatomic, strong) NSMutableString* currentBuffer;
+
+@end
 
 @interface Player : NSObject
 
@@ -17,14 +28,27 @@
 @property (nonatomic, strong) UIImage* profileImg;
 @property (nonatomic, strong) NSString* username;
 
-@property (nonatomic, strong) Minion* minion1;
-@property (nonatomic, strong) Minion* minion2;
-@property (nonatomic, strong) Minion* minion3;
-@property (nonatomic, strong) Minion* minion4;
-@property (nonatomic, strong) Minion* minion5;
+@property (nonatomic, strong) NSObject<NetComm>* delegate;
 
--(void)update;
+-(Crystal*)crystal1;
+-(Crystal*)crystal2;
+-(Crystal*)crystal3;
+-(Crystal*)crystal4;
+-(Crystal*)crystal5;
+-(Crystal*)crystalN:(NSInteger)n;
+
+-(void)setCrystal1:(Crystal*)crystal;
+-(void)setCrystal2:(Crystal*)crystal;
+-(void)setCrystal3:(Crystal*)crystal;
+-(void)setCrystal4:(Crystal*)crystal;
+-(void)setCrystal5:(Crystal*)crystal;
+-(void)setCrystalN:(NSInteger)n toCrystal:(Crystal*)crystal;
+
+-(void)checkCrystalDeath;
 -(void)nextTurn;
 -(NSInteger)minCooldown;
+
+-(void)spellCast:(NSObject<Spell>*)spell fromSource:(Crystal*)source toTarget:(Crystal*)target;
+-(void)addedSoul:(NSObject<Soul>*)soul toTarget:(Crystal*)target;
 
 @end

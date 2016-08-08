@@ -8,10 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "Player.h"
+#import "Crystal.h"
 
-@class Minion;
+@protocol UpdateableController <NSObject>
 
-@interface Game : NSObject
+-(void)updateGUI;
+@property (nonatomic) NSInteger userID;
+@property (nonatomic) NSInteger awayID;
+
+@end
+
+@class Crystal;
+
+@interface Game : NSObject <NetComm>
 
 @property (nonatomic) NSInteger time;
 
@@ -26,13 +35,17 @@
 
 @property (nonatomic) BOOL canAttack;
 
--(void)update;
+-(void)checkCrystalDeath;
 
 -(void)homeEndTurn;
 -(void)awayEndTurn;
 
 +(Game*)instance;
+-(void)setDelegate:(UIViewController<UpdateableController> *)delegate;
 
-+(NSInteger)minionCreateCost;
++(NSInteger)crystalCreateCost;
+
+-(void)queryGUIUpdate;
+-(void)setShouldStart;
 
 @end

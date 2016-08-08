@@ -10,13 +10,14 @@
 #import "ElementType.m"
 #import <UIKit/UIKit.h>
 
-@class Minion;
+@class Crystal;
 
 @protocol Spell <NSObject>
 
 @property (nonatomic) enum ElementType type;
 @property (nonatomic) NSInteger cost;
 @property (nonatomic) BOOL positiveEffect;
+@property (nonatomic) NSString *ID;
 
 @property (nonatomic, strong) NSString* desc;
 @property (nonatomic, strong) NSString* flavorText;
@@ -26,8 +27,8 @@
 @property (nonatomic) BOOL canTargetFriendlies;
 
 -(NSInteger)amount;
--(void)setAmount:(NSInteger)newAmount;
+-(void)setAmount:(NSInteger)amount;
 
--(NSMutableArray*)affectMinion:(Minion*)minion; //returns the effects that should be put on the minion
+-(NSMutableArray*)affectCrystal:(Crystal*)crystal; //returns the effects that should be put on the crystal
 
 @end

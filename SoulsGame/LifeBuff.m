@@ -19,6 +19,7 @@
 @synthesize desc;
 @synthesize minorBuffApplied;
 @synthesize majorBuffApplied;
+@synthesize ID;
 
 -(instancetype)init{
     if (self = [super init]){
@@ -56,6 +57,16 @@
 
 -(NSString*)effect{
     return [NSString stringWithFormat:@"Life Buff grants +%i life healing", (int)self.buffAmount];
+}
+
+-(instancetype)copyWithZone:(NSZone *)zone{
+    LifeBuff* theCopy = [[LifeBuff alloc]init];
+    
+    theCopy.minorBuffApplied = self.minorBuffApplied;
+    theCopy.majorBuffApplied = self.majorBuffApplied;
+    theCopy.buffAmount = self.buffAmount;
+    
+    return theCopy;
 }
 
 @end

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Spell.h"
 
-@interface QuickHeal : NSObject <Spell>
+@interface QuickHeal : NSObject <Spell, NSCopying>
 
 @end

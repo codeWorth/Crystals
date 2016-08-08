@@ -1,5 +1,5 @@
 //
-//  MinionView.h
+//  CrystalView.h
 //  SoulsGame
 //
 //  Created by Andrew Cummings on 5/29/16.
@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Minion.h"
+#import "Crystal.h"
 @class BattlefieldController;
 
-@interface MinionView : UIButton
+@interface CrystalView : UIButton
 
--(void)updateWithMinion:(Minion*)minion;
+-(void)updateWithCrystal:(Crystal*)crystal;
 
 @end

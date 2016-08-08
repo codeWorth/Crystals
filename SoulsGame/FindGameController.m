@@ -7,6 +7,7 @@
 //
 
 #import "FindGameController.h"
+#import "BattlefieldController.h"
 
 @interface FindGameController ()
 
@@ -14,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *rankLabel;
 @property (weak, nonatomic) IBOutlet UIButton *findButton;
 @property (weak, nonatomic) IBOutlet UILabel *findingLabel;
+
+@property (nonatomic) NSInteger awayID;
 
 @end
 
@@ -52,7 +55,7 @@
 }
 
 -(void)scanMatches:(NSTimer*)timer{
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/data.php"];
+    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/getr.php"];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -84,8 +87,37 @@
     }
 }
 
--(void)matchFound{
-    [self performSegueWithIdentifier:@"matchFound" sender:self];
+-(void)matchFound {
+    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/matchdata.php"];
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *error = nil;
+    
+    if (!error) {
+        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
+            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            self.awayID = [str integerValue];
+            
+            [self performSegueWithIdentifier:@"matchFound" sender:self];
+        }];
+        
+        [uploadTask resume];
+    }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.destinationViewController isKindOfClass:[BattlefieldController class]]){
+        BattlefieldController* dest = (BattlefieldController*)segue.destinationViewController;
+        dest.userID = self.userID;
+        dest.awayID = self.awayID;
+    }
 }
 
 -(void)setUserInfo{

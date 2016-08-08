@@ -16,6 +16,7 @@
 @synthesize desc;
 @synthesize minorBuffApplied;
 @synthesize majorBuffApplied;
+@synthesize ID;
 
 -(instancetype)initWithHealth:(NSInteger)health{
     if (self = [super init]){
@@ -24,7 +25,7 @@
         
         self.amount = health;
         self.name = @"Health";
-        self.desc = @"Amount of health that this minion has.";
+        self.desc = @"Amount of health that this crystal has.";
     }
     return self;
 }

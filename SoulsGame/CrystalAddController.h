@@ -1,5 +1,5 @@
 //
-//  MinionAddController.h
+//  CrystalAddController.h
 //  SoulsGame
 //
 //  Created by Andrew Cummings on 7/7/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MinionAddController : UIViewController
+@interface CrystalAddController : UIViewController
 
 @property (nonatomic) NSInteger currentHealth;
 @property (nonatomic) NSInteger currentShield;
