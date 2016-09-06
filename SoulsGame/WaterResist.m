@@ -10,55 +10,31 @@
 
 @implementation WaterResist
 
-@synthesize name;
-@synthesize resistAmount;
-@synthesize img;
-@synthesize type;
-@synthesize desc;
-@synthesize minorBuffApplied;
-@synthesize majorBuffApplied;
-@synthesize ID;
-
 -(instancetype)init{
     if (self = [super init]){
-        self.minorBuffApplied = NO;
-        self.majorBuffApplied = NO;
-        
-        self.resistAmount = 1;
+        self.amount = 1;
         self.name = @"Water Resistance";
-        self.type = Water;
+        self.type = ElementTypeWater;
         self.desc = @"Will resist negative water effects and buff positive ones";
         self.img = [UIImage imageNamed:@"watershield.jpg"];
+        
+        self.ID = @"002";
     }
     return self;
 }
 
--(void)applyMinorBuff{
-    self.resistAmount += MINOR_BUFF_AMOUNT;
-    self.minorBuffApplied = YES;
-}
-
--(void)applyMajorBuff{
-    self.resistAmount += MAJOR_BUFF_AMOUNT;
-    self.majorBuffApplied = YES;
-}
-
--(void)resistSpell:(NSObject<Spell>*)spell{
-    if (spell.type == Water){
+-(void)affectSpell:(Spell *)spell{
+    if ([self willEffectSpell:spell]){
         if (spell.positiveEffect){
-            spell.amount += self.resistAmount;
+            spell.amount += self.amount;
         } else {
-            spell.amount -= self.resistAmount;
+            spell.amount -= self.amount;
         }
     }
 }
 
--(NSInteger)cost{
-    return RESIST_COST;
-}
-
 -(NSString*)effect{
-    return [NSString stringWithFormat:@"Water Resistance grants %i less water damage taken, and %i more healing from water", (int)self.resistAmount, (int)self.resistAmount];
+    return [NSString stringWithFormat:@"Water Resistance grants %i less water damage taken, and %i more healing from water", (int)self.amount, (int)self.amount];
 }
 
 -(instancetype)copyWithZone:(NSZone *)zone{
@@ -66,7 +42,7 @@
     
     theCopy.minorBuffApplied = self.minorBuffApplied;
     theCopy.majorBuffApplied = self.majorBuffApplied;
-    theCopy.resistAmount = self.resistAmount;
+    theCopy.amount = self.amount;
     
     return theCopy;
 }

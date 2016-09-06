@@ -9,12 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import "Soul.h"
+#import "EffectSoul.h"
 
-@interface TimedSoul : NSObject
--(instancetype)initWithTime:(NSInteger)time andSoul:(NSObject<Soul>*)soul;
--(void)update;
+@interface TimedSoul : NSObject <EffectSoul>
 
--(NSObject<Soul>*)getSoul;
--(BOOL)shouldRemove;
+-(instancetype)initWithTime:(NSInteger)time andSoul:(Soul*)soul;
 
 @end

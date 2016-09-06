@@ -9,10 +9,6 @@
 #import "Soul.h"
 #import "Spell.h"
 
-@protocol AttributeSoul <Soul>
-
-@property (nonatomic) NSInteger amount;
-
--(void)affectSpell:(NSObject<Spell>*)spell;
+@interface AttributeSoul : Soul
 
 @end

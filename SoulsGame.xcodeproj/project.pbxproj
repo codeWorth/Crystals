@@ -7,8 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4917B3D71D5EBC23008C0BEB /* Sunfall.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917B3D61D5EBC23008C0BEB /* Sunfall.m */; };
+		4917B3D91D5EBD05008C0BEB /* Spell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917B3D81D5EBD05008C0BEB /* Spell.m */; };
+		491A5CD21D5D83F600C5904A /* Soul.m in Sources */ = {isa = PBXBuildFile; fileRef = 491A5CD11D5D83F600C5904A /* Soul.m */; };
+		491A5CD41D5D8F0400C5904A /* AttributeSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 491A5CD31D5D8F0400C5904A /* AttributeSoul.m */; };
+		491A5CD61D5D918200C5904A /* ResistSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 491A5CD51D5D918200C5904A /* ResistSoul.m */; };
+		491A5CD81D5D94E900C5904A /* BuffSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 491A5CD71D5D94E900C5904A /* BuffSoul.m */; };
+		491A5CDA1D5DA0FA00C5904A /* SpecSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 491A5CD91D5DA0FA00C5904A /* SpecSoul.m */; };
+		493BA1611D5EF5F800AD1041 /* AllBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 493BA1601D5EF5F800AD1041 /* AllBuff.m */; };
+		496EB2E91D5F2EDA00C5C872 /* Submerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EB2E81D5F2EDA00C5C872 /* Submerge.m */; };
+		496EB2EC1D5F2F0000C5C872 /* SpellDebuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EB2EB1D5F2F0000C5C872 /* SpellDebuff.m */; };
+		496EB2EF1D5F2FE800C5C872 /* NextSpellSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EB2EE1D5F2FE800C5C872 /* NextSpellSoul.m */; };
 		499642D31D57508D00ECDADE /* Spells.m in Sources */ = {isa = PBXBuildFile; fileRef = 499642D21D57508D00ECDADE /* Spells.m */; };
 		499642D61D5757A900ECDADE /* SoulsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 499642D51D5757A900ECDADE /* SoulsLibrary.m */; };
+		49EFA0CD1D5FBF3300C6FE44 /* EarthResist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0CC1D5FBF3300C6FE44 /* EarthResist.m */; };
+		49EFA0D01D5FBF3B00C6FE44 /* AirResist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0CF1D5FBF3B00C6FE44 /* AirResist.m */; };
+		49EFA0D31D5FBF4200C6FE44 /* SunResist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0D21D5FBF4200C6FE44 /* SunResist.m */; };
+		49EFA0D61D5FBF4800C6FE44 /* MoonResist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0D51D5FBF4800C6FE44 /* MoonResist.m */; };
+		49EFA0D91D5FBF5500C6FE44 /* ShadowResist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0D81D5FBF5500C6FE44 /* ShadowResist.m */; };
+		49EFA0DC1D5FBF6C00C6FE44 /* LifeResist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0DB1D5FBF6C00C6FE44 /* LifeResist.m */; };
+		49EFA0E21D5FCA0E00C6FE44 /* moonbuff.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0DD1D5FCA0E00C6FE44 /* moonbuff.jpg */; };
+		49EFA0E31D5FCA0E00C6FE44 /* rockshield.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0DE1D5FCA0E00C6FE44 /* rockshield.png */; };
+		49EFA0E41D5FCA0E00C6FE44 /* shadowbuff.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0DF1D5FCA0E00C6FE44 /* shadowbuff.jpg */; };
+		49EFA0E51D5FCA0E00C6FE44 /* drowning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0E01D5FCA0E00C6FE44 /* drowning.jpg */; };
+		49EFA0E61D5FCA0E00C6FE44 /* sunfall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0E11D5FCA0E00C6FE44 /* sunfall.jpg */; };
+		49EFA0E81D5FCAF200C6FE44 /* plantshield.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0E71D5FCAF200C6FE44 /* plantshield.jpg */; };
+		49EFA0ED1D5FD26F00C6FE44 /* EarthBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0EC1D5FD26F00C6FE44 /* EarthBuff.m */; };
+		49EFA0F01D5FD27F00C6FE44 /* AirBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0EF1D5FD27F00C6FE44 /* AirBuff.m */; };
+		49EFA0F31D5FD28D00C6FE44 /* SunBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0F21D5FD28D00C6FE44 /* SunBuff.m */; };
+		49EFA0F61D5FD29400C6FE44 /* MoonBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0F51D5FD29400C6FE44 /* MoonBuff.m */; };
+		49EFA0F91D5FD29900C6FE44 /* ShadowBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0F81D5FD29900C6FE44 /* ShadowBuff.m */; };
+		49EFA0FB1D5FD37300C6FE44 /* lightshield.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0FA1D5FD37300C6FE44 /* lightshield.png */; };
+		49EFA0FD1D5FD60100C6FE44 /* airbuff.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0FC1D5FD60100C6FE44 /* airbuff.jpg */; };
+		49EFA0FF1D5FD6F300C6FE44 /* sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA0FE1D5FD6F300C6FE44 /* sun.jpg */; };
+		49EFA1011D5FD7E700C6FE44 /* shadowbuff.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA1001D5FD7E600C6FE44 /* shadowbuff.png */; };
+		49EFA1031D5FED4100C6FE44 /* space_purple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EFA1021D5FED4100C6FE44 /* space_purple.jpg */; };
 		D547B2251CFB062D001460C6 /* CrystalView.m in Sources */ = {isa = PBXBuildFile; fileRef = D547B2241CFB062D001460C6 /* CrystalView.m */; };
 		D55BB5061D51443A0008A262 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = D55BB5031D51443A0008A262 /* play.png */; };
 		D55BB5071D51443A0008A262 /* cards.png in Resources */ = {isa = PBXBuildFile; fileRef = D55BB5041D51443A0008A262 /* cards.png */; };
@@ -54,14 +87,12 @@
 		D58D4B601D274AED0039C4E9 /* SoulAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58D4B5F1D274AED0039C4E9 /* SoulAddController.m */; };
 		D59E46911CFBE7C00085CCF3 /* obsidian.png in Resources */ = {isa = PBXBuildFile; fileRef = D59E46871CFBE7C00085CCF3 /* obsidian.png */; };
 		D59E46921CFBE7C00085CCF3 /* moon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E46881CFBE7C00085CCF3 /* moon.jpg */; };
-		D59E46931CFBE7C00085CCF3 /* sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E46891CFBE7C00085CCF3 /* sun.jpg */; };
 		D59E46941CFBE7C00085CCF3 /* ice_spike.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468A1CFBE7C00085CCF3 /* ice_spike.jpg */; };
 		D59E46951CFBE7C00085CCF3 /* shadow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468B1CFBE7C00085CCF3 /* shadow.jpg */; };
-		D59E46961CFBE7C00085CCF3 /* obsidian w: back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468C1CFBE7C00085CCF3 /* obsidian w: back.jpg */; };
+		D59E46961CFBE7C00085CCF3 /* obsidian-back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468C1CFBE7C00085CCF3 /* obsidian-back.jpg */; };
 		D59E46971CFBE7C00085CCF3 /* crystal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468D1CFBE7C00085CCF3 /* crystal.jpg */; };
 		D59E46981CFBE7C00085CCF3 /* heal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468E1CFBE7C00085CCF3 /* heal.jpg */; };
 		D59E46991CFBE7C00085CCF3 /* air.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E468F1CFBE7C00085CCF3 /* air.jpg */; };
-		D59E469A1CFBE7C00085CCF3 /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D59E46901CFBE7C00085CCF3 /* fire.jpg */; };
 		D5A01D3E1D04C38700310F79 /* roundedgrey.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A01D3D1D04C38700310F79 /* roundedgrey.png */; };
 		D5A651941D4825FE009CED5F /* souls-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A651931D4825FE009CED5F /* souls-logo.png */; };
 		D5A6519C1D4828FC009CED5F /* buttonback.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A6519B1D4828FC009CED5F /* buttonback.png */; };
@@ -104,10 +135,60 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4917B3D51D5EBC23008C0BEB /* Sunfall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sunfall.h; sourceTree = "<group>"; };
+		4917B3D61D5EBC23008C0BEB /* Sunfall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sunfall.m; sourceTree = "<group>"; };
+		4917B3D81D5EBD05008C0BEB /* Spell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spell.m; sourceTree = "<group>"; };
+		491A5CD11D5D83F600C5904A /* Soul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Soul.m; sourceTree = "<group>"; };
+		491A5CD31D5D8F0400C5904A /* AttributeSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeSoul.m; sourceTree = "<group>"; };
+		491A5CD51D5D918200C5904A /* ResistSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResistSoul.m; sourceTree = "<group>"; };
+		491A5CD71D5D94E900C5904A /* BuffSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuffSoul.m; sourceTree = "<group>"; };
+		491A5CD91D5DA0FA00C5904A /* SpecSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecSoul.m; sourceTree = "<group>"; };
+		493BA15F1D5EF5F800AD1041 /* AllBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllBuff.h; sourceTree = "<group>"; };
+		493BA1601D5EF5F800AD1041 /* AllBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllBuff.m; sourceTree = "<group>"; };
+		496EB2E71D5F2EDA00C5C872 /* Submerge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Submerge.h; sourceTree = "<group>"; };
+		496EB2E81D5F2EDA00C5C872 /* Submerge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Submerge.m; sourceTree = "<group>"; };
+		496EB2EA1D5F2F0000C5C872 /* SpellDebuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellDebuff.h; sourceTree = "<group>"; };
+		496EB2EB1D5F2F0000C5C872 /* SpellDebuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellDebuff.m; sourceTree = "<group>"; };
+		496EB2ED1D5F2FE800C5C872 /* NextSpellSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextSpellSoul.h; sourceTree = "<group>"; };
+		496EB2EE1D5F2FE800C5C872 /* NextSpellSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextSpellSoul.m; sourceTree = "<group>"; };
 		499642D11D57508D00ECDADE /* Spells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spells.h; sourceTree = "<group>"; };
 		499642D21D57508D00ECDADE /* Spells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spells.m; sourceTree = "<group>"; };
 		499642D41D5757A900ECDADE /* SoulsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoulsLibrary.h; sourceTree = "<group>"; };
 		499642D51D5757A900ECDADE /* SoulsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoulsLibrary.m; sourceTree = "<group>"; };
+		49B5E9311D5E805E003BA441 /* EffectSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectSoul.h; sourceTree = "<group>"; };
+		49EFA0CB1D5FBF3300C6FE44 /* EarthResist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarthResist.h; sourceTree = "<group>"; };
+		49EFA0CC1D5FBF3300C6FE44 /* EarthResist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarthResist.m; sourceTree = "<group>"; };
+		49EFA0CE1D5FBF3B00C6FE44 /* AirResist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirResist.h; sourceTree = "<group>"; };
+		49EFA0CF1D5FBF3B00C6FE44 /* AirResist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirResist.m; sourceTree = "<group>"; };
+		49EFA0D11D5FBF4200C6FE44 /* SunResist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunResist.h; sourceTree = "<group>"; };
+		49EFA0D21D5FBF4200C6FE44 /* SunResist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunResist.m; sourceTree = "<group>"; };
+		49EFA0D41D5FBF4800C6FE44 /* MoonResist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonResist.h; sourceTree = "<group>"; };
+		49EFA0D51D5FBF4800C6FE44 /* MoonResist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonResist.m; sourceTree = "<group>"; };
+		49EFA0D71D5FBF5500C6FE44 /* ShadowResist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowResist.h; sourceTree = "<group>"; };
+		49EFA0D81D5FBF5500C6FE44 /* ShadowResist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowResist.m; sourceTree = "<group>"; };
+		49EFA0DA1D5FBF6C00C6FE44 /* LifeResist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeResist.h; sourceTree = "<group>"; };
+		49EFA0DB1D5FBF6C00C6FE44 /* LifeResist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeResist.m; sourceTree = "<group>"; };
+		49EFA0DD1D5FCA0E00C6FE44 /* moonbuff.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moonbuff.jpg; sourceTree = "<group>"; };
+		49EFA0DE1D5FCA0E00C6FE44 /* rockshield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rockshield.png; sourceTree = "<group>"; };
+		49EFA0DF1D5FCA0E00C6FE44 /* shadowbuff.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shadowbuff.jpg; sourceTree = "<group>"; };
+		49EFA0E01D5FCA0E00C6FE44 /* drowning.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = drowning.jpg; sourceTree = "<group>"; };
+		49EFA0E11D5FCA0E00C6FE44 /* sunfall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunfall.jpg; sourceTree = "<group>"; };
+		49EFA0E71D5FCAF200C6FE44 /* plantshield.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plantshield.jpg; sourceTree = "<group>"; };
+		49EFA0EB1D5FD26F00C6FE44 /* EarthBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarthBuff.h; sourceTree = "<group>"; };
+		49EFA0EC1D5FD26F00C6FE44 /* EarthBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarthBuff.m; sourceTree = "<group>"; };
+		49EFA0EE1D5FD27F00C6FE44 /* AirBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirBuff.h; sourceTree = "<group>"; };
+		49EFA0EF1D5FD27F00C6FE44 /* AirBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirBuff.m; sourceTree = "<group>"; };
+		49EFA0F11D5FD28D00C6FE44 /* SunBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunBuff.h; sourceTree = "<group>"; };
+		49EFA0F21D5FD28D00C6FE44 /* SunBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunBuff.m; sourceTree = "<group>"; };
+		49EFA0F41D5FD29400C6FE44 /* MoonBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonBuff.h; sourceTree = "<group>"; };
+		49EFA0F51D5FD29400C6FE44 /* MoonBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonBuff.m; sourceTree = "<group>"; };
+		49EFA0F71D5FD29900C6FE44 /* ShadowBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowBuff.h; sourceTree = "<group>"; };
+		49EFA0F81D5FD29900C6FE44 /* ShadowBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowBuff.m; sourceTree = "<group>"; };
+		49EFA0FA1D5FD37300C6FE44 /* lightshield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightshield.png; sourceTree = "<group>"; };
+		49EFA0FC1D5FD60100C6FE44 /* airbuff.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = airbuff.jpg; sourceTree = "<group>"; };
+		49EFA0FE1D5FD6F300C6FE44 /* sun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sun.jpg; sourceTree = "<group>"; };
+		49EFA1001D5FD7E600C6FE44 /* shadowbuff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadowbuff.png; sourceTree = "<group>"; };
+		49EFA1021D5FED4100C6FE44 /* space_purple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = space_purple.jpg; sourceTree = "<group>"; };
 		D547B2231CFB062D001460C6 /* CrystalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrystalView.h; sourceTree = "<group>"; };
 		D547B2241CFB062D001460C6 /* CrystalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrystalView.m; sourceTree = "<group>"; };
 		D55BB5031D51443A0008A262 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -179,14 +260,12 @@
 		D58D4B5F1D274AED0039C4E9 /* SoulAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoulAddController.m; sourceTree = "<group>"; };
 		D59E46871CFBE7C00085CCF3 /* obsidian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obsidian.png; sourceTree = "<group>"; };
 		D59E46881CFBE7C00085CCF3 /* moon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moon.jpg; sourceTree = "<group>"; };
-		D59E46891CFBE7C00085CCF3 /* sun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sun.jpg; sourceTree = "<group>"; };
 		D59E468A1CFBE7C00085CCF3 /* ice_spike.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ice_spike.jpg; sourceTree = "<group>"; };
 		D59E468B1CFBE7C00085CCF3 /* shadow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shadow.jpg; sourceTree = "<group>"; };
-		D59E468C1CFBE7C00085CCF3 /* obsidian w: back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "obsidian w: back.jpg"; sourceTree = "<group>"; };
+		D59E468C1CFBE7C00085CCF3 /* obsidian-back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "obsidian-back.jpg"; sourceTree = "<group>"; };
 		D59E468D1CFBE7C00085CCF3 /* crystal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crystal.jpg; sourceTree = "<group>"; };
 		D59E468E1CFBE7C00085CCF3 /* heal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = heal.jpg; sourceTree = "<group>"; };
 		D59E468F1CFBE7C00085CCF3 /* air.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = air.jpg; sourceTree = "<group>"; };
-		D59E46901CFBE7C00085CCF3 /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fire.jpg; sourceTree = "<group>"; };
 		D5A01D3D1D04C38700310F79 /* roundedgrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roundedgrey.png; sourceTree = "<group>"; };
 		D5A651931D4825FE009CED5F /* souls-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "souls-logo.png"; sourceTree = "<group>"; };
 		D5A6519B1D4828FC009CED5F /* buttonback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonback.png; sourceTree = "<group>"; };
@@ -251,6 +330,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493BA1621D5EF60300AD1041 /* Effect Souls */ = {
+			isa = PBXGroup;
+			children = (
+				493BA15F1D5EF5F800AD1041 /* AllBuff.h */,
+				493BA1601D5EF5F800AD1041 /* AllBuff.m */,
+				496EB2EA1D5F2F0000C5C872 /* SpellDebuff.h */,
+				496EB2EB1D5F2F0000C5C872 /* SpellDebuff.m */,
+			);
+			name = "Effect Souls";
+			sourceTree = "<group>";
+		};
 		D547B2221CFB05FE001460C6 /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				D579B9461CFA45A500AD9447 /* SpecSoul.h */,
+				491A5CD91D5DA0FA00C5904A /* SpecSoul.m */,
 			);
 			name = "Specialized Souls";
 			sourceTree = "<group>";
@@ -294,10 +385,23 @@
 			isa = PBXGroup;
 			children = (
 				D579B9441CFA459200AD9447 /* ResistSoul.h */,
+				491A5CD51D5D918200C5904A /* ResistSoul.m */,
 				D579B94A1CFA463E00AD9447 /* FireResist.h */,
 				D579B94B1CFA463E00AD9447 /* FireResist.m */,
 				D572E0BF1D306768004254F8 /* WaterResist.h */,
 				D572E0C01D306768004254F8 /* WaterResist.m */,
+				49EFA0CB1D5FBF3300C6FE44 /* EarthResist.h */,
+				49EFA0CC1D5FBF3300C6FE44 /* EarthResist.m */,
+				49EFA0CE1D5FBF3B00C6FE44 /* AirResist.h */,
+				49EFA0CF1D5FBF3B00C6FE44 /* AirResist.m */,
+				49EFA0DA1D5FBF6C00C6FE44 /* LifeResist.h */,
+				49EFA0DB1D5FBF6C00C6FE44 /* LifeResist.m */,
+				49EFA0D11D5FBF4200C6FE44 /* SunResist.h */,
+				49EFA0D21D5FBF4200C6FE44 /* SunResist.m */,
+				49EFA0D41D5FBF4800C6FE44 /* MoonResist.h */,
+				49EFA0D51D5FBF4800C6FE44 /* MoonResist.m */,
+				49EFA0D71D5FBF5500C6FE44 /* ShadowResist.h */,
+				49EFA0D81D5FBF5500C6FE44 /* ShadowResist.m */,
 			);
 			name = "Resist Souls";
 			sourceTree = "<group>";
@@ -306,12 +410,23 @@
 			isa = PBXGroup;
 			children = (
 				D579B9451CFA459D00AD9447 /* BuffSoul.h */,
+				491A5CD71D5D94E900C5904A /* BuffSoul.m */,
 				D572E0A91D305AD9004254F8 /* LifeBuff.h */,
 				D572E0AA1D305AD9004254F8 /* LifeBuff.m */,
 				D572E0AE1D305CBF004254F8 /* FireBuff.h */,
 				D572E0AF1D305CBF004254F8 /* FireBuff.m */,
 				D572E0C21D30685D004254F8 /* WaterBuff.h */,
 				D572E0C31D30685D004254F8 /* WaterBuff.m */,
+				49EFA0EB1D5FD26F00C6FE44 /* EarthBuff.h */,
+				49EFA0EC1D5FD26F00C6FE44 /* EarthBuff.m */,
+				49EFA0EE1D5FD27F00C6FE44 /* AirBuff.h */,
+				49EFA0EF1D5FD27F00C6FE44 /* AirBuff.m */,
+				49EFA0F11D5FD28D00C6FE44 /* SunBuff.h */,
+				49EFA0F21D5FD28D00C6FE44 /* SunBuff.m */,
+				49EFA0F41D5FD29400C6FE44 /* MoonBuff.h */,
+				49EFA0F51D5FD29400C6FE44 /* MoonBuff.m */,
+				49EFA0F71D5FD29900C6FE44 /* ShadowBuff.h */,
+				49EFA0F81D5FD29900C6FE44 /* ShadowBuff.m */,
 			);
 			name = "Buff Souls";
 			sourceTree = "<group>";
@@ -320,6 +435,9 @@
 			isa = PBXGroup;
 			children = (
 				D5B50E3A1CFAFC41009A4D7D /* Spell.h */,
+				4917B3D81D5EBD05008C0BEB /* Spell.m */,
+				499642D11D57508D00ECDADE /* Spells.h */,
+				499642D21D57508D00ECDADE /* Spells.m */,
 				D56BC4671D0581CB0051CD05 /* QuickHeal.h */,
 				D56BC4681D0581CB0051CD05 /* QuickHeal.m */,
 				D579B94F1CFA487500AD9447 /* Fireball.h */,
@@ -328,8 +446,10 @@
 				D572E0B61D30619F004254F8 /* WaterShard.m */,
 				D572E0B81D3062DD004254F8 /* HealingPool.h */,
 				D572E0B91D3062DD004254F8 /* HealingPool.m */,
-				499642D11D57508D00ECDADE /* Spells.h */,
-				499642D21D57508D00ECDADE /* Spells.m */,
+				4917B3D51D5EBC23008C0BEB /* Sunfall.h */,
+				4917B3D61D5EBC23008C0BEB /* Sunfall.m */,
+				496EB2E71D5F2EDA00C5C872 /* Submerge.h */,
+				496EB2E81D5F2EDA00C5C872 /* Submerge.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -338,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				D579B9521CFA4C2300AD9447 /* AttributeSoul.h */,
+				491A5CD31D5D8F0400C5904A /* AttributeSoul.m */,
 				D579B9541CFA4C4E00AD9447 /* HealthSoul.h */,
 				D579B9551CFA4C4E00AD9447 /* HealthSoul.m */,
 				D579B9571CFA4C5900AD9447 /* SpeedSoul.h */,
@@ -351,6 +472,7 @@
 		D59E465B1CFBD9530085CCF3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				49EFA1021D5FED4100C6FE44 /* space_purple.jpg */,
 				D5BC7EF21D2F840D00C4C0D0 /* roundedoutline noplus.png */,
 				D56BC41D1D056FE10051CD05 /* roundedoutline.png */,
 				D56BC41B1D0526270051CD05 /* profileback.png */,
@@ -384,18 +506,26 @@
 				D572E0AC1D305B65004254F8 /* demonfire.jpg */,
 				D59E46871CFBE7C00085CCF3 /* obsidian.png */,
 				D59E46881CFBE7C00085CCF3 /* moon.jpg */,
-				D59E46891CFBE7C00085CCF3 /* sun.jpg */,
+				49EFA0DD1D5FCA0E00C6FE44 /* moonbuff.jpg */,
+				49EFA0DE1D5FCA0E00C6FE44 /* rockshield.png */,
+				49EFA0DF1D5FCA0E00C6FE44 /* shadowbuff.jpg */,
+				49EFA0E01D5FCA0E00C6FE44 /* drowning.jpg */,
+				49EFA0E11D5FCA0E00C6FE44 /* sunfall.jpg */,
+				49EFA0FE1D5FD6F300C6FE44 /* sun.jpg */,
 				D59E468A1CFBE7C00085CCF3 /* ice_spike.jpg */,
+				49EFA0FA1D5FD37300C6FE44 /* lightshield.png */,
 				D59E468B1CFBE7C00085CCF3 /* shadow.jpg */,
-				D59E468C1CFBE7C00085CCF3 /* obsidian w: back.jpg */,
+				49EFA1001D5FD7E600C6FE44 /* shadowbuff.png */,
+				D59E468C1CFBE7C00085CCF3 /* obsidian-back.jpg */,
 				D5B612D11D2DDC970027AC7E /* crystal wip.jpg */,
 				D59E468D1CFBE7C00085CCF3 /* crystal.jpg */,
 				D59E468E1CFBE7C00085CCF3 /* heal.jpg */,
 				D59E468F1CFBE7C00085CCF3 /* air.jpg */,
-				D59E46901CFBE7C00085CCF3 /* fire.jpg */,
+				49EFA0FC1D5FD60100C6FE44 /* airbuff.jpg */,
 				D56BC46A1D0583290051CD05 /* Fireball.jpg */,
 				D572E0BB1D3064C4004254F8 /* watersunlight.jpg */,
 				D572E0BC1D3064C4004254F8 /* healingwater.jpg */,
+				49EFA0E71D5FCAF200C6FE44 /* plantshield.jpg */,
 				D572E0C51D306ACD004254F8 /* watershield.jpg */,
 			);
 			name = "Elemental Icons";
@@ -477,14 +607,19 @@
 			isa = PBXGroup;
 			children = (
 				D579B9431CFA3F8000AD9447 /* Soul.h */,
+				491A5CD11D5D83F600C5904A /* Soul.m */,
 				499642D41D5757A900ECDADE /* SoulsLibrary.h */,
 				499642D51D5757A900ECDADE /* SoulsLibrary.m */,
-				D579B9531CFA4C3A00AD9447 /* Attribute Souls */,
 				D579B9481CFA45B000AD9447 /* Resist Souls */,
 				D579B9491CFA45B500AD9447 /* Buff Souls */,
 				D579B9471CFA45AC00AD9447 /* Specialized Souls */,
+				49B5E9311D5E805E003BA441 /* EffectSoul.h */,
+				496EB2ED1D5F2FE800C5C872 /* NextSpellSoul.h */,
+				496EB2EE1D5F2FE800C5C872 /* NextSpellSoul.m */,
 				D55FEC821CFAF2F80074F9D1 /* TimedSoul.h */,
 				D55FEC831CFAF2F80074F9D1 /* TimedSoul.m */,
+				D579B9531CFA4C3A00AD9447 /* Attribute Souls */,
+				493BA1621D5EF60300AD1041 /* Effect Souls */,
 			);
 			name = Souls;
 			sourceTree = "<group>";
@@ -597,16 +732,20 @@
 			files = (
 				D572E0B41D305F38004254F8 /* fireshield.jpg in Resources */,
 				D55BB5071D51443A0008A262 /* cards.png in Resources */,
+				49EFA0E41D5FCA0E00C6FE44 /* shadowbuff.jpg in Resources */,
 				D572E0D21D32FB56004254F8 /* addsoulback inner.png in Resources */,
 				D5B612D21D2DDC970027AC7E /* crystal wip.jpg in Resources */,
-				D59E46931CFBE7C00085CCF3 /* sun.jpg in Resources */,
+				49EFA0E51D5FCA0E00C6FE44 /* drowning.jpg in Resources */,
 				D56BC46B1D0583290051CD05 /* Fireball.jpg in Resources */,
 				D56F9C761D2607B7002F088C /* rounded_corners.png in Resources */,
 				D59E46911CFBE7C00085CCF3 /* obsidian.png in Resources */,
 				D572E0B21D305E26004254F8 /* light-holy.png in Resources */,
 				D575B8021D287EF100BD5178 /* backgroundbase.png in Resources */,
 				D56BC41A1D05243A0051CD05 /* background.png in Resources */,
+				49EFA0FF1D5FD6F300C6FE44 /* sun.jpg in Resources */,
+				49EFA0E81D5FCAF200C6FE44 /* plantshield.jpg in Resources */,
 				D59E46941CFBE7C00085CCF3 /* ice_spike.jpg in Resources */,
+				49EFA0E31D5FCA0E00C6FE44 /* rockshield.png in Resources */,
 				D55BB5061D51443A0008A262 /* play.png in Resources */,
 				D572E0C61D306ACD004254F8 /* watershield.jpg in Resources */,
 				D5A6519C1D4828FC009CED5F /* buttonback.png in Resources */,
@@ -614,24 +753,29 @@
 				D575B8041D287F1A00BD5178 /* Screen Shot 2016-07-02 at 2.48.15 PM.png in Resources */,
 				D5A01D3E1D04C38700310F79 /* roundedgrey.png in Resources */,
 				D575B8011D287EF100BD5178 /* addsoulback.png in Resources */,
-				D59E469A1CFBE7C00085CCF3 /* fire.jpg in Resources */,
 				D572E0D11D32FB56004254F8 /* addsoulback middle.png in Resources */,
+				49EFA1031D5FED4100C6FE44 /* space_purple.jpg in Resources */,
 				D5A651A01D482DAE009CED5F /* box copy 2.png in Resources */,
 				D5A6519E1D482B99009CED5F /* box copy.png in Resources */,
 				D59E46921CFBE7C00085CCF3 /* moon.jpg in Resources */,
 				D5BEF57E1CF94E2400A5F3C2 /* LaunchScreen.storyboard in Resources */,
 				D572E0BD1D3064C4004254F8 /* watersunlight.jpg in Resources */,
 				D58866F21D03D1AC00C481ED /* defaultProfile.png in Resources */,
+				49EFA1011D5FD7E700C6FE44 /* shadowbuff.png in Resources */,
 				D572E0D01D32FB56004254F8 /* addsoulback outer.png in Resources */,
 				D5BC7EF31D2F840D00C4C0D0 /* roundedoutline noplus.png in Resources */,
 				D59E46991CFBE7C00085CCF3 /* air.jpg in Resources */,
 				D56BC41C1D0526270051CD05 /* profileback.png in Resources */,
+				49EFA0FB1D5FD37300C6FE44 /* lightshield.png in Resources */,
+				49EFA0E21D5FCA0E00C6FE44 /* moonbuff.jpg in Resources */,
 				D572E0AD1D305B65004254F8 /* demonfire.jpg in Resources */,
 				D5BEF57B1CF94E2400A5F3C2 /* Assets.xcassets in Resources */,
-				D59E46961CFBE7C00085CCF3 /* obsidian w: back.jpg in Resources */,
+				D59E46961CFBE7C00085CCF3 /* obsidian-back.jpg in Resources */,
 				D5BEF5791CF94E2400A5F3C2 /* Main.storyboard in Resources */,
 				D59E46971CFBE7C00085CCF3 /* crystal.jpg in Resources */,
+				49EFA0FD1D5FD60100C6FE44 /* airbuff.jpg in Resources */,
 				D56BC41E1D056FE10051CD05 /* roundedoutline.png in Resources */,
+				49EFA0E61D5FCA0E00C6FE44 /* sunfall.jpg in Resources */,
 				D55BB5081D51443A0008A262 /* settings.png in Resources */,
 				D5A651941D4825FE009CED5F /* souls-logo.png in Resources */,
 				D572E0BE1D3064C4004254F8 /* healingwater.jpg in Resources */,
@@ -660,39 +804,61 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493BA1611D5EF5F800AD1041 /* AllBuff.m in Sources */,
+				49EFA0DC1D5FBF6C00C6FE44 /* LifeResist.m in Sources */,
 				D5BEF5AA1CF9515400A5F3C2 /* Player.m in Sources */,
+				4917B3D71D5EBC23008C0BEB /* Sunfall.m in Sources */,
+				49EFA0D61D5FBF4800C6FE44 /* MoonResist.m in Sources */,
 				499642D31D57508D00ECDADE /* Spells.m in Sources */,
 				D579B9511CFA487500AD9447 /* Fireball.m in Sources */,
 				D56BC4211D0578C50051CD05 /* SpellCell.m in Sources */,
+				49EFA0D31D5FBF4200C6FE44 /* SunResist.m in Sources */,
 				D579B9561CFA4C4E00AD9447 /* HealthSoul.m in Sources */,
+				496EB2EC1D5F2F0000C5C872 /* SpellDebuff.m in Sources */,
+				49EFA0F01D5FD27F00C6FE44 /* AirBuff.m in Sources */,
+				491A5CD21D5D83F600C5904A /* Soul.m in Sources */,
 				D572E0AB1D305AD9004254F8 /* LifeBuff.m in Sources */,
+				491A5CD61D5D918200C5904A /* ResistSoul.m in Sources */,
+				49EFA0F61D5FD29400C6FE44 /* MoonBuff.m in Sources */,
 				D579B9591CFA4C5900AD9447 /* SpeedSoul.m in Sources */,
 				D56BC4691D0581CB0051CD05 /* QuickHeal.m in Sources */,
 				D55FEC841CFAF2F80074F9D1 /* TimedSoul.m in Sources */,
 				D5BEF5761CF94E2400A5F3C2 /* BattlefieldController.m in Sources */,
 				D579B94C1CFA463E00AD9447 /* FireResist.m in Sources */,
 				D572E0B01D305CBF004254F8 /* FireBuff.m in Sources */,
+				496EB2E91D5F2EDA00C5C872 /* Submerge.m in Sources */,
+				49EFA0CD1D5FBF3300C6FE44 /* EarthResist.m in Sources */,
 				D572678D1D2B46C200F4B899 /* SoulSelectionController.m in Sources */,
 				D57267901D2B487200F4B899 /* SoulCell.m in Sources */,
 				D5BEF5AD1CF9516C00A5F3C2 /* Crystal.m in Sources */,
 				D563EE691D5337010015F717 /* FindGameController.m in Sources */,
 				499642D61D5757A900ECDADE /* SoulsLibrary.m in Sources */,
 				D572E0BA1D3062DD004254F8 /* HealingPool.m in Sources */,
+				4917B3D91D5EBD05008C0BEB /* Spell.m in Sources */,
 				D579B95C1CFA4C6A00AD9447 /* ShieldSoul.m in Sources */,
 				D5BC7EEE1D2F1B1F00C4C0D0 /* CrystalAddController.m in Sources */,
+				49EFA0D01D5FBF3B00C6FE44 /* AirResist.m in Sources */,
+				491A5CD41D5D8F0400C5904A /* AttributeSoul.m in Sources */,
 				D572E0B71D30619F004254F8 /* WaterShard.m in Sources */,
+				49EFA0F31D5FD28D00C6FE44 /* SunBuff.m in Sources */,
 				D5E375D11CF99F200020C925 /* ElementType.m in Sources */,
 				D56BC4241D0579730051CD05 /* SpellSelectorViewController.m in Sources */,
 				D547B2251CFB062D001460C6 /* CrystalView.m in Sources */,
 				D572E0C11D306768004254F8 /* WaterResist.m in Sources */,
+				496EB2EF1D5F2FE800C5C872 /* NextSpellSoul.m in Sources */,
 				D58D4B601D274AED0039C4E9 /* SoulAddController.m in Sources */,
+				491A5CD81D5D94E900C5904A /* BuffSoul.m in Sources */,
 				D5BEF5B01CF9518000A5F3C2 /* Game.m in Sources */,
 				D5BEF5731CF94E2400A5F3C2 /* AppDelegate.m in Sources */,
 				D58D4B5D1D273BB50039C4E9 /* TransparentCover.m in Sources */,
 				D572678A1D2B3EB500F4B899 /* SoulType.m in Sources */,
+				49EFA0F91D5FD29900C6FE44 /* ShadowBuff.m in Sources */,
+				49EFA0ED1D5FD26F00C6FE44 /* EarthBuff.m in Sources */,
 				D5BEF5701CF94E2400A5F3C2 /* main.m in Sources */,
+				49EFA0D91D5FBF5500C6FE44 /* ShadowResist.m in Sources */,
 				D572E0C41D30685D004254F8 /* WaterBuff.m in Sources */,
 				D5A651A31D485516009CED5F /* HomeScreenController.m in Sources */,
+				491A5CDA1D5DA0FA00C5904A /* SpecSoul.m in Sources */,
 				D5BC7EF11D2F6F6000C4C0D0 /* StatMeter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

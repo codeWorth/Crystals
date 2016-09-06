@@ -10,6 +10,6 @@
 #import "Spell.h"
 #import "BuffSoul.h"
 
-@interface FireBuff : NSObject  <BuffSoul>
+@interface FireBuff : BuffSoul <NSCopying>
 
 @end

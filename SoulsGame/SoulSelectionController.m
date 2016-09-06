@@ -27,11 +27,11 @@
     
     self.useSoulButton.enabled = NO;
     
-    if (self.selectedType == Resist){
+    if (self.selectedType == SoulTypeResist){
         self.currentSouls = [Game instance].homeKnownResist;
-    } else if (self.selectedType == Buff){
+    } else if (self.selectedType == SoulTypeBuff){
         self.currentSouls = [Game instance].homeKnownBuff;
-    } else if (self.selectedType == Specialized){
+    } else if (self.selectedType == SoulTypeSpecialized){
         self.currentSouls = [Game instance].homeKnownSpec;
     } else {
         self.currentSouls = [[NSArray alloc]init];
@@ -51,7 +51,7 @@
     
     SoulCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    NSObject<Soul>* soul = self.currentSouls[indexPath.row];
+    Soul* soul = self.currentSouls[indexPath.row];
     [cell setupWithSoul:soul];
     
     return cell;

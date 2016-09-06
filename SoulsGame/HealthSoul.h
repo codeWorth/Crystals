@@ -8,7 +8,7 @@
 
 #import "AttributeSoul.h"
 
-@interface HealthSoul : NSObject <AttributeSoul>
+@interface HealthSoul : AttributeSoul
 
 -(instancetype)initWithHealth:(NSInteger)health;
 

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BuffSoul.h"
 
-@interface WaterBuff : NSObject <BuffSoul>
+@interface WaterBuff : BuffSoul <NSCopying>
 
 @end

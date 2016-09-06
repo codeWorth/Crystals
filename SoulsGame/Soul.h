@@ -16,12 +16,15 @@
 #define BUFF_COST 6;
 #define SPEC_COST 9;
 
-@protocol Soul <NSObject>
+@class Spell;
+
+@interface Soul : NSObject
 
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) UIImage* img;
 @property (nonatomic, strong) NSString* desc;
 @property (nonatomic, strong) NSString* ID;
+@property (nonatomic) NSInteger amount;
 
 -(void)applyMinorBuff;
 -(void)applyMajorBuff;
@@ -30,5 +33,9 @@
 @property (nonatomic) BOOL majorBuffApplied;
 
 -(NSInteger)cost;
+-(BOOL)willEffectSpell:(Spell*)spell;
+
+-(void)affectSpell:(Spell*)spell;
+-(NSString*)effect;
 
 @end

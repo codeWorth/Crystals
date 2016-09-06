@@ -9,38 +9,21 @@
 #import "WaterShard.h"
 #import "Crystal.h"
 
-@interface WaterShard ()
-
-@property (nonatomic) NSInteger _amount;
-
-@end
-
 @implementation WaterShard
 
-@synthesize type;
-@synthesize name;
-@synthesize cost;
-@synthesize desc;
-@synthesize img;
-@synthesize flavorText;
-@synthesize canTargetFriendlies;
-@synthesize canTargetEnemies;
-@synthesize positiveEffect;
-@synthesize ID;
-
 -(NSMutableArray*)affectCrystal:(Crystal *)crystal{
-    [crystal removeHealth:self._amount];
+    [crystal removeHealth:self.amount];
     return nil;
 }
 
 -(instancetype)init{
     if (self = [super init]){
-        self.type = Water;
+        self.type = ElementTypeWater;
         self.positiveEffect = NO;
         self.name = @"Water Shard";
         self.cost = 2;
         self.desc = @"Shoots a small, concentrated shard of Water, dealing 2 damage";
-        self._amount = 2;
+        self.amount = 2;
         self.flavorText = @"You wouldn't think that getting hit by water would hurt this much.";
         self.img = [UIImage imageNamed:@"ice_spike.jpg"];
         
@@ -52,20 +35,9 @@
     return self;
 }
 
--(NSInteger)amount{
-    return self._amount;
-}
-
--(void)setAmount:(NSInteger)amount{
-    if (amount < 0){
-        amount = 0;
-    }
-    self._amount = amount;
-}
-
 -(instancetype)copyWithZone:(NSZone *)zone{
     WaterShard* theCopy = [[WaterShard alloc]init];
-    theCopy.amount = self._amount;
+    theCopy.amount = self.amount;
     
     return theCopy;
 }

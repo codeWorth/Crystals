@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BuffSoul.h"
 
-@interface LifeBuff : NSObject <BuffSoul>
+@interface LifeBuff : BuffSoul <NSCopying>
 
 @end

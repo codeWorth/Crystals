@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Crystal.h"
+#import "EffectSoul.h"
 
 #define MAX_MANA 25
 
@@ -28,6 +29,8 @@
 @property (nonatomic, strong) UIImage* profileImg;
 @property (nonatomic, strong) NSString* username;
 
+@property (nonatomic, strong) NSMutableArray* effects;
+
 @property (nonatomic, strong) NSObject<NetComm>* delegate;
 
 -(Crystal*)crystal1;
@@ -36,6 +39,7 @@
 -(Crystal*)crystal4;
 -(Crystal*)crystal5;
 -(Crystal*)crystalN:(NSInteger)n;
+-(NSArray*)crystals;
 
 -(void)setCrystal1:(Crystal*)crystal;
 -(void)setCrystal2:(Crystal*)crystal;
@@ -44,11 +48,11 @@
 -(void)setCrystal5:(Crystal*)crystal;
 -(void)setCrystalN:(NSInteger)n toCrystal:(Crystal*)crystal;
 
--(void)checkCrystalDeath;
+-(BOOL)checkCrystalDeath;
 -(void)nextTurn;
 -(NSInteger)minCooldown;
 
--(void)spellCast:(NSObject<Spell>*)spell fromSource:(Crystal*)source toTarget:(Crystal*)target;
--(void)addedSoul:(NSObject<Soul>*)soul toTarget:(Crystal*)target;
+-(void)spellCast:(Spell*)spell fromSource:(Crystal*)source toTarget:(Crystal*)target;
+-(void)addedSoul:(Soul*)soul toTarget:(Crystal*)target;
 
 @end

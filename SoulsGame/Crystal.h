@@ -17,6 +17,8 @@
 #import "ShieldSoul.h"
 #import "TimedSoul.h"
 
+#import "EffectSoul.h"
+
 @class Player;
 
 #define DEFAULT_COOLDOWN 7;
@@ -29,19 +31,19 @@
 
 -(instancetype)initWithHealth:(NSInteger)health Speed:(NSInteger)speed shield:(NSInteger)shield;
 
--(void)addResistSoul:(NSObject<ResistSoul>*)soul atIndex:(NSInteger)index;
--(void)addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:(NSInteger)index;
--(void)addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:(NSInteger)index;
--(void)addSoul:(NSObject<Soul>*)soul atIndex:(NSInteger)index;
--(void)addSoulInEmptyIndex:(NSObject<Soul>*)soul;
+-(void)addResistSoul:(ResistSoul*)soul atIndex:(NSInteger)index;
+-(void)addBuffSoul:(BuffSoul*)soul atIndex:(NSInteger)index;
+-(void)addSpecSoul:(SpecSoul*)soul atIndex:(NSInteger)index;
+-(void)addSoul:(Soul*)soul atIndex:(NSInteger)index;
+-(void)addSoulInEmptyIndex:(Soul*)soul;
 
 -(NSArray*)getResistSouls;
 -(NSArray*)getBuffSouls;
 -(NSArray*)getSpecSouls;
 -(id)getSoulAtIndex:(NSInteger)index;
 
--(void)castSpell:(NSObject<Spell>*)spell onTarget:(Crystal*)target;
--(void)receiveSpell:(NSObject<Spell>*)spell;
+-(void)castSpell:(Spell*)spell onTarget:(Crystal*)target;
+-(void)receiveSpell:(Spell*)spell;
 
 -(void)nextTurn;
 
@@ -58,6 +60,9 @@
 
 -(NSInteger)realCooldown;
 
--(NSArray*)effectsOnSpell:(NSObject<Spell>*)spell;
+-(NSArray*)effectsOnSpell:(Spell*)spell;
+
+-(void)updateCrystalDied:(Crystal*)crystal;
+-(void)updateCrystalSummoned:(Crystal*)crystal;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "Player.h"
 
+#import "TimedSoul.h"
+
 @interface Player ()
 
 @property (nonatomic, strong) Crystal* _crystal1;
@@ -15,6 +17,8 @@
 @property (nonatomic, strong) Crystal* _crystal3;
 @property (nonatomic, strong) Crystal* _crystal4;
 @property (nonatomic, strong) Crystal* _crystal5;
+
+@property (nonatomic, strong) NSMutableArray* gameUpdates;
 
 @end
 
@@ -26,6 +30,8 @@
         
         self.profileImg = [UIImage imageNamed:@"defaultProfile.png"];
         self.username = [NSString stringWithFormat:@"user%i",arc4random_uniform(100)];
+        
+        self.effects = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -42,17 +48,29 @@
     }
 }
 
--(void)checkCrystalDeath{
+-(BOOL)checkCrystalDeath{
     if (self._crystal1.isDead){
+        [self crystalsUpdateDeath:self._crystal1];
         self._crystal1 = nil;
+        return YES;
     } else if (self._crystal2.isDead){
+        [self crystalsUpdateDeath:self._crystal2];
         self._crystal2 = nil;
+        return YES;
     } else if (self._crystal3.isDead){
+        [self crystalsUpdateDeath:self._crystal3];
         self._crystal3 = nil;
+        return YES;
     } else if (self._crystal4.isDead){
+        [self crystalsUpdateDeath:self._crystal4];
         self._crystal4 = nil;
+        return YES;
     } else if (self._crystal5.isDead){
+        [self crystalsUpdateDeath:self._crystal5];
         self._crystal5 = nil;
+        return YES;
+    } else {
+        return NO;
     }
 }
 
@@ -97,7 +115,7 @@
     return self._crystal5;
 }
 
--(Crystal*)crystalN:(NSInteger)n{
+-(Crystal*)crystalN:(NSInteger)n {
     if (n == 1) {
         return self._crystal1;
     } else if (n == 2) {
@@ -113,7 +131,42 @@
     return nil;
 }
 
+-(void)crystalsUpdateSummon:(Crystal*)crystal {
+    [self._crystal1 updateCrystalSummoned:crystal];
+    [self._crystal2 updateCrystalSummoned:crystal];
+    [self._crystal3 updateCrystalSummoned:crystal];
+    [self._crystal4 updateCrystalSummoned:crystal];
+    [self._crystal5 updateCrystalSummoned:crystal];
+}
+
+-(void)crystalsUpdateDeath:(Crystal*)crystal {
+    [self._crystal1 updateCrystalSummoned:crystal];
+    [self._crystal2 updateCrystalSummoned:crystal];
+    [self._crystal3 updateCrystalSummoned:crystal];
+    [self._crystal4 updateCrystalSummoned:crystal];
+    [self._crystal5 updateCrystalSummoned:crystal];
+}
+
+-(NSArray*)crystals {
+    NSMutableArray* nonNilCrystals = [[NSMutableArray alloc] init];
+    
+    if (self._crystal1 != nil) {
+        [nonNilCrystals addObject:self._crystal1];
+    } else if (self._crystal2 != nil) {
+        [nonNilCrystals addObject:self._crystal2];
+    } else if (self._crystal3 != nil) {
+        [nonNilCrystals addObject:self._crystal3];
+    } else if (self._crystal4 != nil) {
+        [nonNilCrystals addObject:self._crystal4];
+    } else if (self._crystal5 != nil) {
+        [nonNilCrystals addObject:self._crystal5];
+    }
+    
+    return [nonNilCrystals copy];
+}
+
 -(void)setCrystal1:(Crystal *)crystal {
+    [self crystalsUpdateSummon:crystal];
     self._crystal1 = crystal;
     self._crystal1.parent = self;
     
@@ -121,6 +174,7 @@
 }
 
 -(void)setCrystal2:(Crystal *)crystal {
+    [self crystalsUpdateSummon:crystal];
     self._crystal2 = crystal;
     self._crystal2.parent = self;
     
@@ -128,6 +182,7 @@
 }
 
 -(void)setCrystal3:(Crystal *)crystal {
+    [self crystalsUpdateSummon:crystal];
     self._crystal3 = crystal;
     self._crystal3.parent = self;
     
@@ -135,6 +190,7 @@
 }
 
 -(void)setCrystal4:(Crystal *)crystal {
+    [self crystalsUpdateSummon:crystal];
     self._crystal4 = crystal;
     self._crystal4.parent = self;
     
@@ -142,6 +198,7 @@
 }
 
 -(void)setCrystal5:(Crystal *)crystal {
+    [self crystalsUpdateSummon:crystal];
     self._crystal5 = crystal;
     self._crystal5.parent = self;
     
@@ -162,7 +219,7 @@
     }
 }
 
--(void)spellCast:(NSObject<Spell> *)spell fromSource:(Crystal *)source toTarget:(Crystal *)target {
+-(void)spellCast:(Spell *)spell fromSource:(Crystal *)source toTarget:(Crystal *)target {
     NSInteger sourceIndex;
     
     if (source == self._crystal1){
@@ -179,11 +236,10 @@
         return;
     }
     
-    [self.delegate registerCastSpell:spell.ID fromSource:sourceIndex toTarget:target];
-    
+    [self.delegate registerCastSpell:spell.ID fromSource:sourceIndex toTarget:target];    
 }
 
--(void)addedSoul:(NSObject<Soul> *)soul toTarget:(Crystal *)target {
+-(void)addedSoul:(Soul *)soul toTarget:(Crystal *)target {
     NSInteger targetIndex;
     
     if (target == self._crystal1){

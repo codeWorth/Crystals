@@ -53,6 +53,7 @@
 @property (weak, nonatomic) IBOutlet TransparentCover *crystalAddContainer;
 
 @property (nonatomic, weak) IBOutlet UILabel* manaLabel;
+@property (weak, nonatomic) IBOutlet UILabel *turnLabel;
 
 @property (nonatomic, weak) IBOutlet UIImageView* homeImg;
 @property (nonatomic, weak) IBOutlet UILabel* homeName;
@@ -64,7 +65,7 @@
 @property (weak, nonatomic) IBOutlet UIView *homeHighlightsView;
 @property (weak, nonatomic) IBOutlet UIView *awayHighlightsView;
 
-@property (nonatomic, strong) NSObject<Spell>* selectedSpell;
+@property (nonatomic, strong) Spell* selectedSpell;
 @property (nonatomic) BOOL shouldSelectSpellTarget;
 
 @property (nonatomic) BOOL shouldAddSoul;
@@ -72,6 +73,8 @@
 @property (nonatomic, strong) Game* game;
 @property (nonatomic, strong) Crystal* selectedCrystal;
 @property (nonatomic) NSInteger selectedTag;
+
+@property (nonatomic) NSString* awayUsername;
 
 @end
 
@@ -91,10 +94,14 @@
     self.AwayHighlights = [self.AwayHighlights sortedArrayUsingComparator:compareTags];
     self.HomeHighlights = [self.HomeHighlights sortedArrayUsingComparator:compareTags];
     
+    self.nextTurnButton.enabled = NO;
+    
     [self hideAllHighlights];
     
     self.game = [Game instance];
     [self.game setDelegate:self];
+    [self updateHomeUser];
+    [self setAwayInfo];
     [self updateGUI];
     
     [self coverReset];
@@ -118,6 +125,40 @@
     self.crystalAdd5.tag = CRYSTAL_H5_TAG;
     
     [self.game setShouldStart];
+}
+
+-(void)setAwayInfo {
+    if (self.game.offline) {
+        self.awayUsername = @"BOT";
+        [self updateAwayUser];
+        
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/playerdata.php", [Game serverIP]]];
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString* params = [NSString stringWithFormat:@"id=%ld", self.awayID];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *error = nil;
+    
+    if (!error) {
+        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
+            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            NSArray* items = [str componentsSeparatedByString:@","];
+            
+            self.awayUsername = (NSString*)[items objectAtIndex:0];
+            
+            [self updateAwayUser];
+        }];
+        
+        [uploadTask resume];
+    }
 }
 
 -(Crystal*)crystalForTag:(NSInteger)tag{
@@ -164,9 +205,6 @@
     [self updateTimeLabel];
     [self updateManaLabel];
     
-    [self updateHomeUser];
-    [self updateAwayUser];
-    
     [self.crystalH1 updateWithCrystal:[self.game.homePlayer crystal1]];
     [self.crystalH2 updateWithCrystal:[self.game.homePlayer crystal2]];
     [self.crystalH3 updateWithCrystal:[self.game.homePlayer crystal3]];
@@ -183,9 +221,11 @@
     
     if (self.game.canAttack){
         self.nextTurnButton.enabled = YES;
+        self.turnLabel.text = @"Your Turn";
         [self showHomeHighlights];
     } else {
         self.nextTurnButton.enabled = NO;
+        self.turnLabel.text = @"Enemy Turn";
     }
 }
 
@@ -197,6 +237,34 @@
 -(IBAction)nextTurn{
     [self.game homeEndTurn];
     [self updateGUI];
+}
+
+- (IBAction)exit {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Exit this match?"
+                                 message:@"You cannot rejoin."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:@"Exit"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    [self.game endGame];
+                                }];
+    
+    UIAlertAction* noButton = [UIAlertAction
+                               actionWithTitle:@"Cancel"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:yesButton];
+    [alert addAction:noButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)exitSegue {
+    [self performSegueWithIdentifier:@"exit" sender:self];
 }
 
 -(void)hideAllHighlights{
@@ -300,14 +368,21 @@
 
 -(void)updateHomeUser{
     self.homeImg.image = self.game.homePlayer.profileImg;
-    self.homeName.text = self.game.homePlayer.username;
+    self.homeName.text = self.username;
 }
 
 -(void)updateAwayUser{
     self.awayImg.image = self.game.awayPlayer.profileImg;
-    self.awayName.text = self.game.awayPlayer.username;
+    self.awayName.text = self.awayUsername;
 }
 
+- (IBAction)coverPressed:(UITapGestureRecognizer *)sender {
+    self.shouldAddSoul = NO;
+    self.shouldSelectSpellTarget = NO;
+    
+    [self coverReset];
+    [self updateGUI];
+}
 
 
 - (IBAction)enemyCrystalSelected:(CrystalView *)sender {
@@ -345,8 +420,9 @@
     self.shouldSelectSpellTarget = NO;
     
     self.game.homePlayer.mana -= self.selectedSpell.cost;
+    
     [self.selectedCrystal castSpell:self.selectedSpell onTarget:crystal];
-    [self.game checkCrystalDeath];
+    [self checkCrystalDeath];
 }
 
 -(IBAction)segueCastSpell:(UIStoryboardSegue*)segue{
@@ -363,7 +439,9 @@
         } else if (self.selectedSpell.canTargetFriendlies){
             [self coverEnemy];
         } else {
-            [self coverBoth];
+            self.coverView.hidden = YES;
+            self.shouldSelectSpellTarget = NO;
+            [self castSpellOnCrystal:self.selectedCrystal];
         }
     }
 }
@@ -378,9 +456,12 @@
     if ([sourceController isKindOfClass:[CrystalAddController class]]){
         CrystalAddController* source = (CrystalAddController*)sourceController;
         Crystal* newCrystal = [[Crystal alloc]initWithHealth:source.currentHealth Speed:source.currentSpeed shield:source.currentShield];
+        
+        self.nextTurnButton.enabled = YES;
+        
         [self setCrystal:newCrystal forTag:self.selectedTag];
         self.game.homePlayer.mana -= [Game crystalCreateCost];
-        [self checkCrystalDeath];
+        [self updateGUI];
     }
 }
 

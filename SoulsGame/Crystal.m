@@ -22,7 +22,7 @@
 @property (nonatomic, strong) ShieldSoul* _shield;
 
 @property (nonatomic, strong) NSMutableArray* effects;
--(void)applyEffects:(NSObject<Spell>*)spell;
+-(void)applyEffects:(Spell*)spell;
 
 @property (nonatomic) NSInteger affectedCooldown;
 @property (nonatomic) NSInteger _cooldown;
@@ -65,17 +65,17 @@
 }
 
 -(void)applyMajorBuff{
-    for (NSObject<ResistSoul>* soul in [self getResistSouls]) {
+    for (ResistSoul* soul in [self getResistSouls]) {
         if (!soul.majorBuffApplied){
             [soul applyMajorBuff];
         }
     }
-    for (NSObject<BuffSoul>* soul in [self getBuffSouls]) {
+    for (BuffSoul* soul in [self getBuffSouls]) {
         if (!soul.majorBuffApplied){
             [soul applyMajorBuff];
         }
     }
-    for (NSObject<SpecSoul>* soul in [self getSpecSouls]) {
+    for (SpecSoul* soul in [self getSpecSouls]) {
         if (!soul.majorBuffApplied){
             [soul applyMajorBuff];
         }
@@ -88,7 +88,7 @@
 
 -(void)handleSoulsForList:(NSArray*)souls{
     if (souls.count == 3){
-        for (NSObject<Soul>* soul in souls) {
+        for (Soul* soul in souls) {
             if (!soul.minorBuffApplied){
                 [soul applyMinorBuff];
             }
@@ -96,11 +96,12 @@
     }
 }
 
--(void)addResistSoul:(NSObject<ResistSoul>*)soul atIndex:(NSInteger)index{
+-(void)addResistSoul:(ResistSoul*)soul atIndex:(NSInteger)index{
     [self.resistSouls replaceObjectAtIndex:index withObject:soul];
+    [self.parent addedSoul:soul toTarget:self];
+    
     if ([self getResistSouls].count == 3){
         [self handleSoulsForList:[self getResistSouls]];
-        [self.parent addedSoul:soul toTarget:self];
     }
     
     if ([self shouldApplyMajorBuff]){
@@ -108,11 +109,12 @@
     }
 }
 
--(void)addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:(NSInteger)index{
+-(void)addBuffSoul:(BuffSoul*)soul atIndex:(NSInteger)index{
     [self.buffSouls replaceObjectAtIndex:index withObject:soul];
+    [self.parent addedSoul:soul toTarget:self];
+    
     if ([self getBuffSouls].count == 4){
         [self handleSoulsForList:[self getBuffSouls]];
-        [self.parent addedSoul:soul toTarget:self];
     }
     
     if ([self shouldApplyMajorBuff]){
@@ -120,11 +122,12 @@
     }
 }
 
--(void)addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:(NSInteger)index{
+-(void)addSpecSoul:(SpecSoul*)soul atIndex:(NSInteger)index{
     [self.specSouls replaceObjectAtIndex:index withObject:soul];
+    [self.parent addedSoul:soul toTarget:self];
+    
     if ([self getSpecSouls].count == 3){
         [self handleSoulsForList:[self getSpecSouls]];
-        [self.parent addedSoul:soul toTarget:self];
     }
     
     if ([self shouldApplyMajorBuff]){
@@ -162,22 +165,44 @@
     return arr;
 }
 
--(void)castSpell:(NSObject<Spell> *)spell onTarget:(Crystal *)target{
+-(void)castSpell:(Spell *)spell onTarget:(Crystal*)target{
     self._cooldown = self.affectedCooldown;
+    [self.parent spellCast:spell fromSource:self toTarget:target];
     
-    for (NSObject<BuffSoul>* buff in [self getBuffSouls]) {
-        [buff buffSpell:spell];
+    for (BuffSoul* buff in [self getBuffSouls]) {
+        [buff affectSpell:spell];
     }
     
-    [target receiveSpell:spell];
-    [self.parent spellCast:spell fromSource:self toTarget:target];
+    [self applyEffects:spell];
+    for (NSObject<EffectSoul>* soul in self.effects) {
+        [soul updateSpellCast:spell fromSource:self toTarget:target];
+    }
+    
+    NSArray* targets = [spell targetsForCrystal:target];
+    
+    for (Crystal* target in targets) {
+        [target receiveSpell:spell];
+    }
 }
 
--(void)receiveSpell:(NSObject<Spell> *)spell{
-    for (NSObject<ResistSoul>* resistance in [self getResistSouls]) {
-        [resistance resistSpell:spell];
+-(void)applyEffects:(Spell*)spell{
+    for (NSObject<EffectSoul>* soul in self.effects) {
+        if ([[soul getSoul] isKindOfClass:[BuffSoul class]]){
+            BuffSoul* buffSoul = (BuffSoul*)[soul getSoul];
+            [buffSoul affectSpell:spell];
+        } else if ([[soul getSoul] isKindOfClass:[SpecSoul class]]){
+            ResistSoul* resistSoul = (ResistSoul*)[soul getSoul];
+            [resistSoul affectSpell:spell];
+        }
+    }
+}
+
+-(void)receiveSpell:(Spell *)spell{
+    for (ResistSoul* resistance in [self getResistSouls]) {
+        [resistance affectSpell:spell];
     }
     
+    [self applyEffects:spell];
     
     [self.effects addObjectsFromArray:[spell affectCrystal:self]];
 }
@@ -189,8 +214,8 @@
         self._shield.amount = self.maxShield;
     }
     
-    for (TimedSoul *soul in self.effects) {
-        [soul update];
+    for (NSObject<EffectSoul> *soul in self.effects) {
+        [soul turnUpdate];
         if ([soul shouldRemove]){
             [self.effects removeObject:soul];
         }
@@ -202,18 +227,6 @@
         return true;
     }
     return false;
-}
-
--(void)applyEffects:(NSObject<Spell>*)spell{
-    for (TimedSoul* soul in self.effects) {
-        if ([[soul getSoul] conformsToProtocol:@protocol(BuffSoul)]){
-            NSObject<BuffSoul>* buffSoul = (NSObject<BuffSoul>*)[soul getSoul];
-            [buffSoul buffSpell:spell];
-        } else if ([[soul getSoul] conformsToProtocol:@protocol(ResistSoul)]){
-            NSObject<ResistSoul>* resistSoul = (NSObject<ResistSoul>*)[soul getSoul];
-            [resistSoul resistSpell:spell];
-        }
-    }
 }
 
 -(UIImage*)imgDesc{
@@ -277,47 +290,47 @@
     return [[self.resistSouls arrayByAddingObjectsFromArray:self.buffSouls] arrayByAddingObjectsFromArray:self.specSouls];
 }
 
--(void)addSoul:(NSObject<Soul> *)soul atIndex:(NSInteger)index{
-    if ([soul conformsToProtocol:@protocol(ResistSoul)]){
-        [self addResistSoul:(NSObject<ResistSoul>*)soul atIndex:index];
-    } else if ([soul conformsToProtocol:@protocol(BuffSoul)]){
-        [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:index-3];
-    } else if ([soul conformsToProtocol:@protocol(SpecSoul)]){
-        [self addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:index-7];
+-(void)addSoul:(Soul *)soul atIndex:(NSInteger)index{
+    if ([soul isKindOfClass:[ResistSoul class]]){
+        [self addResistSoul:(ResistSoul*)soul atIndex:index];
+    } else if ([soul isKindOfClass:[BuffSoul class]]){
+        [self addBuffSoul:(BuffSoul*)soul atIndex:index-3];
+    } else if ([soul isKindOfClass:[SpecSoul class]]){
+        [self addSpecSoul:(SpecSoul*)soul atIndex:index-7];
     }
 }
 
--(void)addSoulInEmptyIndex:(NSObject<Soul> *)soul {
-    if ([soul conformsToProtocol:@protocol(ResistSoul)]){
-        if ([self getSoulAtIndex:0] == nil) {
-            [self addResistSoul:(NSObject<ResistSoul>*)soul atIndex:0];
-        } else if ([self getSoulAtIndex:1] == nil) {
-            [self addResistSoul:(NSObject<ResistSoul>*)soul atIndex:1];
-        } else if ([self getSoulAtIndex:2] == nil) {
-            [self addResistSoul:(NSObject<ResistSoul>*)soul atIndex:2];
+-(void)addSoulInEmptyIndex:(Soul *)soul {
+    if ([soul isKindOfClass:[ResistSoul class]]){
+        if ([self getSoulAtIndex:0] == [NSNull null]) {
+            [self addResistSoul:(ResistSoul*)soul atIndex:0];
+        } else if ([self getSoulAtIndex:1] == [NSNull null]) {
+            [self addResistSoul:(ResistSoul*)soul atIndex:1];
+        } else if ([self getSoulAtIndex:2] == [NSNull null]) {
+            [self addResistSoul:(ResistSoul*)soul atIndex:2];
         } else {
             return;
         }
     
-    } else if ([soul conformsToProtocol:@protocol(BuffSoul)]){
-        if ([self getSoulAtIndex:3] == nil) {
-            [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:3];
-        } else if ([self getSoulAtIndex:4] == nil) {
-            [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:4];
-        } else if ([self getSoulAtIndex:5] == nil) {
-            [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:5];
-        } else if ([self getSoulAtIndex:6] == nil) {
-            [self addBuffSoul:(NSObject<BuffSoul>*)soul atIndex:6];
+    } else if ([soul isKindOfClass:[BuffSoul class]]){
+        if ([self getSoulAtIndex:3] == [NSNull null]) {
+            [self addBuffSoul:(BuffSoul*)soul atIndex:0];
+        } else if ([self getSoulAtIndex:4] == [NSNull null]) {
+            [self addBuffSoul:(BuffSoul*)soul atIndex:1];
+        } else if ([self getSoulAtIndex:5] == [NSNull null]) {
+            [self addBuffSoul:(BuffSoul*)soul atIndex:2];
+        } else if ([self getSoulAtIndex:6] == [NSNull null]) {
+            [self addBuffSoul:(BuffSoul*)soul atIndex:3];
         } else {
             return;
         }
-    } else if ([soul conformsToProtocol:@protocol(SpecSoul)]){
-        if ([self getSoulAtIndex:7] == nil) {
-            [self addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:7];
-        } else if ([self getSoulAtIndex:8] == nil) {
-            [self addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:8];
-        } else if ([self getSoulAtIndex:9] == nil) {
-            [self addSpecSoul:(NSObject<SpecSoul>*)soul atIndex:9];
+    } else if ([soul isKindOfClass:[SpecSoul class]]){
+        if ([self getSoulAtIndex:7] == [NSNull null]) {
+            [self addSpecSoul:(SpecSoul*)soul atIndex:0];
+        } else if ([self getSoulAtIndex:8] == [NSNull null]) {
+            [self addSpecSoul:(SpecSoul*)soul atIndex:1];
+        } else if ([self getSoulAtIndex:9] == [NSNull null]) {
+            [self addSpecSoul:(SpecSoul*)soul atIndex:2];
         } else {
             return;
         }
@@ -332,22 +345,42 @@
     return self._cooldown;
 }
 
--(NSArray*)effectsOnSpell:(NSObject<Spell>*)spell{
+-(NSArray*)effectsOnSpell:(Spell*)spell{
     NSMutableArray* array = [[NSMutableArray alloc]init];
     
-    for (NSObject<ResistSoul>* soul in [self getResistSouls]) {
-        if (soul.type == spell.type){
-            [array addObject:soul.effect];
+    for (ResistSoul* soul in [self getResistSouls]) {
+        if ([soul willEffectSpell:spell]){
+            [array addObject:[soul effect]];
         }
     }
     
-    for (NSObject<BuffSoul>* soul in [self getBuffSouls]) {
-        if (soul.type == spell.type){
-            [array addObject:soul.effect];
+    for (BuffSoul* soul in [self getBuffSouls]) {
+        if ([soul willEffectSpell:spell]){
+            [array addObject:[soul effect]];
+        }
+    }
+    
+    for (NSObject<EffectSoul>* effect in self.effects) {
+        Soul* soul = [effect getSoul];
+        
+        if ([soul willEffectSpell:spell]) {
+            [array addObject:[soul effect]];
         }
     }
     
     return array;
+}
+
+-(void)updateCrystalSummoned:(Crystal *)crystal {
+    for (NSObject<EffectSoul>* effect in self.effects) {
+        [effect updateCrystalSummoned:crystal];
+    }
+}
+
+-(void)updateCrystalDied:(Crystal *)crystal {
+    for (NSObject<EffectSoul>* effect in self.effects) {
+        [effect updateCrystalDied:crystal];
+    }
 }
 
 @end

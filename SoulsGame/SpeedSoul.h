@@ -8,7 +8,7 @@
 
 #import "AttributeSoul.h"
 
-@interface SpeedSoul : NSObject <AttributeSoul>
+@interface SpeedSoul : AttributeSoul
 
 -(instancetype)initWithSpeed:(NSInteger)speed;
 

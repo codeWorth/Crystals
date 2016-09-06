@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import "Soul.h"
+#import "ElementType.m"
 
-@protocol SpecSoul <Soul>
+@interface SpecSoul : Soul
 
-@property (nonatomic) enum ElementType type;
+@property (nonatomic, assign) ElementType type;
 
 @end

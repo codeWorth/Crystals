@@ -12,7 +12,7 @@
 
 @class Crystal;
 
-@protocol Spell <NSObject>
+@interface Spell : NSObject
 
 @property (nonatomic) enum ElementType type;
 @property (nonatomic) NSInteger cost;
@@ -28,6 +28,8 @@
 
 -(NSInteger)amount;
 -(void)setAmount:(NSInteger)amount;
+
+-(NSArray*)targetsForCrystal:(Crystal*)crystal;
 
 -(NSMutableArray*)affectCrystal:(Crystal*)crystal; //returns the effects that should be put on the crystal
 

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Spell.h"
 
-@interface WaterShard : NSObject <Spell, NSCopying>
+@interface WaterShard : Spell <NSCopying>
 
 @end

@@ -11,12 +11,8 @@
 #import "Spell.h"
 #import "Soul.h"
 
-@protocol ResistSoul <Soul>
+@interface ResistSoul : Soul
 
-@property (nonatomic) NSInteger resistAmount;
-@property (nonatomic) enum ElementType type;
-
--(void)resistSpell:(NSObject<Spell>*)spell;
--(NSString*)effect;
+@property (nonatomic) ElementType type;
 
 @end

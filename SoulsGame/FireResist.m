@@ -10,51 +10,21 @@
 
 @implementation FireResist
 
-@synthesize name;
-@synthesize resistAmount;
-@synthesize img;
-@synthesize type;
-@synthesize desc;
-@synthesize minorBuffApplied;
-@synthesize majorBuffApplied;
-@synthesize ID;
-
 -(instancetype)init{
     if (self = [super init]){
-        self.minorBuffApplied = NO;
-        self.majorBuffApplied = NO;
-        
-        self.resistAmount = 1;
+        self.amount = 1;
         self.name = @"Fire Resistance";
-        self.type = Fire;
+        self.type = ElementTypeFire;
         self.desc = @"A basic resistance soul. Will block a portion of any incoming fire attack";
         self.img = [UIImage imageNamed:@"fireshield.jpg"];
+        
+        self.ID = @"001";
     }
     return self;
 }
 
--(void)applyMinorBuff{
-    self.resistAmount += MINOR_BUFF_AMOUNT;
-    self.minorBuffApplied = YES;
-}
-
--(void)applyMajorBuff{
-    self.resistAmount += MAJOR_BUFF_AMOUNT;
-    self.majorBuffApplied = YES;
-}
-
--(void)resistSpell:(NSObject<Spell>*)spell{
-    if (spell.type == Fire && !spell.positiveEffect){
-        spell.amount -= self.resistAmount;
-    }
-}
-
--(NSInteger)cost{
-    return RESIST_COST;
-}
-
 -(NSString*)effect{
-    return [NSString stringWithFormat:@"Fire Resistance grants %i less fire damage taken", (int)self.resistAmount];
+    return [NSString stringWithFormat:@"Fire Resistance grants %i less fire damage taken", (int)self.amount];
 }
 
 -(instancetype)copyWithZone:(NSZone *)zone{
@@ -62,7 +32,7 @@
     
     theCopy.minorBuffApplied = self.minorBuffApplied;
     theCopy.majorBuffApplied = self.majorBuffApplied;
-    theCopy.resistAmount = self.resistAmount;
+    theCopy.amount = self.amount;
     
     return theCopy;
 }

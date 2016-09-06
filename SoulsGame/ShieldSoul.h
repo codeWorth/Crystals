@@ -8,7 +8,7 @@
 
 #import "AttributeSoul.h"
 
-@interface ShieldSoul : NSObject <AttributeSoul>
+@interface ShieldSoul : AttributeSoul
 
 -(instancetype)initWithShield:(NSInteger)shield;
 

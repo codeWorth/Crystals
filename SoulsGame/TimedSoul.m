@@ -10,14 +10,14 @@
 
 @interface TimedSoul ()
 
-@property (nonatomic, strong) NSObject<Soul>* soul;
+@property (nonatomic, strong) Soul* soul;
 @property (nonatomic) NSInteger timeLeft;
 
 @end
 
 @implementation TimedSoul
 
--(instancetype)initWithTime:(NSInteger)time andSoul:(NSObject<Soul> *)soul{
+-(instancetype)initWithTime:(NSInteger)time andSoul:(Soul *)soul{
     if (self = [super init]){
         self.timeLeft = time;
         self.soul = soul;
@@ -25,7 +25,7 @@
     return self;
 }
 
--(void)update{
+-(void)turnUpdate {
     if (self.timeLeft > 0){
         self.timeLeft--;
     }
@@ -35,12 +35,20 @@
     return self.timeLeft == 0;
 }
 
--(NSObject<Soul>*)getSoul{
+-(Soul*)getSoul{
     return self.soul;
 }
 
-+(NSInteger)cost{
-    return SPEC_COST;
+-(void)updateCrystalDied:(Crystal *)crystal {
+    
+}
+
+-(void)updateSpellCast:(Spell *)spell fromSource:(Crystal *)source toTarget:(Crystal*)target {
+    
+}
+
+-(void)updateCrystalSummoned:(Crystal *)crystal {
+    
 }
 
 @end

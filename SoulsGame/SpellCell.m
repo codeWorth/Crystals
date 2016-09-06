@@ -17,7 +17,7 @@
 
 @implementation SpellCell
 
--(void)updateWith:(NSObject<Spell>*)spell{
+-(void)updateWith:(Spell*)spell{
     self.spell = spell;
     
     self.spellImg.image = spell.img;
@@ -26,11 +26,13 @@
 }
 
 +(UIColor*)colorFromType:(ElementType)type{
-    if (type == Fire){
+    if (type == ElementTypeFire){
         return [UIColor redColor];
-    } else if (type == Life){
+    } else if (type == ElementTypeLife){
         return [UIColor greenColor];
-    } else {
+    } else if (type == ElementTypeWater) {
+        return [UIColor colorWithRed:128 green:204 blue:237 alpha:1.0];
+    }else {
         return [UIColor grayColor];
     }
 }

@@ -13,6 +13,6 @@
 
 +(NSArray*)spells;
 
-+(NSObject<Spell>*)spellWithID:(NSString*)ID;
++(Spell*)spellWithID:(NSString*)ID;
 
 @end

@@ -74,11 +74,11 @@
     self.selectedImage = imageTapped;
     
     if (self.selectedImage.tag < 4){
-        self.selectedType = Resist;
+        self.selectedType = SoulTypeResist;
     } else if (self.selectedImage.tag < 8){
-        self.selectedType = Buff;
+        self.selectedType = SoulTypeBuff;
     } else if (self.selectedImage.tag < 11){
-        self.selectedType = Specialized;
+        self.selectedType = SoulTypeSpecialized;
     }
     
     [self performSegueWithIdentifier:@"toSoulAdd" sender:self];
@@ -86,7 +86,7 @@
 
 -(IBAction)segueUseSoul:(UIStoryboardSegue*)segue{
     if ([segue.sourceViewController isKindOfClass:[SoulSelectionController class]]){
-        NSObject<Soul>* soul = ((SoulSelectionController*)segue.sourceViewController).selectedSoul;
+        Soul* soul = ((SoulSelectionController*)segue.sourceViewController).selectedSoul;
         
         self.selectedImage.image = soul.img;
         [Game instance].homePlayer.mana -= soul.cost;
@@ -113,7 +113,7 @@
 -(void)unpackCrystal {
     for (UIImageView* imgView in self.soulItems){
         if ([self.selectedCrystal getSoulAtIndex:imgView.tag-1] != [NSNull null]){
-            imgView.image = ((NSObject<Soul>*)[self.selectedCrystal getSoulAtIndex:imgView.tag-1]).img;
+            imgView.image = ((Soul*)[self.selectedCrystal getSoulAtIndex:imgView.tag-1]).img;
 
             imgView.layer.cornerRadius = imgView.frame.size.width/2;
             imgView.clipsToBounds = YES;

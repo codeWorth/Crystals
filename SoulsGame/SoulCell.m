@@ -19,7 +19,7 @@
 
 @implementation SoulCell
 
--(void)setupWithSoul:(NSObject<Soul>*)soul{
+-(void)setupWithSoul:(Soul*)soul{
     self.soulImg.image = soul.img;
     self.soulName.text = soul.name;
     self.soulDesc.text = soul.desc;

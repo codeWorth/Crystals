@@ -20,32 +20,11 @@
 
 -(instancetype)initWithShield:(NSInteger)shield{
     if (self = [super init]){
-        self.minorBuffApplied = NO;
-        self.majorBuffApplied = NO;
-        
         self.amount = shield;
         self.name = @"Shield";
         self.desc = @"Amount of shielding that this crystal has.";
     }
     return self;
-}
-
--(void)affectSpell:(NSObject<Spell> *)spell{
-    
-}
-
--(void)applyMinorBuff{
-    self.amount += MINOR_BUFF_AMOUNT;
-    self.minorBuffApplied = YES;
-}
-
--(void)applyMajorBuff{
-    self.amount += MAJOR_BUFF_AMOUNT;
-    self.majorBuffApplied = YES;
-}
-
--(NSInteger)cost{
-    return 0;
 }
 
 @end

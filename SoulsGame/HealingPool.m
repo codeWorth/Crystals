@@ -9,38 +9,21 @@
 #import "HealingPool.h"
 #import "Crystal.h"
 
-@interface HealingPool ()
-
-@property (nonatomic) NSInteger _amount;
-
-@end
-
-@implementation HealingPool 
-
-@synthesize type;
-@synthesize name;
-@synthesize cost;
-@synthesize desc;
-@synthesize img;
-@synthesize flavorText;
-@synthesize canTargetFriendlies;
-@synthesize canTargetEnemies;
-@synthesize positiveEffect;
-@synthesize ID;
+@implementation HealingPool
 
 -(NSMutableArray*)affectCrystal:(Crystal *)crystal{
-    [crystal removeHealth:self._amount];
+    [crystal removeHealth:self.amount];
     return nil;
 }
 
 -(instancetype)init{
     if (self = [super init]){
-        self.type = Water;
+        self.type = ElementTypeWater;
         self.positiveEffect = YES;
         self.name = @"Healing Pool";
         self.cost = 2;
         self.desc = @"Sooths the target with water, healing 2 health.";
-        self._amount = 2;
+        self.amount = 2;
         self.flavorText = @"But that all changed when the fire nation attacked! ... oh wait wrong universe.";
         self.img = [UIImage imageNamed:@"watersunlight.jpg"];
         
@@ -52,20 +35,9 @@
     return self;
 }
 
--(NSInteger)amount{
-    return self._amount;
-}
-
--(void)setAmount:(NSInteger)amount{
-    if (amount < 0){
-        amount = 0;
-    }
-    self._amount = amount;
-}
-
 -(instancetype)copyWithZone:(NSZone *)zone{
     HealingPool* theCopy = [[HealingPool alloc]init];
-    theCopy.amount = self._amount;
+    theCopy.amount = self.amount;
     
     return theCopy;
 }

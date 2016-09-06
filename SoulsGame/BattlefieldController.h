@@ -14,8 +14,10 @@
 
 @property (nonatomic) NSInteger userID;
 @property (nonatomic) NSInteger awayID;
+@property (nonatomic) NSString* username;
 
 -(void)updateGUI;
+-(void)exitSegue;
 
 @end
 

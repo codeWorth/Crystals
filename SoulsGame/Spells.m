@@ -13,6 +13,8 @@
 #import "WaterBuff.h"
 #import "WaterShard.h"
 #import "HealingPool.h"
+#import "Sunfall.h"
+#import "Submerge.h"
 
 @interface Spells ()
 
@@ -33,6 +35,8 @@ static Spells* spellsInstance = nil;
         [addSpells addObject:[[Fireball alloc]init]];
         [addSpells addObject:[[WaterShard alloc]init]];
         [addSpells addObject:[[HealingPool alloc]init]];
+        [addSpells addObject:[[Sunfall alloc]init]];
+        [addSpells addObject:[[Submerge alloc]init]];
         
         self.spells = [addSpells copy];
         
@@ -47,12 +51,12 @@ static Spells* spellsInstance = nil;
     return spellsInstance.spells;
 }
 
-+(NSObject<Spell>*)spellWithID:(NSString *)ID{
++(Spell*)spellWithID:(NSString *)ID{
     if (spellsInstance == nil){
         spellsInstance = [[Spells alloc]init];
     }
     
-    for (NSObject<Spell>* spell in spellsInstance.spells){
+    for (Spell* spell in spellsInstance.spells){
         if ([spell.ID isEqualToString:ID]){
             return [spell copy];
         }

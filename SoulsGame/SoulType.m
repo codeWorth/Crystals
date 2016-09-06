@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum SoulType {
-    Resist,
-    Buff,
-    Specialized
-}SoulType;
+typedef NS_ENUM(NSInteger, SoulType) {
+    SoulTypeResist,
+    SoulTypeBuff,
+    SoulTypeSpecialized
+};

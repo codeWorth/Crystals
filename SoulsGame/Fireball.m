@@ -9,38 +9,21 @@
 #import "Fireball.h"
 #import "Crystal.h"
 
-@interface Fireball ()
-
-@property (nonatomic) NSInteger _amount;
-
-@end
-
 @implementation Fireball
 
-@synthesize type;
-@synthesize name;
-@synthesize cost;
-@synthesize desc;
-@synthesize img;
-@synthesize flavorText;
-@synthesize canTargetFriendlies;
-@synthesize canTargetEnemies;
-@synthesize positiveEffect;
-@synthesize ID;
-
 -(NSMutableArray*)affectCrystal:(Crystal *)crystal{
-    [crystal removeHealth:self._amount];
+    [crystal removeHealth:self.amount];
     return nil;
 }
 
 -(instancetype)init{
     if (self = [super init]){
-        self.type = Fire;
+        self.type = ElementTypeFire;
         self.positiveEffect = NO;
         self.name = @"Fireball";
         self.cost = 2;
         self.desc = @"Launches a ball of fire towards an enemy, dealing 3 points of fire damage";
-        self._amount = 3;
+        self.amount = 3;
         self.flavorText = @"A giant orb of fire flying towards your foe at a remarkable speed: simple but effective.";
         self.img = [UIImage imageNamed:@"Fireball.jpg"];
         
@@ -52,20 +35,9 @@
     return self;
 }
 
--(NSInteger)amount{
-    return self._amount;
-}
-
--(void)setAmount:(NSInteger)amount{
-    if (amount < 0){
-        amount = 0;
-    }
-    self._amount = amount;
-}
-
 -(instancetype)copyWithZone:(NSZone *)zone{
     Fireball* theCopy = [[Fireball alloc]init];
-    theCopy.amount = self._amount;
+    theCopy.amount = self.amount;
     
     return theCopy;
 }

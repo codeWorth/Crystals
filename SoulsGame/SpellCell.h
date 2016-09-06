@@ -11,8 +11,8 @@
 
 @interface SpellCell : UITableViewCell
 
-@property (nonatomic, strong) NSObject<Spell>* spell;
+@property (nonatomic, strong) Spell* spell;
 
--(void)updateWith:(NSObject<Spell>*)spell;
+-(void)updateWith:(Spell*)spell;
 
 @end

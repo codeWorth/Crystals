@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class Crystal;
-@protocol Spell;
+@class Spell;
 
 @interface SpellSelectorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) NSObject<Spell>* selectedSpell;
+@property (weak, nonatomic) Spell* selectedSpell;
 @property (strong, nonatomic) Crystal* sourceCrystal;
 
 @end

@@ -33,6 +33,9 @@
 @property (strong, nonatomic) NSTimer* receiveDataTimer;
 @property (strong, nonatomic) NSTimer* clearBufferTimer;
 
+@property (nonatomic) BOOL shouldEndHome;
+@property (nonatomic) BOOL shouldEndAway;
+
 @end
 
 @implementation Game
@@ -51,14 +54,14 @@ static Game* gameInstance = nil;
         
         self.awayPlayer = [[Player alloc]init];
         
-        self.homePlayer.mana = 25;//[Game crystalCreateCost];
-        self.awayPlayer.mana = 25;//[Game crystalCreateCost];
+        self.homePlayer.mana = [Game crystalCreateCost];
+        self.awayPlayer.mana = [Game crystalCreateCost];
         
-        self.homeKnownResist = [[NSArray alloc]initWithObjects:[[FireResist alloc]init], [[WaterResist alloc]init], nil];
-        self.homeKnownBuff = [[NSArray alloc]initWithObjects:[[FireBuff alloc]init], [[LifeBuff alloc]init], [[WaterBuff alloc]init] ,  nil];
-        self.homeKnownSpec = [[NSArray alloc]init];
+        self.homeKnownResist = [SoulsLibrary resistSouls];
+        self.homeKnownBuff = [SoulsLibrary buffSouls];
+        self.homeKnownSpec = [SoulsLibrary specSouls];
         
-        self.knownSpells = [[NSArray alloc]initWithObjects:[[Fireball alloc]init], [[QuickHeal alloc]init], [[WaterShard alloc]init], [[HealingPool alloc] init], nil];
+        self.knownSpells = [Spells spells];
         
         self.canAttack = NO;
         
@@ -66,12 +69,23 @@ static Game* gameInstance = nil;
         self.currentBuffer = [[NSMutableString alloc]init];
         
         self.shouldEndClearTimer = NO;
+        
+        self.shouldEndAway = NO;
+        self.shouldEndHome = NO;
+        
+        self.offline = NO;
     }
     return self;
 }
 
 -(void)setShouldStart {
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/data.php"];
+    if (self.offline) {
+        self.canAttack = YES;
+        [self._delegate updateGUI];
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/data.php", [Game serverIP]]];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -118,14 +132,36 @@ static Game* gameInstance = nil;
     }
 }
 
--(void)checkCrystalDeath {
+-(BOOL)checkCrystalDeath {
     [self.homePlayer checkCrystalDeath];
     [self.awayPlayer checkCrystalDeath];
+    
+    if (self.shouldEndAway && self.shouldEndHome) {
+        if ([self.homePlayer crystals].count == 0 || [self.awayPlayer crystals].count == 0) {
+            [self endGame];
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 -(void)homeEndTurn {
+    self.shouldEndHome = YES;
+    
+    if ([self checkCrystalDeath]) {
+        return;
+    }
+    
     self.time++;
     [self.homePlayer nextTurn];
+    
+    if (self.offline) {
+        Player* prevHome = self.homePlayer;
+        self.homePlayer = self.awayPlayer;
+        self.awayPlayer = prevHome;
+        return;
+    }
     
     self.canAttack = NO;
     [self addBufferMessage:@"end"];
@@ -137,6 +173,8 @@ static Game* gameInstance = nil;
 }
 
 -(void)awayEndTurn{
+    self.shouldEndAway = YES;
+    
     self.time++;
     [self.awayPlayer nextTurn];
     
@@ -152,7 +190,7 @@ static Game* gameInstance = nil;
 +(Game*)instance {
     @synchronized(self) {
         if (gameInstance == nil) {
-            gameInstance = [[self alloc] init];
+            gameInstance = [[Game alloc] init];
         }
     }
     
@@ -163,6 +201,32 @@ static Game* gameInstance = nil;
     return 9;
 }
 
+-(void)endGame {
+    if (self.offline) {
+        [self._delegate exitSegue];
+        gameInstance = nil;
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/removematch.php", [Game serverIP]]];
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest];
+    [uploadTask resume];
+    
+    [self._delegate exitSegue];
+    gameInstance = nil;
+}
+
+
+
 -(void)setDelegate:(UIViewController<UpdateableController> *)delegate{
     self._delegate = delegate;
     self.userID = delegate.userID;
@@ -170,7 +234,11 @@ static Game* gameInstance = nil;
 }
 
 -(void)queryGUIUpdate {
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/getr.php"];
+    if (self.offline) {
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -185,6 +253,12 @@ static Game* gameInstance = nil;
     if (!error) {
         NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
             NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            
+            if ([str length] == 0) {
+                [self endGame];
+                return;
+            }
+            
             NSInteger rVal = [str integerValue];
             
             if (rVal == 0){
@@ -197,7 +271,11 @@ static Game* gameInstance = nil;
 }
 
 -(void)receiveGUIData {
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/data.php"];
+    if (self.offline) {
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/data.php", [Game serverIP]]];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -276,7 +354,7 @@ static Game* gameInstance = nil;
             NSInteger target = [[cmd substringWithRange:NSMakeRange(2, 1)] integerValue];
             NSString *spellID = [cmd substringWithRange:NSMakeRange(3, 3)];
             
-            NSObject<Spell>* spell = [Spells spellWithID:spellID];
+            Spell* spell = [Spells spellWithID:spellID];
             if (spell == nil){
                 NSLog(@"Unrecognized spell!");
                 return;
@@ -309,7 +387,7 @@ static Game* gameInstance = nil;
             NSInteger target = [[cmd substringWithRange:NSMakeRange(1, 1)] integerValue];
             NSString *soulID = [cmd substringWithRange:NSMakeRange(2, 3)];
             
-            NSObject<Soul>* soul = [SoulsLibrary soulWithID:soulID];
+            Soul* soul = [SoulsLibrary soulWithID:soulID];
             Crystal* targetCrystal = [self.awayPlayer crystalN:target];
             [targetCrystal addSoulInEmptyIndex:soul];
             
@@ -321,7 +399,11 @@ static Game* gameInstance = nil;
 }
 
 -(void)setResetValue:(NSInteger)r forUser:(NSInteger)ID {
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/setr.php"];
+    if (self.offline) {
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/setr.php", [Game serverIP]]];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -342,8 +424,11 @@ static Game* gameInstance = nil;
 }
 
 -(void)clearBufferClock:(NSTimer*)timer {
+    if (self.offline) {
+        return;
+    }
     
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/getr.php"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -358,6 +443,12 @@ static Game* gameInstance = nil;
     if (!error) {
         NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
             NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            
+            if ([str length] == 0) {
+                [self endGame];
+                return;
+            }
+            
             NSInteger rVal = [str integerValue];
             
             if (rVal > 0) {
@@ -423,13 +514,18 @@ static Game* gameInstance = nil;
 
 -(void)addBufferMessage:(NSString*)msg {
     NSString* fullMsg = [NSString stringWithFormat:@"%ld%@", self.messageIndex, msg];
+    self.messageIndex++;
     [self.currentBuffer appendString:fullMsg];
     
     [self setMatchData];
 }
 
 -(void)setMatchData {
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/uploadtomatch.php"];
+    if (self.offline) {
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/uploadtomatch.php", [Game serverIP]]];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -487,6 +583,10 @@ static Game* gameInstance = nil;
     NSString* cmd = [NSString stringWithFormat:@"c%ld%02d%02d%02d", index, (int)[crystal health]/2, (int)[crystal speed], (int)[crystal shield]];
     
     [self addBufferMessage:cmd];
+}
+
++(NSString*)serverIP {
+    return @"10.0.1.121";
 }
 
 /*

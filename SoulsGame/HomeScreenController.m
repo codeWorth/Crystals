@@ -8,6 +8,7 @@
 
 #import "HomeScreenController.h"
 #import "FindGameController.h"
+#import "Game.h"
 
 @interface HomeScreenController ()
 
@@ -26,15 +27,23 @@
 @property (nonatomic) NSInteger userID;
 @property (nonatomic, weak) UITextField* activeField;
 
+@property (nonatomic) NSInteger viewOffset;
+@property (nonatomic) NSInteger kbHeight;
+@property (nonatomic) BOOL delayKb;
+
 @end
 
 @implementation HomeScreenController
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    if ([Game instance].offline) {
+        self.LoginView.hidden = YES;
+        self.MainView.hidden = NO;
         
-    for (UIButton* button in self.navButtons) {
-        button.enabled = NO;
+        self.usernameLabel.text = @"Offline";
+        return;
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -44,7 +53,9 @@
     self.LoginView.hidden = NO;
     self.MainView.hidden = YES;
     
-    if (username == nil || password == nil){
+    self.delayKb = YES;
+    
+    if ([username length] == 0 ||  [password length] == 0){
         return;
     }
     
@@ -54,8 +65,45 @@
     self.PasswordField.text = password;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+-(void)keyboardWillShow:(NSNotification*)notification {
+    self.kbHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height + 15; //so there is some padding between the textfield and the keyboard
+    
+    if (self.delayKb){
+        self.delayKb = NO;
+        self.viewOffset = self.PasswordField.frame.origin.y + self.PasswordField.frame.size.height - (self.view.frame.size.height - self.kbHeight); //viewOffset is temporarily textfield y
+        self.viewOffset = self.viewOffset < 0 ? 0 : self.viewOffset;
+        [self animateTextField:YES];
+    }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField { //this trigger BEFORE keyboardWillShow
+    if (!self.delayKb){
+        self.viewOffset = self.PasswordField.frame.origin.y + self.PasswordField.frame.size.height - (self.view.frame.size.height - self.kbHeight);
+        self.viewOffset = self.viewOffset < 0 ? 0 : self.viewOffset;
+        [self animateTextField:YES];
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [self animateTextField:NO];
+}
+
+-(void)animateTextField:(BOOL)up {
+    NSInteger movement = up ? -self.viewOffset : self.viewOffset;
+    
+    [UIView animateWithDuration:0.3 animations:^(void){
+        self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    }];
+}
+
 -(void)setIDForUsername:(NSString*)username andPassword:(NSString*)password {
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/login.php"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/login.php", [Game serverIP]]];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -74,16 +122,17 @@
             
             self.usernameLabel.text = [NSString stringWithFormat:@"Welcome %@", username];
             
-            for (UIButton* button in self.navButtons) {
-                button.enabled = YES;
-            }
-            
             if (self.userID > 0){
                 if (self.saveCredentials.on) {
                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                     
                     [defaults setObject:self.UsernameField.text forKey:@"username"];
                     [defaults setObject:self.PasswordField.text forKey:@"password"];
+                } else {
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    
+                    [defaults setObject:@"" forKey:@"username"];
+                    [defaults setObject:@"" forKey:@"password"];
                 }
                 
                 self.LoginView.hidden = YES;
@@ -104,7 +153,7 @@
 }
 
 - (IBAction)register {
-    NSURL *url = [NSURL URLWithString:@"http://10.0.1.121/souls/adduser.php"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/adduser.php", [Game serverIP]]];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
@@ -154,7 +203,11 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
-    return NO;
+    return YES;
+}
+
+-(void)segueReturn:(UIStoryboardSegue*)segue {
+    
 }
 
 @end

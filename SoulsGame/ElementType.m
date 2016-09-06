@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum ElementType {
-    Fire, //straight high damage
-    Water, //heal or damage (choose one)
-    Earth, //damage to health pool directly (partially)
-    Air, //damage bonus from speed
-    Life, //large heals
-    Sun, //buffs other crystals temporarily
-    Moon, //debuff other crystals temporarily
-    Shadow //area of effect
-}ElementType;
+typedef NS_ENUM(NSInteger, ElementType) {
+    ElementTypeFire = 0, //straight high damage
+    ElementTypeWater = 1, //heal or damage (choose one)
+    ElementTypeEarth = 2, //damage to health pool directly (partially)
+    ElementTypeAir = 3, //damage bonus from speed
+    ElementTypeLife = 4, //large heals
+    ElementTypeSun = 5, //buffs other crystals temporarily
+    ElementTypeMoon = 6, //debuff other crystals temporarily
+    ElementTypeShadow = 7, //area of effect
+    ElementTypeNone = 8 //type for misc
+};

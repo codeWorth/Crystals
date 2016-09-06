@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Spell.h"
 
-@interface HealingPool : NSObject <Spell, NSCopying>
+@interface HealingPool : Spell <NSCopying>
 
 @end

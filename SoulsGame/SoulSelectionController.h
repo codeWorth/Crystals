@@ -12,7 +12,7 @@
 
 @interface SoulSelectionController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSObject<Soul>* selectedSoul;
+@property (nonatomic, strong) Soul* selectedSoul;
 
 @property (nonatomic) SoulType selectedType;
 

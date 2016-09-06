@@ -67,7 +67,7 @@
     
     SpellCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    NSObject<Spell>* spell = self.spells[indexPath.row];
+    Spell* spell = self.spells[indexPath.row];
     [cell updateWith:spell];
     
     return cell;
@@ -83,7 +83,7 @@
     
     if ([cell isKindOfClass:[SpellCell class]]){
         SpellCell* spellCell = (SpellCell*)cell;
-        NSObject<Spell>* spell = spellCell.spell;
+        Spell* spell = spellCell.spell;
         
         self.nameLabel.text = spell.name;
         self.spellImgView.image = spell.img;
@@ -137,7 +137,6 @@
             
             self.selectedSpell = spell;
         }
-        
         
     }
 }

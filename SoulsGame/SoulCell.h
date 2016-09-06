@@ -11,7 +11,7 @@
 
 @interface SoulCell : UITableViewCell
 
--(void)setupWithSoul:(NSObject<Soul>*)soul;
-@property (nonatomic, strong) NSObject<Soul>* soul;
+-(void)setupWithSoul:(Soul*)soul;
+@property (nonatomic, strong) Soul* soul;
 
 @end

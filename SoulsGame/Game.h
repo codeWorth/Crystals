@@ -13,6 +13,7 @@
 @protocol UpdateableController <NSObject>
 
 -(void)updateGUI;
+-(void)exitSegue;
 @property (nonatomic) NSInteger userID;
 @property (nonatomic) NSInteger awayID;
 
@@ -35,17 +36,21 @@
 
 @property (nonatomic) BOOL canAttack;
 
--(void)checkCrystalDeath;
+-(BOOL)checkCrystalDeath;
 
 -(void)homeEndTurn;
 -(void)awayEndTurn;
+-(void)endGame;
 
 +(Game*)instance;
 -(void)setDelegate:(UIViewController<UpdateableController> *)delegate;
 
 +(NSInteger)crystalCreateCost;
++(NSString*)serverIP;
 
 -(void)queryGUIUpdate;
 -(void)setShouldStart;
+
+@property (nonatomic) BOOL offline;
 
 @end

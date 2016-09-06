@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ResistSoul.h"
 
-@interface WaterResist : NSObject <ResistSoul>
+@interface WaterResist : ResistSoul <NSCopying>
 
 @end

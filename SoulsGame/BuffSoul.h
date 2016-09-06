@@ -10,12 +10,8 @@
 #import "Spell.h"
 #import "Soul.h"
 
-@protocol BuffSoul <Soul>
+@interface BuffSoul : Soul
 
-@property (nonatomic) NSInteger buffAmount;
-@property (nonatomic) enum ElementType type;
-
--(void)buffSpell:(NSObject<Spell>*)spell;
--(NSString*)effect;
+@property (nonatomic) ElementType type;
 
 @end
