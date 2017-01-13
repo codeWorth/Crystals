@@ -364,9 +364,9 @@ static Game* gameInstance = nil;
             Crystal* targetCrystal;
             
             if (target > 5) {
-                targetCrystal = [self.awayPlayer crystalN:caster-5];
+                targetCrystal = [self.awayPlayer crystalN:target-5];
             } else {
-                targetCrystal = [self.homePlayer crystalN:caster];
+                targetCrystal = [self.homePlayer crystalN:target];
             }
             
             [casterCrystal castSpell:spell onTarget:targetCrystal];
@@ -586,7 +586,7 @@ static Game* gameInstance = nil;
 }
 
 +(NSString*)serverIP {
-    return @"10.0.1.121";
+    return @"ec2-54-149-224-199.us-west-2.compute.amazonaws.com";
 }
 
 /*
