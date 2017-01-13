@@ -85,51 +85,34 @@ static Game* gameInstance = nil;
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/data.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/data.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSError *error = nil;
+    NSUInteger len = [str length];
+    unichar buffer[len+1];
     
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            
-            NSUInteger len = [str length];
-            unichar buffer[len+1];
-            
-            [str getCharacters:buffer range:NSMakeRange(0, len)];
-            
-            self.canAttack = YES;
-            
-            for(int i = 0; i < len; i++) {
-                unichar thisChar = buffer[i];
-                
-                if (thisChar < '0' || thisChar > '9'){
-                    if (thisChar == 's'){
-                        self.canAttack = NO;
-                        self.receiveDataTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(receiveDataClock:) userInfo:nil repeats:YES];
-                        [[NSRunLoop mainRunLoop] addTimer:self.receiveDataTimer forMode:NSRunLoopCommonModes];
-                    }
-                }
-            }
-            
-            if (self.canAttack) {
-                self.clearBufferTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(clearBufferClock:) userInfo:nil repeats:YES];
-                [[NSRunLoop mainRunLoop] addTimer:self.clearBufferTimer forMode:NSRunLoopCommonModes];
-            }
-            
-            [self._delegate updateGUI];
-        }];
+    [str getCharacters:buffer range:NSMakeRange(0, len)];
+    
+    self.canAttack = YES;
+    
+    for(int i = 0; i < len; i++) {
+        unichar thisChar = buffer[i];
         
-        [uploadTask resume];
+        if (thisChar < '0' || thisChar > '9'){
+            if (thisChar == 's'){
+                self.canAttack = NO;
+                self.receiveDataTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(receiveDataClock:) userInfo:nil repeats:YES];
+                [[NSRunLoop mainRunLoop] addTimer:self.receiveDataTimer forMode:NSRunLoopCommonModes];
+            }
+        }
     }
+    
+    if (self.canAttack) {
+        self.clearBufferTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(clearBufferClock:) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.clearBufferTimer forMode:NSRunLoopCommonModes];
+    }*/
+    
+    [self._delegate updateGUI];
 }
 
 -(BOOL)checkCrystalDeath {
@@ -209,17 +192,7 @@ static Game* gameInstance = nil;
     }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/removematch.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest];
-    [uploadTask resume];
     
     [self._delegate exitSegue];
     gameInstance = nil;
@@ -238,64 +211,30 @@ static Game* gameInstance = nil;
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
             
-            if ([str length] == 0) {
-                [self endGame];
-                return;
-            }
-            
-            NSInteger rVal = [str integerValue];
-            
-            if (rVal == 0){
-                [self receiveGUIData];
-            }
-        }];
-        
-        [uploadTask resume];
+    if ([str length] == 0) {
+        [self endGame];
+        return;
     }
+    
+    NSInteger rVal = [str integerValue];
+    
+    if (rVal == 0){
+        [self receiveGUIData];
+    }*/
 }
 
 -(void)receiveGUIData {
-    if (self.offline) {
+    /*if (self.offline) {
         return;
     }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/data.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
             
-            [self handleData:str];
-        }];
-        
-        [uploadTask resume];
-    }
+    [self handleData:str];*/
 }
 
 -(void)handleData:(NSString*)data{
@@ -404,19 +343,6 @@ static Game* gameInstance = nil;
     }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/setr.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-    
-    NSString* params = [NSString stringWithFormat:@"id=%ld&data=%ld", ID, (long)r];
-    
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest];
-    [uploadTask resume];
 }
 
 -(void)receiveDataClock:(NSTimer*)timer {
@@ -429,35 +355,6 @@ static Game* gameInstance = nil;
     }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            
-            if ([str length] == 0) {
-                [self endGame];
-                return;
-            }
-            
-            NSInteger rVal = [str integerValue];
-            
-            if (rVal > 0) {
-                [self clearBufferTo:rVal];
-            }
-        }];
-        
-        [uploadTask resume];
-    }
 }
 
 -(void)clearBufferTo:(NSInteger)clearPoint {
@@ -526,19 +423,7 @@ static Game* gameInstance = nil;
     }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/uploadtomatch.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-    
     NSString* params = [NSString stringWithFormat:@"id=%ld&data=%@", self.userID, self.currentBuffer];
-    
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest];
-    [uploadTask resume];
 }
 
 -(void)registerAddSoul:(NSString *)soulID toTarget:(NSInteger)target {
@@ -583,10 +468,6 @@ static Game* gameInstance = nil;
     NSString* cmd = [NSString stringWithFormat:@"c%ld%02d%02d%02d", index, (int)[crystal health]/2, (int)[crystal speed], (int)[crystal shield]];
     
     [self addBufferMessage:cmd];
-}
-
-+(NSString*)serverIP {
-    return @"ec2-54-149-224-199.us-west-2.compute.amazonaws.com";
 }
 
 /*

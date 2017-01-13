@@ -135,30 +135,10 @@
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/playerdata.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/playerdata.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.awayID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            NSArray* items = [str componentsSeparatedByString:@","];
-            
-            self.awayUsername = (NSString*)[items objectAtIndex:0];
-            
-            [self updateAwayUser];
-        }];
-        
-        [uploadTask resume];
-    }
+    self.awayUsername = (NSString*)[items objectAtIndex:0];
+    [self updateAwayUser];*/
 }
 
 -(Crystal*)crystalForTag:(NSInteger)tag{

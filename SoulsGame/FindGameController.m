@@ -37,88 +37,36 @@
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/addtoqueue.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/addtoqueue.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    NOPE
+    self.findingLabel.hidden = NO;
+    self.findButton.hidden = YES;
+    self.cancelButton.hidden = NO;*/
     
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            self.findingLabel.hidden = NO;
-            self.findButton.hidden = YES;
-            self.cancelButton.hidden = NO;
-            
-            NSTimer* timer = [NSTimer timerWithTimeInterval:3.0 target:self selector:@selector(scanMatches:) userInfo:nil repeats:NO];
-            [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-        }];
-        
-        [uploadTask resume];
-    }
 }
 
 -(void)scanMatches:(NSTimer*)timer{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            if ([str length] > 0){
-                [self matchFound];
-            } else {
-                self.findingLabel.text = [NSString stringWithFormat:@"%@.", self.findingLabel.text];
-                if ([self.findingLabel.text isEqualToString:@"Finding Match...."]){
-                    self.findingLabel.text = @"Finding Match";
-                }
-                
-                NSTimer* timer = [NSTimer timerWithTimeInterval:3.0 target:self selector:@selector(scanMatches:) userInfo:nil repeats:NO];
-                [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-            }
-        }];
-        
-        [uploadTask resume];
-    }
+    if ([str length] > 0){
+        [self matchFound];
+    } else {
+        self.findingLabel.text = [NSString stringWithFormat:@"%@.", self.findingLabel.text];
+        if ([self.findingLabel.text isEqualToString:@"Finding Match...."]){
+            self.findingLabel.text = @"Finding Match";
+        }
+    }*/
 }
 
 -(void)matchFound {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/matchdata.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/matchdata.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+
+    self.awayID = [str integerValue];
     
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            self.awayID = [str integerValue];
-            
-            [self performSegueWithIdentifier:@"matchFound" sender:self];
-        }];
-        
-        [uploadTask resume];
-    }
+    [self performSegueWithIdentifier:@"matchFound" sender:self];*/
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -137,29 +85,12 @@
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/playerdata.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/playerdata.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    NSArray* items = [str componentsSeparatedByString:@","];
     
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            NSArray* items = [str componentsSeparatedByString:@","];
-            
-            self.usernameLabel.text = [items objectAtIndex:0];
-            self.rankLabel.text = [NSString stringWithFormat:@"Rank: %@", [items objectAtIndex:1]];
-        }];
-        
-        [uploadTask resume];
-    }
+    self.usernameLabel.text = [items objectAtIndex:0];
+    self.rankLabel.text = [NSString stringWithFormat:@"Rank: %@", [items objectAtIndex:1]];*/
 }
 
 - (IBAction)cancelSearch {
@@ -168,28 +99,12 @@
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/attemptcancel.php", [Game serverIP]]];
-    
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/attemptcancel.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSError *error = nil;
-    
-    if (!error) {
-        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            if ([str isEqualToString:@"y"]) {
-                [self performSegueWithIdentifier:@"return" sender:self];
-            }
-        }];
-        
-        [uploadTask resume];
-    }
+    if ([str isEqualToString:@"y"]) {
+        [self performSegueWithIdentifier:@"return" sender:self];
+    }*/
 }
 
 @end

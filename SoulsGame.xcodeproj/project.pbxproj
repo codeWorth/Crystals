@@ -18,6 +18,7 @@
 		496EB2E91D5F2EDA00C5C872 /* Submerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EB2E81D5F2EDA00C5C872 /* Submerge.m */; };
 		496EB2EC1D5F2F0000C5C872 /* SpellDebuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EB2EB1D5F2F0000C5C872 /* SpellDebuff.m */; };
 		496EB2EF1D5F2FE800C5C872 /* NextSpellSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EB2EE1D5F2FE800C5C872 /* NextSpellSoul.m */; };
+		4988AEA31E28B55600465CBD /* SocketHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4988AEA21E28B55600465CBD /* SocketHandler.m */; };
 		499642D31D57508D00ECDADE /* Spells.m in Sources */ = {isa = PBXBuildFile; fileRef = 499642D21D57508D00ECDADE /* Spells.m */; };
 		499642D61D5757A900ECDADE /* SoulsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 499642D51D5757A900ECDADE /* SoulsLibrary.m */; };
 		49EFA0CD1D5FBF3300C6FE44 /* EarthResist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFA0CC1D5FBF3300C6FE44 /* EarthResist.m */; };
@@ -151,6 +152,8 @@
 		496EB2EB1D5F2F0000C5C872 /* SpellDebuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellDebuff.m; sourceTree = "<group>"; };
 		496EB2ED1D5F2FE800C5C872 /* NextSpellSoul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextSpellSoul.h; sourceTree = "<group>"; };
 		496EB2EE1D5F2FE800C5C872 /* NextSpellSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextSpellSoul.m; sourceTree = "<group>"; };
+		4988AEA11E28B55600465CBD /* SocketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketHandler.h; sourceTree = "<group>"; };
+		4988AEA21E28B55600465CBD /* SocketHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketHandler.m; sourceTree = "<group>"; };
 		499642D11D57508D00ECDADE /* Spells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spells.h; sourceTree = "<group>"; };
 		499642D21D57508D00ECDADE /* Spells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spells.m; sourceTree = "<group>"; };
 		499642D41D5757A900ECDADE /* SoulsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoulsLibrary.h; sourceTree = "<group>"; };
@@ -567,6 +570,8 @@
 				D5BEF5A91CF9515400A5F3C2 /* Player.m */,
 				D5BEF5AE1CF9518000A5F3C2 /* Game.h */,
 				D5BEF5AF1CF9518000A5F3C2 /* Game.m */,
+				4988AEA11E28B55600465CBD /* SocketHandler.h */,
+				4988AEA21E28B55600465CBD /* SocketHandler.m */,
 				D5BEF5B51CF9521A00A5F3C2 /* Souls */,
 				D5BEF56E1CF94E2400A5F3C2 /* Supporting Files */,
 				D5E375D01CF99F200020C925 /* ElementType.m */,
@@ -826,6 +831,7 @@
 				D5BEF5761CF94E2400A5F3C2 /* BattlefieldController.m in Sources */,
 				D579B94C1CFA463E00AD9447 /* FireResist.m in Sources */,
 				D572E0B01D305CBF004254F8 /* FireBuff.m in Sources */,
+				4988AEA31E28B55600465CBD /* SocketHandler.m in Sources */,
 				496EB2E91D5F2EDA00C5C872 /* Submerge.m in Sources */,
 				49EFA0CD1D5FBF3300C6FE44 /* EarthResist.m in Sources */,
 				D572678D1D2B46C200F4B899 /* SoulSelectionController.m in Sources */,
