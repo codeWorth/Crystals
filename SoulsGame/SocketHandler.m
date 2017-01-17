@@ -9,6 +9,12 @@
 #import "SocketHandler.h"
 #import "Game.h"
 
+@interface SocketHandler()
+
+@property(nonatomic) BOOL searching;
+
+@end
+
 @implementation SocketHandler
 
 static SocketHandler* instance;
@@ -16,6 +22,7 @@ static SocketHandler* instance;
 +(SocketHandler*)getInstance {
     if (!instance) {
         instance = [[SocketHandler alloc] init];
+        instance.searching = NO;
     }
     return instance;
 }
@@ -63,11 +70,14 @@ NSOutputStream *outputStream;
                         if (nil != output) {
                             if ([output characterAtIndex:0] == '<') {
                                 [self recievedControlMessage:output];
+                                [self sendMessage:@"<p"];
                             } else if ([output characterAtIndex:0] == '>') {
                                 [self recievedGameMessage:output];
+                                [self sendMessage:@"<p"];
+                            } else {
+                                [self recievedQueueMessage:output];
                             }
                             NSLog(@"server said: %@", output);
-                            [self sendMessage:@"<p"];
                         }
                     }
                 }
@@ -86,28 +96,44 @@ NSOutputStream *outputStream;
     
 }
 
-- (void)recievedGameMessage:(NSString*)message {
+-(void)recievedQueueMessage:(NSString*)message {
+    char firstChar = [message characterAtIndex:0];
+    if (firstChar == 'j') {
+        if (self.searching) {
+            [self sendMessage:@"^a"];
+            [self.queueDelegate queryAccepted];
+        } else {
+            [self cancelQuery];
+        }
+    } else if (firstChar == 'r') {
+        [self.queueDelegate matchRejected];
+    } else if (firstChar == 'c') {
+        [self.queueDelegate matchAccepted];
+    }
+}
+
+-(void)recievedGameMessage:(NSString*)message {
     char secondChar = [message characterAtIndex:1];
     if (secondChar == 'c') {
         NSInteger position = [[message substringWithRange:NSMakeRange(2, 1)] integerValue];
         NSInteger health = [self hexToInt:[message substringWithRange:NSMakeRange(3, 1)]];
         NSInteger shields = [self hexToInt:[message substringWithRange:NSMakeRange(4, 1)]];
         NSInteger speed = [self hexToInt:[message substringWithRange:NSMakeRange(5, 1)]];
-        [self.netDelegate addCrytsalAtPosition:position withHealth:health speed:speed andShield:shields];
+        [self.gameDelegate addCrytsalAtPosition:position withHealth:health speed:speed andShield:shields];
     } else if (secondChar == 's') {
         NSInteger position = [[message substringWithRange:NSMakeRange(2, 1)] integerValue];
         NSString* id = [message substringFromIndex:3];
-        [self.netDelegate addSoulAtPosition:position withID:id];
+        [self.gameDelegate addSoulAtPosition:position withID:id];
     } else if (secondChar == 'h') {
         NSInteger sourcePos = [[message substringWithRange:NSMakeRange(2, 1)] integerValue];
         NSInteger targetPos = [[message substringWithRange:NSMakeRange(3, 1)] integerValue];
         NSString* id = [message substringFromIndex:4];
-        [self.netDelegate castSpellAtHomePlayer:targetPos fromAwayPlayer:sourcePos andID:id];
+        [self.gameDelegate castSpellAtHomePlayer:targetPos fromAwayPlayer:sourcePos andID:id];
     } else if (secondChar == 'a') {
         NSInteger sourcePos = [[message substringWithRange:NSMakeRange(2, 1)] integerValue];
         NSInteger targetPos = [[message substringWithRange:NSMakeRange(3, 1)] integerValue];
         NSString* id = [message substringFromIndex:4];
-        [self.netDelegate castSpellAtAwayPlayer:targetPos fromAwayPlayer:sourcePos andID:id];
+        [self.gameDelegate castSpellAtAwayPlayer:targetPos fromAwayPlayer:sourcePos andID:id];
     }
 }
 
@@ -129,6 +155,15 @@ NSOutputStream *outputStream;
     NSScanner* scanner = [NSScanner scannerWithString:hex];
     [scanner scanHexInt:&outVal];
     return outVal;
+}
+
+-(void)cancelQuery {
+    [self sendMessage:@"^c"];
+}
+
+-(void)addToQueueWithUsername:(NSString *)name andRank:(NSInteger)rank {
+    NSString* msg = [NSString stringWithFormat:@"^n%du%@", rank, name];
+    [self sendMessage:msg];
 }
 
 @end

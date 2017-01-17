@@ -29,6 +29,7 @@
     
     [self setUserInfo];
     self.cancelButton.hidden = YES;
+    [SocketHandler getInstance].queueDelegate = self;
 }
 
 - (IBAction)findMatch {
@@ -37,36 +38,26 @@
         return;
     }
     
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/addtoqueue.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    NOPE
+
     self.findingLabel.hidden = NO;
     self.findButton.hidden = YES;
-    self.cancelButton.hidden = NO;*/
+    self.cancelButton.hidden = NO;
     
 }
 
--(void)scanMatches:(NSTimer*)timer{
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    
-    if ([str length] > 0){
-        [self matchFound];
-    } else {
-        self.findingLabel.text = [NSString stringWithFormat:@"%@.", self.findingLabel.text];
-        if ([self.findingLabel.text isEqualToString:@"Finding Match...."]){
-            self.findingLabel.text = @"Finding Match";
-        }
-    }*/
+-(void)updateLabel:(NSTimer*)timer {
+    self.findingLabel.text = [NSString stringWithFormat:@"%@.", self.findingLabel.text];
+    if ([self.findingLabel.text isEqualToString:@"Finding Match...."]){
+        self.findingLabel.text = @"Finding Match";
+    }
 }
 
--(void)matchFound {
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/matchdata.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-
-    self.awayID = [str integerValue];
-    
+-(void)matchAccepted {
     [self performSegueWithIdentifier:@"matchFound" sender:self];*/
+}
+
+-(void)matchRejected {
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

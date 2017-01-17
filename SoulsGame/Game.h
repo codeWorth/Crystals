@@ -22,7 +22,7 @@
 
 @class Crystal;
 
-@interface Game : NSObject <NetComm, NetDelegate>
+@interface Game : NSObject <NetComm, GameDelegate>
 
 @property (nonatomic) NSInteger time;
 

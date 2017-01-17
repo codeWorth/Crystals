@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SocketHandler.h"
 
-@interface FindGameController : UIViewController
+@interface FindGameController : UIViewController <QueueDelegate>
 
 @property (nonatomic) NSInteger userID;
 

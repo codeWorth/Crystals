@@ -69,6 +69,8 @@ static Game* gameInstance = nil;
         self.shouldEndHome = NO;
         
         self.offline = NO;
+        
+        [SocketHandler getInstance].gameDelegate = self;
     }
     return self;
 }

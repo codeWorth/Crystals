@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol NetDelegate <NSObject>
+@protocol GameDelegate <NSObject>
 
 -(void)castSpellAtAwayPlayer:(NSInteger)target fromAwayPlayer:(NSInteger)caster andID:(NSString *)spellID;
 -(void)castSpellAtHomePlayer:(NSInteger)target fromAwayPlayer:(NSInteger)caster andID:(NSString *)spellID;
@@ -17,13 +17,25 @@
 
 @end
 
+@protocol QueueDelegate <NSObject>
+
+-(void)queryAccepted;
+-(void)matchAccepted;
+-(void)matchRejected;
+
+@end
+
 @interface SocketHandler : NSObject <NSStreamDelegate>
 
 -(void)initNetworkCommunication;
 -(void)sendMessage:(NSString*)msg;
 
+-(void)addToQueueWithUsername:(NSString *)name andRank:(NSInteger)rank;
+-(void)cancelQuery;
+
 +(SocketHandler*)getInstance;
 
-@property(nonatomic, strong) NSObject<NetDelegate>* netDelegate;
+@property(nonatomic, strong) NSObject<GameDelegate>* gameDelegate;
+@property(nonatomic, strong) NSObject<QueueDelegate>* queueDelegate;
 
 @end
