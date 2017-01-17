@@ -417,15 +417,6 @@ static Game* gameInstance = nil;
     [self setMatchData];
 }
 
--(void)setMatchData {
-    if (self.offline) {
-        return;
-    }
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/uploadtomatch.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld&data=%@", self.userID, self.currentBuffer];
-}
-
 -(void)registerAddSoul:(NSString *)soulID toTarget:(NSInteger)target {
     NSString* cmd = [NSString stringWithFormat:@"o%ld%@", target, soulID];
     
@@ -470,22 +461,42 @@ static Game* gameInstance = nil;
     [self addBufferMessage:cmd];
 }
 
-/*
- new commands get added to the beginning of the text
- crystal index is 1 - 5 (not 0 - 4)
- for spell target, crystal index 6-10 is for their crystals (insead of ours)
- 
- "n" + "command"
- 
- "started" = this player gets turn 1 = 7 chars
- 
- "end" = turn ended = 3 chars
- 
- "p"+"1"+"2"+"sID" = cast spell, crystal caster #, crystal target #, spell ID = 6 chars
- 
- "c"+"#"+"hp"+"sp"+"sh" = add crystal, crystal slot, hp, speed, shield = 8 chars
- 
- "o"+"#"+"sID" = add soul, crystal #, soul ID = 5 chars
- */
+-(void)addCrytsalAtPosition:(NSInteger)target withHealth:(NSInteger)health speed:(NSInteger)speed andShield:(NSInteger)shield {
+    Crystal* newCrystal = [[Crystal alloc]initWithHealth:health Speed:speed shield:shield];
+    
+    [self.awayPlayer setCrystalN:target toCrystal:newCrystal];
+}
+
+-(void)addSoulAtPosition:(NSInteger)target withID:(NSString *)soulID {
+    Soul* soul = [SoulsLibrary soulWithID:soulID];
+    Crystal* targetCrystal = [self.awayPlayer crystalN:target];
+    [targetCrystal addSoulInEmptyIndex:soul];
+}
+
+-(void)castSpellAtHomePlayer:(NSInteger)target fromAwayPlayer:(NSInteger)caster andID:(NSString *)spellID {
+    Spell* spell = [Spells spellWithID:spellID];
+    if (spell == nil){
+        NSLog(@"Unrecognized spell!");
+        return;
+    }
+    
+    Crystal* casterCrystal = [self.awayPlayer crystalN:caster];
+    Crystal* targetCrystal = [self.homePlayer crystalN:target];
+    
+    [casterCrystal castSpell:spell onTarget:targetCrystal];
+}
+
+-(void)castSpellAtAwayPlayer:(NSInteger)target fromAwayPlayer:(NSInteger)caster andID:(NSString *)spellID {
+    Spell* spell = [Spells spellWithID:spellID];
+    if (spell == nil){
+        NSLog(@"Unrecognized spell!");
+        return;
+    }
+    
+    Crystal* casterCrystal = [self.awayPlayer crystalN:caster];
+    Crystal* targetCrystal = [self.awayPlayer crystalN:target];
+    
+    [casterCrystal castSpell:spell onTarget:targetCrystal];
+}
 
 @end
