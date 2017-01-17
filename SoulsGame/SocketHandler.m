@@ -81,7 +81,6 @@ NSOutputStream *outputStream;
                                 [self sendMessage:@"<p"];
                                 
                             }
-                            NSLog(@"server said: %@", output);
                         }
                     }
                 }
@@ -94,8 +93,6 @@ NSOutputStream *outputStream;
         case NSStreamEventEndEncountered:
             break;
             
-        default:
-            NSLog(@"Unknown event");
     }
     
 }
