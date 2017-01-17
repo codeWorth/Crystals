@@ -11,7 +11,7 @@
 @interface SocketHandler : NSObject <NSStreamDelegate>
 
 -(void)initNetworkCommunication;
--(void)sendMessage;
+-(void)sendMessage:(NSString*)msg;
 
 +(SocketHandler*)getInstance;
 

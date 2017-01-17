@@ -22,6 +22,8 @@
 #import "Spells.h"
 #import "SoulsLibrary.h"
 
+#import "SocketHandler.h"
+
 @interface Game ()
 
 @property (nonatomic, strong) UIViewController<UpdateableController>* _delegate;
@@ -85,32 +87,7 @@ static Game* gameInstance = nil;
         return;
     }
     
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/data.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    
-    NSUInteger len = [str length];
-    unichar buffer[len+1];
-    
-    [str getCharacters:buffer range:NSMakeRange(0, len)];
-    
     self.canAttack = YES;
-    
-    for(int i = 0; i < len; i++) {
-        unichar thisChar = buffer[i];
-        
-        if (thisChar < '0' || thisChar > '9'){
-            if (thisChar == 's'){
-                self.canAttack = NO;
-                self.receiveDataTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(receiveDataClock:) userInfo:nil repeats:YES];
-                [[NSRunLoop mainRunLoop] addTimer:self.receiveDataTimer forMode:NSRunLoopCommonModes];
-            }
-        }
-    }
-    
-    if (self.canAttack) {
-        self.clearBufferTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(clearBufferClock:) userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:self.clearBufferTimer forMode:NSRunLoopCommonModes];
-    }*/
     
     [self._delegate updateGUI];
 }
@@ -147,7 +124,7 @@ static Game* gameInstance = nil;
     }
     
     self.canAttack = NO;
-    [self addBufferMessage:@"end"];
+    [[SocketHandler getInstance] sendMessage:@"<e"];
     
     self.receiveDataTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(receiveDataClock:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.receiveDataTimer forMode:NSRunLoopCommonModes];
@@ -191,8 +168,7 @@ static Game* gameInstance = nil;
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/removematch.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
+    [[SocketHandler getInstance] sendMessage:@"<q"];
     
     [self._delegate exitSegue];
     gameInstance = nil;
@@ -419,8 +395,7 @@ static Game* gameInstance = nil;
 
 -(void)registerAddSoul:(NSString *)soulID toTarget:(NSInteger)target {
     NSString* cmd = [NSString stringWithFormat:@"o%ld%@", target, soulID];
-    
-    [self addBufferMessage:cmd];
+    [[SocketHandler getInstance] sendMessage:cmd];
 }
 
 -(void)registerCastSpell:(NSString *)spellID fromSource:(NSInteger)source toTarget:(Crystal *)target {
@@ -452,13 +427,13 @@ static Game* gameInstance = nil;
     
     NSString* cmd = [NSString stringWithFormat:@"p%ld%ld%@", source, targetIndex, spellID];
     
-    [self addBufferMessage:cmd];
+    [[SocketHandler getInstance] sendMessage:cmd];
 }
 
 -(void)registerAddCrystal:(Crystal *)crystal atIndex:(NSInteger)index {
     NSString* cmd = [NSString stringWithFormat:@"c%ld%02d%02d%02d", index, (int)[crystal health]/2, (int)[crystal speed], (int)[crystal shield]];
     
-    [self addBufferMessage:cmd];
+    [[SocketHandler getInstance] sendMessage:cmd];
 }
 
 -(void)addCrytsalAtPosition:(NSInteger)target withHealth:(NSInteger)health speed:(NSInteger)speed andShield:(NSInteger)shield {

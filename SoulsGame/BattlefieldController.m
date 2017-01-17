@@ -123,8 +123,6 @@
     self.crystalAdd3.tag = CRYSTAL_H3_TAG;
     self.crystalAdd4.tag = CRYSTAL_H4_TAG;
     self.crystalAdd5.tag = CRYSTAL_H5_TAG;
-    
-    [self.game setShouldStart];
 }
 
 -(void)setAwayInfo {
@@ -136,9 +134,29 @@
     }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/ServerCode/playerdata.php", [Game serverIP]]];
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.awayID];
-    self.awayUsername = (NSString*)[items objectAtIndex:0];
-    [self updateAwayUser];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *error = nil;
+    
+    if (!error) {
+        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
+            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            NSArray* items = [str componentsSeparatedByString:@","];
+            
+            self.awayUsername = (NSString*)[items objectAtIndex:0];
+            
+            [self updateAwayUser];
+        }];
+        
+        [uploadTask resume];
+    }
 }
 
 -(Crystal*)crystalForTag:(NSInteger)tag{

@@ -85,12 +85,29 @@
         return;
     }
     
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/playerdata.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    NSArray* items = [str componentsSeparatedByString:@","];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/ServerCode/playerdata.php", [Game serverIP]]];
     
-    self.usernameLabel.text = [items objectAtIndex:0];
-    self.rankLabel.text = [NSString stringWithFormat:@"Rank: %@", [items objectAtIndex:1]];*/
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString* params = [NSString stringWithFormat:@"id=%ld", self.awayID];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSError *error = nil;
+    
+    if (!error) {
+        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
+            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            NSArray* items = [str componentsSeparatedByString:@","];
+            
+            self.usernameLabel.text = [items objectAtIndex:0];
+            self.rankLabel.text = [NSString stringWithFormat:@"Rank: %@", [items objectAtIndex:1]];
+        }];
+        
+        [uploadTask resume];
+    }
 }
 
 - (IBAction)cancelSearch {

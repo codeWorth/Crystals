@@ -106,32 +106,49 @@
 }
 
 -(void)setIDForUsername:(NSString*)username andPassword:(NSString*)password {
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/login.php", [Game serverIP]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/ServerCode/login.php", [Game serverIP]]];
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
     NSString* params = [NSString stringWithFormat:@"name=%@&pass=%@", username, password];
-    self.userID = [str intValue];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
-    self.usernameLabel.text = [NSString stringWithFormat:@"Welcome %@", username];
+    NSError *error = nil;
     
-    if (self.userID > 0){
-        if (self.saveCredentials.on) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (!error) {
+        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
+            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            self.userID = [str intValue];
             
-            [defaults setObject:self.UsernameField.text forKey:@"username"];
-            [defaults setObject:self.PasswordField.text forKey:@"password"];
-        } else {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            self.usernameLabel.text = [NSString stringWithFormat:@"Welcome %@", username];
             
-            [defaults setObject:@"" forKey:@"username"];
-            [defaults setObject:@"" forKey:@"password"];
-        }
+            if (self.userID > 0){
+                if (self.saveCredentials.on) {
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    
+                    [defaults setObject:self.UsernameField.text forKey:@"username"];
+                    [defaults setObject:self.PasswordField.text forKey:@"password"];
+                } else {
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    
+                    [defaults setObject:@"" forKey:@"username"];
+                    [defaults setObject:@"" forKey:@"password"];
+                }
+                
+                self.LoginView.hidden = YES;
+                self.MainView.hidden = NO;
+            } else {
+                self.errorLabel.text = @"Invalid username/password.";
+                self.UsernameField.text = @"";
+                self.PasswordField.text = @"";
+            }
+        }];
         
-        self.LoginView.hidden = YES;
-        self.MainView.hidden = NO;
-    } else {
-        self.errorLabel.text = @"Invalid username/password.";
-        self.UsernameField.text = @"";
-        self.PasswordField.text = @"";
-    }*/
+        [uploadTask resume];
+    }
 }
 
 - (IBAction)login {
@@ -139,28 +156,46 @@
 }
 
 - (IBAction)register {
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/adduser.php", [Game serverIP]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/ServerCode/adduser.php", [Game serverIP]]];
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
     NSString* params = [NSString stringWithFormat:@"name=%@&pass=%@", self.UsernameField.text, self.PasswordField.text];
-    self.userID = [str intValue];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
-    self.usernameLabel.text = [NSString stringWithFormat:@"Welcome %@", self.UsernameField.text];
+    NSError *error = nil;
     
-    for (UIButton* button in self.navButtons) {
-        button.enabled = YES;
+    if (!error) {
+        NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
+            NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            self.userID = [str intValue];
+            
+            self.usernameLabel.text = [NSString stringWithFormat:@"Welcome %@", self.UsernameField.text];
+            
+            for (UIButton* button in self.navButtons) {
+                button.enabled = YES;
+            }
+            
+            if (self.userID > 0){
+                self.LoginView.hidden = YES;
+                self.MainView.hidden = NO;
+            } else if (self.userID == -1){
+                self.errorLabel.text = @"User already exists.";
+                self.UsernameField.text = @"";
+                self.PasswordField.text = @"";
+            } else {
+                self.errorLabel.text = @"Couldn't connect.";
+                self.UsernameField.text = @"";
+                self.PasswordField.text = @"";
+            }
+        }];
+        
+        [uploadTask resume];
     }
-                
-    if (self.userID > 0){
-        self.LoginView.hidden = YES;
-        self.MainView.hidden = NO;
-    } else if (self.userID == -1){
-        self.errorLabel.text = @"User already exists.";
-        self.UsernameField.text = @"";
-        self.PasswordField.text = @"";
-    } else {
-        self.errorLabel.text = @"Couldn't connect.";
-        self.UsernameField.text = @"";
-        self.PasswordField.text = @"";
-    }*/
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

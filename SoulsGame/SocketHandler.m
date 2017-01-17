@@ -7,6 +7,7 @@
 //
 
 #import "SocketHandler.h"
+#import "Game.h"
 
 @implementation SocketHandler
 
@@ -66,6 +67,7 @@ NSOutputStream *outputStream;
                                 [self recievedGameMessage:output];
                             }
                             NSLog(@"server said: %@", output);
+                            [self sendMessage:@"<p"];
                         }
                     }
                 }
@@ -75,7 +77,6 @@ NSOutputStream *outputStream;
         case NSStreamEventErrorOccurred:
             NSLog(@"Can not connect to the host!");
             break;
-            
         case NSStreamEventEndEncountered:
             break;
             
@@ -90,7 +91,14 @@ NSOutputStream *outputStream;
 }
 
 - (void)recievedControlMessage:(NSString*)message {
-    
+    if ([message characterAtIndex:1] == 's') {
+        [[Game instance] setShouldStart];
+    }
+}
+
+-(void)sendMessage:(NSString*)msg {
+    NSData *data = [[NSData alloc] initWithData:[msg dataUsingEncoding:NSASCIIStringEncoding]];
+    [outputStream write:[data bytes] maxLength:[data length]];
 }
 
 @end
