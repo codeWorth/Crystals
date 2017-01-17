@@ -247,7 +247,8 @@
                                 actionWithTitle:@"Exit"
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction * action) {
-                                    [self.game endGame];
+                                    [Game instance].homeWonGame = NO;
+                                    [[SocketHandler getInstance] endGame];
                                 }];
     
     UIAlertAction* noButton = [UIAlertAction

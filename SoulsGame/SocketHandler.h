@@ -20,7 +20,7 @@
 @protocol QueueDelegate <NSObject>
 
 -(void)queryAccepted;
--(void)matchAccepted;
+-(void)matchAcceptedWithID:(NSInteger)ID;
 -(void)matchRejected;
 
 @end
@@ -30,8 +30,9 @@
 -(void)initNetworkCommunication;
 -(void)sendMessage:(NSString*)msg;
 
--(void)addToQueueWithUsername:(NSString *)name andRank:(NSInteger)rank;
+-(void)addToQueueWithRank:(NSInteger)rank andID:(NSInteger)ID;
 -(void)cancelQuery;
+-(void)endGame;
 
 +(SocketHandler*)getInstance;
 

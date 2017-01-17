@@ -12,6 +12,8 @@
 @interface SocketHandler()
 
 @property(nonatomic) BOOL searching;
+@property(nonatomic) NSInteger playerID;
+@property(nonatomic) NSInteger bufferSize;
 
 @end
 
@@ -23,6 +25,7 @@ static SocketHandler* instance;
     if (!instance) {
         instance = [[SocketHandler alloc] init];
         instance.searching = NO;
+        instance.bufferSize = 10;
     }
     return instance;
 }
@@ -33,7 +36,7 @@ NSOutputStream *outputStream;
 - (void)initNetworkCommunication {
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)[Game serverIP], 80, &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)[Game serverIP], 800, &readStream, &writeStream);
     inputStream = (__bridge NSInputStream *)readStream;
     outputStream = (__bridge NSOutputStream *)writeStream;
     
@@ -58,7 +61,7 @@ NSOutputStream *outputStream;
         case NSStreamEventHasBytesAvailable:
             if (theStream == inputStream) {
                 
-                uint8_t buffer[1024];
+                uint8_t buffer[self.bufferSize];
                 NSInteger len;
                 
                 while ([inputStream hasBytesAvailable]) {
@@ -70,12 +73,13 @@ NSOutputStream *outputStream;
                         if (nil != output) {
                             if ([output characterAtIndex:0] == '<') {
                                 [self recievedControlMessage:output];
-                                [self sendMessage:@"<p"];
                             } else if ([output characterAtIndex:0] == '>') {
                                 [self recievedGameMessage:output];
                                 [self sendMessage:@"<p"];
                             } else {
                                 [self recievedQueueMessage:output];
+                                [self sendMessage:@"<p"];
+                                
                             }
                             NSLog(@"server said: %@", output);
                         }
@@ -100,7 +104,7 @@ NSOutputStream *outputStream;
     char firstChar = [message characterAtIndex:0];
     if (firstChar == 'j') {
         if (self.searching) {
-            [self sendMessage:@"^a"];
+            [self sendMessage:[NSString stringWithFormat:@"^a%ld", self.playerID]];
             [self.queueDelegate queryAccepted];
         } else {
             [self cancelQuery];
@@ -108,7 +112,8 @@ NSOutputStream *outputStream;
     } else if (firstChar == 'r') {
         [self.queueDelegate matchRejected];
     } else if (firstChar == 'c') {
-        [self.queueDelegate matchAccepted];
+        NSInteger ID = [[message substringFromIndex:2] integerValue];
+        [self.queueDelegate matchAcceptedWithID:ID];
     }
 }
 
@@ -140,7 +145,9 @@ NSOutputStream *outputStream;
 - (void)recievedControlMessage:(NSString*)message {
     if ([message characterAtIndex:1] == 's') {
         [[Game instance] setShouldStart];
+        [self sendMessage:@"<p"];
     } else if ([message characterAtIndex:1] == 'q') {
+        [Game instance].homeWonGame = YES;
         [[Game instance] endGame];
     }
 }
@@ -162,10 +169,16 @@ NSOutputStream *outputStream;
     [self sendMessage:@"^c"];
 }
 
--(void)addToQueueWithUsername:(NSString *)name andRank:(NSInteger)rank {
-    NSString* msg = [NSString stringWithFormat:@"^n%ldu%@", (long)rank, name];
+-(void)addToQueueWithRank:(NSInteger)rank andID:(NSInteger)ID {
+    NSString* msg = [NSString stringWithFormat:@"^n%ld", (long)rank];
     self.searching = YES;
+    self.playerID = ID;
     [self sendMessage:msg];
+}
+
+-(void) endGame{
+    [self sendMessage:@"<q"];
+    [[Game instance] endGame];
 }
 
 @end

@@ -37,6 +37,8 @@
 
 @property (nonatomic) BOOL canAttack;
 
+@property (nonatomic) BOOL homeWonGame;
+
 -(BOOL)checkCrystalDeath;
 
 -(void)homeEndTurn;
@@ -48,6 +50,7 @@
 
 +(NSInteger)crystalCreateCost;
 +(NSString*)serverIP;
++(NSInteger)maxUsernameLength;
 
 -(void)setShouldStart;
 

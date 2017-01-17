@@ -92,8 +92,13 @@ static Game* gameInstance = nil;
     [self.awayPlayer checkCrystalDeath];
     
     if (self.shouldEndAway && self.shouldEndHome) {
-        if ([self.homePlayer crystals].count == 0 || [self.awayPlayer crystals].count == 0) {
-            [self endGame];
+        if ([self.homePlayer crystals].count == 0) {
+            self.homeWonGame = NO;
+            [[SocketHandler getInstance] endGame];
+            return YES;
+        } else if ([self.awayPlayer crystals].count == 0) {
+            self.homeWonGame = YES;
+            [[SocketHandler getInstance] endGame];
             return YES;
         }
     }
@@ -158,14 +163,12 @@ static Game* gameInstance = nil;
         return;
     }
     
-    [[SocketHandler getInstance] sendMessage:@"<q"];
-    
     [self._delegate exitSegue];
     gameInstance = nil;
 }
 
 -(void)registerAddSoul:(NSString *)soulID toTarget:(NSInteger)target {
-    NSString* cmd = [NSString stringWithFormat:@"s%ld%@", target, soulID];
+    NSString* cmd = [NSString stringWithFormat:@">s%ld%@", target, soulID];
     [[SocketHandler getInstance] sendMessage:cmd];
 }
 
@@ -198,9 +201,9 @@ static Game* gameInstance = nil;
     
     NSString *cmd;
     if (targetIndex < 6) {
-        cmd = [NSString stringWithFormat:@"h%ld%ld%@", source, targetIndex, spellID];
+        cmd = [NSString stringWithFormat:@">h%ld%ld%@", source, targetIndex, spellID];
     } else {
-        cmd = [NSString stringWithFormat:@"a%ld%ld%@", source, targetIndex-5, spellID];
+        cmd = [NSString stringWithFormat:@">a%ld%ld%@", source, targetIndex-5, spellID];
     }
     
     [[SocketHandler getInstance] sendMessage:cmd];
@@ -208,21 +211,25 @@ static Game* gameInstance = nil;
 
 -(void)registerAddCrystal:(Crystal *)crystal atIndex:(NSInteger)index {
     
-    NSString* cmd = [NSString stringWithFormat:@"c%ld%lx%lx%lx", index, (long)[crystal health], (long)[crystal shield], (long)[crystal speed]];
+    NSString* cmd = [NSString stringWithFormat:@">c%ld%lx%lx%lx", index, (long)[crystal health]/2, (long)[crystal shield], (long)[crystal speed]];
     
     [[SocketHandler getInstance] sendMessage:cmd];
 }
+
+
 
 -(void)addCrytsalAtPosition:(NSInteger)target withHealth:(NSInteger)health speed:(NSInteger)speed andShield:(NSInteger)shield {
     Crystal* newCrystal = [[Crystal alloc]initWithHealth:health Speed:speed shield:shield];
     
     [self.awayPlayer setCrystalN:target toCrystal:newCrystal];
+    [self._delegate updateGUI];
 }
 
 -(void)addSoulAtPosition:(NSInteger)target withID:(NSString *)soulID {
     Soul* soul = [SoulsLibrary soulWithID:soulID];
     Crystal* targetCrystal = [self.awayPlayer crystalN:target];
     [targetCrystal addSoulInEmptyIndex:soul];
+    [self._delegate updateGUI];
 }
 
 -(void)castSpellAtHomePlayer:(NSInteger)target fromAwayPlayer:(NSInteger)caster andID:(NSString *)spellID {
@@ -236,6 +243,7 @@ static Game* gameInstance = nil;
     Crystal* targetCrystal = [self.homePlayer crystalN:target];
     
     [casterCrystal castSpell:spell onTarget:targetCrystal];
+    [self._delegate updateGUI];
 }
 
 -(void)castSpellAtAwayPlayer:(NSInteger)target fromAwayPlayer:(NSInteger)caster andID:(NSString *)spellID {
@@ -249,10 +257,15 @@ static Game* gameInstance = nil;
     Crystal* targetCrystal = [self.awayPlayer crystalN:target];
     
     [casterCrystal castSpell:spell onTarget:targetCrystal];
+    [self._delegate updateGUI];
 }
 
 +(NSString*)serverIP {
     return @"ec2-54-186-194-165.us-west-2.compute.amazonaws.com";
+}
+
++(NSInteger)maxUsernameLength {
+    return 20;
 }
 
 @end

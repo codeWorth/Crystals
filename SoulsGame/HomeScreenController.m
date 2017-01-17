@@ -210,8 +210,40 @@
     return YES;
 }
 
--(void)segueReturn:(UIStoryboardSegue*)segue {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // Prevent crashing undo bug
+    if(range.length + range.location > textField.text.length)
+    {
+        return NO;
+    }
     
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= [Game maxUsernameLength];
 }
+
+-(IBAction)segueHome:(UIStoryboardSegue*)segue{
+}
+
+-(IBAction)segueGameEnd:(UIStoryboardSegue*)segue{
+    NSURL *url;
+    if ([Game instance].homeWonGame) {
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/ServerCode/playerwon.php", [Game serverIP]]];
+    } else {
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/ServerCode/playerlost.php", [Game serverIP]]];
+    }
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:urlRequest];
+    [uploadTask resume];
+}
+
+
 
 @end

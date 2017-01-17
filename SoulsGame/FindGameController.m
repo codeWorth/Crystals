@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 @property (nonatomic) NSInteger awayID;
+@property (nonatomic) NSInteger rank;
 
 @end
 
@@ -29,6 +30,7 @@
     
     [self setUserInfo];
     self.cancelButton.hidden = YES;
+    self.findButton.enabled = NO;
     [SocketHandler getInstance].queueDelegate = self;
 }
 
@@ -38,6 +40,7 @@
         return;
     }
     
+    [[SocketHandler getInstance] addToQueueWithRank:self.rank andID:self.userID];
 
     self.findingLabel.hidden = NO;
     self.findButton.hidden = YES;
@@ -52,7 +55,8 @@
     }
 }
 
--(void)matchAccepted {
+-(void)matchAcceptedWithID:(NSInteger)ID {
+    self.awayID = ID;
     [self performSegueWithIdentifier:@"matchFound" sender:self];
 }
 
@@ -87,7 +91,7 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
     
     NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.awayID];
+    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -100,6 +104,8 @@
             
             self.usernameLabel.text = [items objectAtIndex:0];
             self.rankLabel.text = [NSString stringWithFormat:@"Rank: %@", [items objectAtIndex:1]];
+            self.rank = [(NSString*)[items objectAtIndex:1] integerValue];
+            self.findButton.enabled = YES;
         }];
         
         [uploadTask resume];
