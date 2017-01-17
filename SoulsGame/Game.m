@@ -206,7 +206,7 @@ static Game* gameInstance = nil;
 
 -(void)registerAddCrystal:(Crystal *)crystal atIndex:(NSInteger)index {
     
-    NSString* cmd = [NSString stringWithFormat:@"c%ld%lx%lx%lx", index, (long)[crystal health], (long)[crystal speed], (long)[crystal shield]];
+    NSString* cmd = [NSString stringWithFormat:@"c%ld%lx%lx%lx", index, (long)[crystal health], (long)[crystal shield], (long)[crystal speed]];
     
     [[SocketHandler getInstance] sendMessage:cmd];
 }
