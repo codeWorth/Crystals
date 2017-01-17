@@ -33,6 +33,8 @@
 @property (nonatomic) BOOL shouldEndHome;
 @property (nonatomic) BOOL shouldEndAway;
 
+@property (nonatomic) BOOL started;
+
 @end
 
 @implementation Game
@@ -45,6 +47,8 @@ static Game* gameInstance = nil;
 -(instancetype)init{
     if (self = [super init]){
         self.time = 0;
+        
+        self.started = NO;
                 
         self.homePlayer = [[Player alloc]init];
         self.homePlayer.delegate = self;
@@ -128,12 +132,18 @@ static Game* gameInstance = nil;
 }
 
 -(void)awayEndTurn{
-    self.shouldEndAway = YES;
+    if (self.started) {
+        self.shouldEndAway = YES;
+        
+        self.time++;
+        [self.awayPlayer nextTurn];
+        
+        self.canAttack = YES;
+    } else {
+        [self setShouldStart];
+        self.started = YES;
+    }
     
-    self.time++;
-    [self.awayPlayer nextTurn];
-    
-    self.canAttack = YES;
 }
 
 -(void)setDelegate:(UIViewController<UpdateableController> *)delegate{

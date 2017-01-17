@@ -141,7 +141,7 @@ NSOutputStream *outputStream;
 
 - (void)recievedControlMessage:(NSString*)message {
     if ([message characterAtIndex:1] == 's') {
-        [[Game instance] setShouldStart];
+        [[Game instance] awayEndTurn];
         [self sendMessage:@"<p"];
     } else if ([message characterAtIndex:1] == 'q') {
         [Game instance].homeWonGame = YES;
