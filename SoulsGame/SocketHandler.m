@@ -60,6 +60,11 @@ NSOutputStream *outputStream;
                         NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
                         
                         if (nil != output) {
+                            if ([output characterAtIndex:0] == '<') {
+                                [self recievedControlMessage:output];
+                            } else if ([output characterAtIndex:0] == '>') {
+                                [self recievedGameMessage:output];
+                            }
                             NSLog(@"server said: %@", output);
                         }
                     }
@@ -77,6 +82,14 @@ NSOutputStream *outputStream;
         default:
             NSLog(@"Unknown event");
     }
+    
+}
+
+- (void)recievedGameMessage:(NSString*)message {
+    
+}
+
+- (void)recievedControlMessage:(NSString*)message {
     
 }
 

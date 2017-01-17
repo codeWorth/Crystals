@@ -135,10 +135,10 @@
         return;
     }
     
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/playerdata.php", [Game serverIP]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/ServerCode/playerdata.php", [Game serverIP]]];
     NSString* params = [NSString stringWithFormat:@"id=%ld", self.awayID];
     self.awayUsername = (NSString*)[items objectAtIndex:0];
-    [self updateAwayUser];*/
+    [self updateAwayUser];
 }
 
 -(Crystal*)crystalForTag:(NSInteger)tag{
