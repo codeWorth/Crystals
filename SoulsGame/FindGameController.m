@@ -53,11 +53,16 @@
 }
 
 -(void)matchAccepted {
-    [self performSegueWithIdentifier:@"matchFound" sender:self];*/
+    [self performSegueWithIdentifier:@"matchFound" sender:self];
 }
 
 -(void)matchRejected {
-    
+    [self cancelSearch];
+}
+
+-(void)queryAccepted {
+    self.cancelButton.enabled = NO;
+    self.findingLabel.text = @"Joining Match";
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -107,12 +112,8 @@
         return;
     }
     
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/attemptcancel.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-    
-    if ([str isEqualToString:@"y"]) {
-        [self performSegueWithIdentifier:@"return" sender:self];
-    }*/
+    [[SocketHandler getInstance] cancelQuery];
+    [self performSegueWithIdentifier:@"return" sender:self];
 }
 
 @end

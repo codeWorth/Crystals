@@ -158,11 +158,13 @@ NSOutputStream *outputStream;
 }
 
 -(void)cancelQuery {
+    self.searching = NO;
     [self sendMessage:@"^c"];
 }
 
 -(void)addToQueueWithUsername:(NSString *)name andRank:(NSInteger)rank {
-    NSString* msg = [NSString stringWithFormat:@"^n%du%@", rank, name];
+    NSString* msg = [NSString stringWithFormat:@"^n%ldu%@", (long)rank, name];
+    self.searching = YES;
     [self sendMessage:msg];
 }
 
