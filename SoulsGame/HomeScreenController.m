@@ -46,7 +46,7 @@
         self.usernameLabel.text = @"Offline";
         return;
     }
-    
+        
     [[SocketHandler getInstance] initNetworkCommunication];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

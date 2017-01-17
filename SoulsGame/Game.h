@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Player.h"
 #import "Crystal.h"
+#import "SocketHandler.h"
 
 @protocol UpdateableController <NSObject>
 
@@ -21,7 +22,7 @@
 
 @class Crystal;
 
-@interface Game : NSObject <NetComm>
+@interface Game : NSObject <NetComm, NetDelegate>
 
 @property (nonatomic) NSInteger time;
 
@@ -48,7 +49,6 @@
 +(NSInteger)crystalCreateCost;
 +(NSString*)serverIP;
 
--(void)queryGUIUpdate;
 -(void)setShouldStart;
 
 @property (nonatomic) BOOL offline;

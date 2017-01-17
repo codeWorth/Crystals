@@ -26,7 +26,7 @@ NSOutputStream *outputStream;
 - (void)initNetworkCommunication {
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"ec2-54-186-194-165.us-west-2.compute.amazonaws.com", 80, &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)[Game serverIP], 80, &readStream, &writeStream);
     inputStream = (__bridge NSInputStream *)readStream;
     outputStream = (__bridge NSOutputStream *)writeStream;
     
@@ -99,6 +99,13 @@ NSOutputStream *outputStream;
 -(void)sendMessage:(NSString*)msg {
     NSData *data = [[NSData alloc] initWithData:[msg dataUsingEncoding:NSASCIIStringEncoding]];
     [outputStream write:[data bytes] maxLength:[data length]];
+}
+
+-(NSInteger)hexToInt:(NSString *)hex {
+    unsigned int outVal;
+    NSScanner* scanner = [NSScanner scannerWithString:hex];
+    [scanner scanHexInt:&outVal];
+    return outVal;
 }
 
 @end

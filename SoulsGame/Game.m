@@ -30,11 +30,6 @@
 @property (nonatomic) NSInteger userID;
 @property (nonatomic) NSInteger awayID;
 
-@property (nonatomic) BOOL shouldEndClearTimer;
-
-@property (strong, nonatomic) NSTimer* receiveDataTimer;
-@property (strong, nonatomic) NSTimer* clearBufferTimer;
-
 @property (nonatomic) BOOL shouldEndHome;
 @property (nonatomic) BOOL shouldEndAway;
 
@@ -50,7 +45,7 @@ static Game* gameInstance = nil;
 -(instancetype)init{
     if (self = [super init]){
         self.time = 0;
-        
+                
         self.homePlayer = [[Player alloc]init];
         self.homePlayer.delegate = self;
         
@@ -69,8 +64,6 @@ static Game* gameInstance = nil;
         
         self.messageIndex = 1;
         self.currentBuffer = [[NSMutableString alloc]init];
-        
-        self.shouldEndClearTimer = NO;
         
         self.shouldEndAway = NO;
         self.shouldEndHome = NO;
@@ -125,11 +118,6 @@ static Game* gameInstance = nil;
     
     self.canAttack = NO;
     [[SocketHandler getInstance] sendMessage:@"<e"];
-    
-    self.receiveDataTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(receiveDataClock:) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.receiveDataTimer forMode:NSRunLoopCommonModes];
-    
-    self.shouldEndClearTimer = YES;
 }
 
 -(void)awayEndTurn{
@@ -139,12 +127,12 @@ static Game* gameInstance = nil;
     [self.awayPlayer nextTurn];
     
     self.canAttack = YES;
-    
-    [self.receiveDataTimer invalidate];
-    self.receiveDataTimer = nil;
-    
-    self.clearBufferTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(clearBufferClock:) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.clearBufferTimer forMode:NSRunLoopCommonModes];
+}
+
+-(void)setDelegate:(UIViewController<UpdateableController> *)delegate{
+    self._delegate = delegate;
+    self.userID = delegate.userID;
+    self.awayID = delegate.awayID;
 }
 
 +(Game*)instance {
@@ -174,227 +162,8 @@ static Game* gameInstance = nil;
     gameInstance = nil;
 }
 
-
-
--(void)setDelegate:(UIViewController<UpdateableController> *)delegate{
-    self._delegate = delegate;
-    self.userID = delegate.userID;
-    self.awayID = delegate.awayID;
-}
-
--(void)queryGUIUpdate {
-    if (self.offline) {
-        return;
-    }
-    
-    /*NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-            
-    if ([str length] == 0) {
-        [self endGame];
-        return;
-    }
-    
-    NSInteger rVal = [str integerValue];
-    
-    if (rVal == 0){
-        [self receiveGUIData];
-    }*/
-}
-
--(void)receiveGUIData {
-    /*if (self.offline) {
-        return;
-    }
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/data.php", [Game serverIP]]];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
-            
-    [self handleData:str];*/
-}
-
--(void)handleData:(NSString*)data{
-    //unichar - 48 = the number (so if '1' then = 49 - 48 = 1)
-    //compare unichar "A" to single quote 'A'
-    
-    NSMutableArray* cmds = [[NSMutableArray alloc]init];
-    
-    NSUInteger len = [data length];
-    unichar buffer[len+1];
-    
-    [data getCharacters:buffer range:NSMakeRange(0, len)];
-    
-    BOOL foundMaxIndex = NO;
-    NSInteger maxIndex;
-    NSInteger maxIndexEnd = 0;
-    
-    for(int i = 0; i < len; i++) {
-        unichar thisChar = buffer[i];
-        
-        if (thisChar < '0' || thisChar > '9'){
-            if (!foundMaxIndex) {
-                maxIndexEnd = i;
-                foundMaxIndex = YES;
-            }
-            
-            if (thisChar == 's') {
-                i += 7;
-            } else if (thisChar == 'e') {
-                [cmds addObject:[data substringWithRange:NSMakeRange(i, 3)]];
-                i += 3;
-            } else if (thisChar == 'p') {
-                [cmds addObject:[data substringWithRange:NSMakeRange(i, 6)]];
-                i += 6;
-            } else if (thisChar == 'c'){
-                [cmds addObject:[data substringWithRange:NSMakeRange(i, 8)]];
-                 i += 8;
-            } else if (thisChar == 'o') {
-                [cmds addObject:[data substringWithRange:NSMakeRange(i, 5)]];
-                i += 5;
-            }
-        }
-    }
-    
-    maxIndex = [[data substringWithRange:NSMakeRange(0, maxIndexEnd)] integerValue];
-    
-    
-    for (int i = (int)[cmds count] - 1; i >= 0; i--){
-        NSString* cmd = [cmds objectAtIndex:i];
-        
-        if ([[cmd substringToIndex:1] isEqualToString:@"e"]) {
-            [self awayEndTurn];
-        } else if ([[cmd substringToIndex:1] isEqualToString:@"p"]) {
-            
-            NSInteger caster = [[cmd substringWithRange:NSMakeRange(1, 1)] integerValue];
-            NSInteger target = [[cmd substringWithRange:NSMakeRange(2, 1)] integerValue];
-            NSString *spellID = [cmd substringWithRange:NSMakeRange(3, 3)];
-            
-            Spell* spell = [Spells spellWithID:spellID];
-            if (spell == nil){
-                NSLog(@"Unrecognized spell!");
-                return;
-            }
-            
-            Crystal* casterCrystal = [self.awayPlayer crystalN:caster];
-            Crystal* targetCrystal;
-            
-            if (target > 5) {
-                targetCrystal = [self.awayPlayer crystalN:target-5];
-            } else {
-                targetCrystal = [self.homePlayer crystalN:target];
-            }
-            
-            [casterCrystal castSpell:spell onTarget:targetCrystal];
-            
-        } else if ([[cmd substringToIndex:1] isEqualToString:@"c"]) {
-            
-            NSInteger target = [[cmd substringWithRange:NSMakeRange(1, 1)] integerValue];
-            NSInteger health = [[cmd substringWithRange:NSMakeRange(2, 2)] integerValue];
-            NSInteger speed = [[cmd substringWithRange:NSMakeRange(4, 2)] integerValue];
-            NSInteger shield = [[cmd substringWithRange:NSMakeRange(6, 2)] integerValue];
-            
-            Crystal* newCrystal = [[Crystal alloc]initWithHealth:health Speed:speed shield:shield];
-            
-            [self.awayPlayer setCrystalN:target toCrystal:newCrystal];
-            
-        } else if ([[cmd substringToIndex:1] isEqualToString:@"o"]) {
-            
-            NSInteger target = [[cmd substringWithRange:NSMakeRange(1, 1)] integerValue];
-            NSString *soulID = [cmd substringWithRange:NSMakeRange(2, 3)];
-            
-            Soul* soul = [SoulsLibrary soulWithID:soulID];
-            Crystal* targetCrystal = [self.awayPlayer crystalN:target];
-            [targetCrystal addSoulInEmptyIndex:soul];
-            
-        }
-    }
-    
-    [self setResetValue:maxIndex forUser:self.userID];
-    [self._delegate updateGUI];
-}
-
--(void)setResetValue:(NSInteger)r forUser:(NSInteger)ID {
-    if (self.offline) {
-        return;
-    }
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/setr.php", [Game serverIP]]];
-}
-
--(void)receiveDataClock:(NSTimer*)timer {
-    [self queryGUIUpdate];
-}
-
--(void)clearBufferClock:(NSTimer*)timer {
-    if (self.offline) {
-        return;
-    }
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/souls/getr.php", [Game serverIP]]];
-}
-
--(void)clearBufferTo:(NSInteger)clearPoint {
-    if (self.shouldEndClearTimer) {
-        self.shouldEndClearTimer = NO;
-        
-        [self.clearBufferTimer invalidate];
-        self.clearBufferTimer = nil;
-    }
-    
-    NSUInteger len = [self.currentBuffer length];
-    unichar buffer[len+1];
-    
-    [self.currentBuffer getCharacters:buffer range:NSMakeRange(0, len)];
-    
-    NSRange selectedRange = NSMakeRange(0, 0);
-    BOOL setStart = YES;
-    
-    for(int i = 0; i < len; i++) {
-        unichar thisChar = buffer[i];
-        
-        if (thisChar >= '0' && thisChar <= '9'){
-            if (setStart) {
-                selectedRange.location = i;
-                setStart = NO;
-            }
-            selectedRange.length += 1;
-        } else {
-            NSInteger selectedNumber = [[self.currentBuffer substringWithRange:selectedRange] integerValue];
-            
-            if (selectedNumber == clearPoint) {
-                i = (int)len;
-            }
-            
-            if (thisChar == 's') {
-                i += 7;
-            } else if (thisChar == 'e') {
-                i += 3;
-            } else if (thisChar == 'p') {
-                i += 6;
-            } else if (thisChar == 'c'){
-                i += 8;
-            } else if (thisChar == 'o') {
-                i += 5;
-            }
-        }
-    }
-    
-    [self.currentBuffer deleteCharactersInRange:NSMakeRange(selectedRange.location, [self.currentBuffer length] - selectedRange.location)];
-    [self setMatchData];
-    
-    [self setResetValue:0 forUser:self.awayID];
-}
-
--(void)addBufferMessage:(NSString*)msg {
-    NSString* fullMsg = [NSString stringWithFormat:@"%ld%@", self.messageIndex, msg];
-    self.messageIndex++;
-    [self.currentBuffer appendString:fullMsg];
-    
-    [self setMatchData];
-}
-
 -(void)registerAddSoul:(NSString *)soulID toTarget:(NSInteger)target {
-    NSString* cmd = [NSString stringWithFormat:@"o%ld%@", target, soulID];
+    NSString* cmd = [NSString stringWithFormat:@"s%ld%@", target, soulID];
     [[SocketHandler getInstance] sendMessage:cmd];
 }
 
@@ -425,13 +194,19 @@ static Game* gameInstance = nil;
         return;
     }
     
-    NSString* cmd = [NSString stringWithFormat:@"p%ld%ld%@", source, targetIndex, spellID];
+    NSString *cmd;
+    if (targetIndex < 6) {
+        cmd = [NSString stringWithFormat:@"h%ld%ld%@", source, targetIndex, spellID];
+    } else {
+        cmd = [NSString stringWithFormat:@"a%ld%ld%@", source, targetIndex-5, spellID];
+    }
     
     [[SocketHandler getInstance] sendMessage:cmd];
 }
 
 -(void)registerAddCrystal:(Crystal *)crystal atIndex:(NSInteger)index {
-    NSString* cmd = [NSString stringWithFormat:@"c%ld%02d%02d%02d", index, (int)[crystal health]/2, (int)[crystal speed], (int)[crystal shield]];
+    
+    NSString* cmd = [NSString stringWithFormat:@"c%ld%lx%lx%lx", index, (long)[crystal health], (long)[crystal speed], (long)[crystal shield]];
     
     [[SocketHandler getInstance] sendMessage:cmd];
 }
@@ -472,6 +247,10 @@ static Game* gameInstance = nil;
     Crystal* targetCrystal = [self.awayPlayer crystalN:target];
     
     [casterCrystal castSpell:spell onTarget:targetCrystal];
+}
+
++(NSString*)serverIP {
+    return @"ec2-54-186-194-165.us-west-2.compute.amazonaws.com";
 }
 
 @end
