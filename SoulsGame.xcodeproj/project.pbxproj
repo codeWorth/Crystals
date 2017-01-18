@@ -14,6 +14,8 @@
 		491A5CD61D5D918200C5904A /* ResistSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 491A5CD51D5D918200C5904A /* ResistSoul.m */; };
 		491A5CD81D5D94E900C5904A /* BuffSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 491A5CD71D5D94E900C5904A /* BuffSoul.m */; };
 		491A5CDA1D5DA0FA00C5904A /* SpecSoul.m in Sources */ = {isa = PBXBuildFile; fileRef = 491A5CD91D5DA0FA00C5904A /* SpecSoul.m */; };
+		493B1BAD1E2EF40300928A05 /* HockeySDK.embeddedframework in Resources */ = {isa = PBXBuildFile; fileRef = 493B1BAC1E2EF40300928A05 /* HockeySDK.embeddedframework */; };
+		493B1BAF1E2EF43200928A05 /* HockeySDK.embeddedframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493B1BAC1E2EF40300928A05 /* HockeySDK.embeddedframework */; };
 		493BA1611D5EF5F800AD1041 /* AllBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 493BA1601D5EF5F800AD1041 /* AllBuff.m */; };
 		496EB2E91D5F2EDA00C5C872 /* Submerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EB2E81D5F2EDA00C5C872 /* Submerge.m */; };
 		496EB2EC1D5F2F0000C5C872 /* SpellDebuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EB2EB1D5F2F0000C5C872 /* SpellDebuff.m */; };
@@ -144,6 +146,7 @@
 		491A5CD51D5D918200C5904A /* ResistSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResistSoul.m; sourceTree = "<group>"; };
 		491A5CD71D5D94E900C5904A /* BuffSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuffSoul.m; sourceTree = "<group>"; };
 		491A5CD91D5DA0FA00C5904A /* SpecSoul.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecSoul.m; sourceTree = "<group>"; };
+		493B1BAC1E2EF40300928A05 /* HockeySDK.embeddedframework */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HockeySDK.embeddedframework; path = "HockeySDK-iOS/HockeySDK.embeddedframework"; sourceTree = "<group>"; };
 		493BA15F1D5EF5F800AD1041 /* AllBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllBuff.h; sourceTree = "<group>"; };
 		493BA1601D5EF5F800AD1041 /* AllBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllBuff.m; sourceTree = "<group>"; };
 		496EB2E71D5F2EDA00C5C872 /* Submerge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Submerge.h; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493B1BAF1E2EF43200928A05 /* HockeySDK.embeddedframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +337,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493B1BAE1E2EF40800928A05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				493B1BAC1E2EF40300928A05 /* HockeySDK.embeddedframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		493BA1621D5EF60300AD1041 /* Effect Souls */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +553,7 @@
 				D5BEF5871CF94E2400A5F3C2 /* SoulsGameTests */,
 				D5BEF5921CF94E2400A5F3C2 /* SoulsGameUITests */,
 				D5BEF56C1CF94E2400A5F3C2 /* Products */,
+				493B1BAE1E2EF40800928A05 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -639,6 +652,7 @@
 				D5BEF5671CF94E2400A5F3C2 /* Sources */,
 				D5BEF5681CF94E2400A5F3C2 /* Frameworks */,
 				D5BEF5691CF94E2400A5F3C2 /* Resources */,
+				493B1BAB1E2EF38700928A05 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -769,6 +783,7 @@
 				49EFA1011D5FD7E700C6FE44 /* shadowbuff.png in Resources */,
 				D572E0D01D32FB56004254F8 /* addsoulback outer.png in Resources */,
 				D5BC7EF31D2F840D00C4C0D0 /* roundedoutline noplus.png in Resources */,
+				493B1BAD1E2EF40300928A05 /* HockeySDK.embeddedframework in Resources */,
 				D59E46991CFBE7C00085CCF3 /* air.jpg in Resources */,
 				D56BC41C1D0526270051CD05 /* profileback.png in Resources */,
 				49EFA0FB1D5FD37300C6FE44 /* lightshield.png in Resources */,
@@ -803,6 +818,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		493B1BAB1E2EF38700928A05 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n    \"$FILE\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D5BEF5671CF94E2400A5F3C2 /* Sources */ = {
