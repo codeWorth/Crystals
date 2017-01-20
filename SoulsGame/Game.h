@@ -52,8 +52,6 @@
 +(NSString*)serverIP;
 +(NSInteger)maxUsernameLength;
 
--(void)setShouldStart;
-
 @property (nonatomic) BOOL offline;
 
 @end

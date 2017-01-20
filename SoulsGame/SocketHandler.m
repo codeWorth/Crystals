@@ -1,3 +1,4 @@
+
 //
 //  SocketHandler.m
 //  SoulsGame
@@ -101,7 +102,7 @@ NSOutputStream *outputStream;
     char firstChar = [message characterAtIndex:0];
     if (firstChar == 'j') {
         if (self.searching) {
-            [self sendMessage:[NSString stringWithFormat:@"^a%ld", self.playerID]];
+            [self sendMessage:[NSString stringWithFormat:@"^a%ld", (long)self.playerID]];
             [self.queueDelegate queryAccepted];
         } else {
             [self cancelQuery];

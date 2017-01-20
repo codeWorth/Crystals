@@ -48,8 +48,6 @@ static Game* gameInstance = nil;
     if (self = [super init]){
         self.time = 0;
         
-        self.started = NO;
-                
         self.homePlayer = [[Player alloc]init];
         self.homePlayer.delegate = self;
         
@@ -66,11 +64,10 @@ static Game* gameInstance = nil;
         
         self.canAttack = NO;
         
-        self.messageIndex = 1;
-        self.currentBuffer = [[NSMutableString alloc]init];
-        
         self.shouldEndAway = NO;
         self.shouldEndHome = NO;
+        
+        self.started = NO;
         
         self.offline = NO;
         
@@ -79,7 +76,7 @@ static Game* gameInstance = nil;
     return self;
 }
 
--(void)setShouldStart {
+-(void)opponentNextTurn {
     if (self.offline) {
         self.canAttack = YES;
         [self._delegate updateGUI];
@@ -134,16 +131,12 @@ static Game* gameInstance = nil;
 -(void)awayEndTurn{
     if (self.started) {
         self.shouldEndAway = YES;
-        
-        self.time++;
-        [self.awayPlayer nextTurn];
-        
-        self.canAttack = YES;
     } else {
-        [self setShouldStart];
         self.started = YES;
     }
     
+    self.time++;
+    [self opponentNextTurn];
 }
 
 -(void)setDelegate:(UIViewController<UpdateableController> *)delegate{
@@ -178,7 +171,7 @@ static Game* gameInstance = nil;
 }
 
 -(void)registerAddSoul:(NSString *)soulID toTarget:(NSInteger)target {
-    NSString* cmd = [NSString stringWithFormat:@">s%ld%@", target, soulID];
+    NSString* cmd = [NSString stringWithFormat:@">s%ld%@", (long)target, soulID];
     [[SocketHandler getInstance] sendMessage:cmd];
 }
 
@@ -211,9 +204,9 @@ static Game* gameInstance = nil;
     
     NSString *cmd;
     if (targetIndex < 6) {
-        cmd = [NSString stringWithFormat:@">h%ld%ld%@", source, targetIndex, spellID];
+        cmd = [NSString stringWithFormat:@">h%ld%ld%@", (long)source, targetIndex, spellID];
     } else {
-        cmd = [NSString stringWithFormat:@">a%ld%ld%@", source, targetIndex-5, spellID];
+        cmd = [NSString stringWithFormat:@">a%ld%ld%@", (long)source, targetIndex-5, spellID];
     }
     
     [[SocketHandler getInstance] sendMessage:cmd];
@@ -221,7 +214,7 @@ static Game* gameInstance = nil;
 
 -(void)registerAddCrystal:(Crystal *)crystal atIndex:(NSInteger)index {
     
-    NSString* cmd = [NSString stringWithFormat:@">c%ld%lx%lx%lx", index, (long)[crystal health]/2, (long)[crystal shield], (long)[crystal speed]];
+    NSString* cmd = [NSString stringWithFormat:@">c%ld%lx%lx%lx", (long)index, (long)[crystal health]/2, (long)[crystal shield], (long)[crystal speed]];
     
     [[SocketHandler getInstance] sendMessage:cmd];
 }

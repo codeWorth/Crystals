@@ -236,7 +236,7 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
     
     NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
-    NSString* params = [NSString stringWithFormat:@"id=%ld", self.userID];
+    NSString* params = [NSString stringWithFormat:@"id=%ld", (long)self.userID];
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
