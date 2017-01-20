@@ -84,6 +84,7 @@ static Game* gameInstance = nil;
     }
     
     self.canAttack = YES;
+    [self.awayPlayer nextTurn];
     
     [self._delegate updateGUI];
 }
